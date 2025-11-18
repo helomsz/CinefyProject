@@ -1,4 +1,4 @@
-# 🎬 Cinefy — Catálogo de Filmes com Modo Kids
+# 🎬 Cinefy — Servidor de Filmes
 
 ![Status](https://img.shields.io/badge/status-active-success)
 ![React](https://img.shields.io/badge/React-20232A?logo=react)
