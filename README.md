@@ -52,7 +52,7 @@ Este repositório inclui o **Front-end (React + Vite)** e o **Back-end (Python +
 * JWT para autenticação
 * Bcrypt para criptografia de senhas
 * MySQL
-* HTTPServer (ou estrutura utilizada no projeto)
+* HTTPServer 
 
 ---
 
