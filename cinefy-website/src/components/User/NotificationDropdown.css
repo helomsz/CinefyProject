@@ -1,0 +1,102 @@
+.notification-dropdown {
+    position: absolute;
+    top: 55px;
+    right: 70px; 
+    width: 320px; 
+    max-height: 400px;
+    background: rgb(41, 41, 41);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    color: #e8e8e8;
+    z-index: 1000; 
+    overflow: hidden; 
+}
+
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dropdown-header h3 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.unread-badge {
+    background-color: var(--corGradienteFim, #107c6f); /* Use sua cor ciano/verde */
+    color: #ffffff;
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+
+.notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    max-height: 300px; 
+}
+
+.notification-item {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+
+.notification-item.unread {
+    background-color: rgba(26, 188, 156, 0.1);
+    border-left: 4px solid #00B9AE;
+    border-radius: 2px;
+}
+
+.notification-message {
+    margin: 0;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+.notification-time {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.8em;
+    color: #999999;
+}
+
+.dropdown-footer {
+    padding: 10px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mark-as-read-button {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--corGradienteInicio, #00B9AE);
+    padding: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mark-as-read-button:hover {
+    color: #ffffff;
+}

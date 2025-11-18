@@ -1,0 +1,45 @@
+/* 1. CONTAINER PAI (SecaoPlanos) */
+.secaoPlanos {
+    margin-top: 140px;
+    /* Remove align-items e justify-content pois vamos centralizar o link com margin: auto */
+    /* display: flex; REMOVIDO para simplificar a centralização */
+    
+    position: relative; 
+    width: 100%; 
+    padding: 0;
+    z-index: 1; /* Valor baixo para que o menu sobreponha */
+}
+
+/* 2. O LINK CLICÁVEL (.linkPlanos) - AGORA O ELEMENTO CENTRALIZADOR */
+.linkPlanos {
+    /* TRANSFORMA O LINK EM UM BLOCO COM LARGURA DEFINIDA */
+    display: block; 
+    
+    /* DEFINE A LARGURA EXATA DO 'BOTÃO' / IMAGEM */
+    width: 70%; /* A largura que você deseja para a imagem */
+    max-width: 1200px; /* Limite máximo para telas muito grandes (opcional) */
+    
+    /* CENTRALIZA O BLOCO NA PÁGINA */
+    margin: 0 auto; 
+    
+    /* Remove estilos visuais do link */
+    text-decoration: none;
+    line-height: 0;
+    
+    /* Efeito de transição para o hover */
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    border-radius: 12px; /* Adiciona bordas arredondadas ao link inteiro */
+    overflow: hidden; /* Garante que o efeito de hover fique dentro da borda */
+}
+
+/* 3. A IMAGEM DENTRO DO LINK (.imagemPlanos) */
+.imagemPlanos {
+    /* A imagem deve sempre ocupar 100% da largura de seu PAI (.linkPlanos) */
+    width: 100%; 
+    height: auto; 
+    display: block; /* Garante que a imagem se comporte como um bloco */
+    
+    /* Remove o margin da imagem, pois o PAI (.linkPlanos) já está centralizado */
+    margin: 0; 
+    cursor: pointer;
+}

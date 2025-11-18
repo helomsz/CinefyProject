@@ -1,0 +1,44 @@
+.carrosselPrincipalContainer {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto; 
+    height: 480px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; 
+    margin-bottom: 50px;
+}
+
+.carrosselAreaCards {
+    position: relative;
+    width: 100%; 
+    height: 100%;
+    perspective: 1500px; /* Aumentar a perspectiva para um efeito 3D mais pronunciado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.carrosselIndicadores {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+}
+
+.indicadorPonto {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.indicadorPonto.ativo {
+    background-color: #ffffff; /* Sua cor principal */
+    transform: scale(1.3);
+}

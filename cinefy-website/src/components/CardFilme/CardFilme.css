@@ -1,0 +1,253 @@
+
+.cardFilme {
+    /* Dimensões originais (mais largo, menos alto) */
+    width: 324px; 
+    height: 194px; 
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    margin-right: 20px; 
+    flex-shrink: 0; 
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); 
+    transition: transform 0.3s ease;
+}
+
+.cardFilme:hover {
+    transform: scale(1.03); 
+}
+
+.imagemFilme {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* ---------------------------------- */
+/* 2. Estilização do Overlay/Tarja    */
+/* ---------------------------------- */
+.informacoesOverlay {
+    /* Tarja escura com informações na parte inferior */
+    background: rgba(18, 18, 18, 0.45); 
+    backdrop-filter: blur(4px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
+    height: 70px; 
+    padding: 10px 15px;
+    box-sizing: border-box;
+    color: white;
+    display: grid; 
+    grid-template-columns: 1fr 1px 70px; 
+    align-items: center; /* Alinha verticalmente no centro */
+    
+    border-top-left-radius: 22px; 
+    border-top-right-radius: 22px; 
+}
+
+
+.divisorVertical {
+    background-color: rgba(255, 255, 255, 0.1); 
+    height: 70%; 
+    width: 1px;
+    justify-self: center; /* Garante que o divisor fique no meio da sua coluna */
+}
+
+/* ---------------------------------- */
+/* 3. Botão Play (Canto Inferior Esquerdo) - Visível SEMPRE */
+/* ---------------------------------- */
+.playButtonContainer {
+    /* Posicionamento original no canto inferior esquerdo */
+    position: absolute;
+    bottom: 10px; 
+    left: 10px; 
+    z-index: 10;
+    opacity: 1; /* SEMPRE visível */
+}
+
+.cardFilme:hover .playButtonContainer {
+    opacity: 1; /* Mantém a visibilidade no hover */
+}
+
+.botaoPlay {
+    /* Dimensões originais */
+    background-color: rgba(255, 255, 255, 0.2); 
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.botaoPlay:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.playIcon {
+    color: white;
+    font-size: 14px; 
+    margin-left: 3px; 
+}
+
+/* ---------------------------------- */
+/* 4. Detalhes (Título e Gênero)      */
+/* ---------------------------------- */
+.detalhesFilme {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 60px; 
+    z-index: 5; 
+    align-self: center; 
+}
+
+.tituloFilme {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    max-width: 100%;
+}
+
+.generoFilme {
+    font-size: 0.8em;
+    opacity: 0.8;
+    margin: 4px 0 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; 
+}
+
+/* ---------------------------------- */
+/* 5. Nota (Canto Inferior Direito)   */
+/* ---------------------------------- */
+.notaFilme {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 6px;
+    font-weight: 500;
+    font-size: 0.9em;
+    background-color: transparent; 
+    color: rgba(255, 255, 255, 0.75); 
+    padding: 0 5px; 
+    text-align: center;
+    height: 100%;
+}
+
+.starIcon {
+    /* A estrela fica em cima da nota */
+    margin-right: 0; 
+    margin-bottom: 3px; /* Pequeno espaçamento entre ícone e número */
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.75); 
+}
+
+/* ---------------------------------------------------- */
+/* 6. ESTILOS DO MODAL (ESTILIZAÇÃO DO PROTÓTIPO)        */
+/* ---------------------------------------------------- */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+    backdrop-filter: blur(5px);
+}
+
+.modalContent {
+    background: #1e1e1e; /* Fundo escuro sutil para o corpo caso adicione mais elementos */
+    padding: 0; 
+    border-radius: 12px;
+    max-width: 90%;
+    width: 800px; 
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden; /* Importante para o arredondamento */
+}
+
+/* NOVO: Estilização do cabeçalho (tarja verde/azul-petróleo) */
+.modalHeader {
+    /* Cor de fundo baseada no protótipo (um verde/azul-petróleo escuro) */
+    background: linear-gradient(to right, #025550, #318A84);
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalTitle {
+    /* Resetando estilos do h4 para caber no header */
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.modalTitleLabel {
+    /* Estilização para a palavra "Trailer" (cinza claro e menor) */
+    font-size: 0.85em;
+    font-weight: 400;
+    opacity: 0.8;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.modalTitleContent {
+    /* Estilização para o título do filme */
+    font-weight: 600;
+}
+
+
+/* Estilização do botão de fechar (Ajustado para o novo header) */
+.modalCloseButton {
+    position: static; /* Remove o posicionamento absoluto anterior */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px; /* Reduzido o tamanho */
+    cursor: pointer;
+    opacity: 1; /* Mantido opaco para combinar com o fundo */
+    transition: color 0.2s;
+}
+
+.modalCloseButton:hover {
+    opacity: 1;
+    color: #f2f2f2; /* Cor um pouco mais clara no hover */
+}
+
+/* Contêiner do Iframe */
+.iframeContainer {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Relação de aspecto 16:9 */
+    background-color: #2c2c2c; /* Cor de fundo para o iframe */
+    padding-bottom: 0px; 
+}
+
+.iframeContainer iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0; 
+}

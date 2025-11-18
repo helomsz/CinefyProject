@@ -1,0 +1,21 @@
+.paginaCatalogo {
+    background-color: #1a1e27;
+    min-height: 100vh;
+    color: #e8e8e8;
+    overflow-x: hidden;
+}
+
+.conteudoPrincipalCatalogo {
+    margin-top: 70px; 
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.conteudoPrincipalCatalogo > footer {
+    width: 87%;
+    box-sizing: border-box; 
+    margin-left: 80px; 
+    margin-bottom: 30px;
+    margin-right: 0;
+}

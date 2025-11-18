@@ -1,0 +1,79 @@
+/* ------------------------------------ */
+/* Layout da Página de Favoritos */
+/* ------------------------------------ */
+
+.favorites-page-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--kids-color-bg-dark, #12161F); 
+    color: white;
+}
+.favorites-page-container > footer {
+    width: 90%; /* Reduz a largura para que caiba no contêiner */
+    max-width: 1300px; /* Opcional: define uma largura máxima razoável */
+    margin: 30px auto; /* Centraliza horizontalmente e adiciona margem vertical */
+    padding: 30px; /* Adiciona algum padding lateral interno */
+    box-sizing: border-box; 
+}
+.main-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: var(--sidebar-width, 80px);
+}
+
+.favorites-main {
+    flex-grow: 1;
+    width: 100%;
+    overflow-x: hidden; 
+}
+
+.containerFavoritos {
+  padding: 40px 60px;
+  transform: translateY(-70px);
+
+}
+
+.listaFavoritos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  gap: 24px;
+  width: 100%;
+  
+}
+
+
+.containerFavoritos h2 {
+  font-size: 1.8em;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.containerFavoritos p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1em;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .containerFavoritos {
+    padding: 30px 20px;
+  }
+  .listaFavoritos {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .listaFavoritos {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+/* ------------------------------------ */
+/* Variáveis de Cores e Fontes (Exemplo) */
+/* ------------------------------------ */
+:root {
+    --kids-color-teal: #00bfa6;
+    --kids-color-bg-dark: #12161F;
+    --sidebar-width: 80px; /* Largura do menu lateral */
+}

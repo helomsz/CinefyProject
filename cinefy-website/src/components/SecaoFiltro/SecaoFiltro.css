@@ -1,0 +1,287 @@
+/* ------------------------------------------------------------- */
+/* WRAPPER GERAL E TÍTULO */
+/* ------------------------------------------------------------- */
+
+.secaoFiltroWrapper {
+    margin: 40px auto;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 1400px; 
+    box-sizing: border-box;
+    margin-top: 2px;
+}
+
+.filtroTitulo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 25px;
+    margin-bottom: -1px;
+    margin-left: 40px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    background: linear-gradient(to right, #1d393d, #005955);
+    border: none;
+    color: #00bfa6;
+    font-weight: 500;
+    font-size: 1.05rem;
+    box-shadow: 0 -5px 15px rgba(0, 191, 166, 0.1);
+}
+
+.filtroTituloTexto {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin: 0;
+    margin-left: 2px;
+    color: #fff;
+}
+
+/* ------------------------------------------------------------- */
+/* BARRA DE BUSCA PRINCIPAL (Filtros e Botão Buscar) */
+/* ------------------------------------------------------------- */
+
+.barraBuscaFundo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 30px 40px; 
+    border-radius: 30px;
+    background: linear-gradient(to left, rgba(0, 191, 166, 0.15), rgba(0, 191, 166, 0.05));
+    border: 1px solid rgba(211, 211, 211, 0.3);
+    backdrop-filter: blur(12px);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap; 
+}
+
+.labelFiltro {
+    font-size: 0.85rem;
+    color: rgba(250, 250, 250, 0.8);
+    font-weight: 600;
+    margin-bottom: 8px;
+    user-select: none;
+}
+
+
+.filtroInputWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    max-width: 200px;
+    position: relative;
+    border: none;
+}
+
+/* 🔄 AJUSTADO: Container do input + ícone */
+.filtroInputContainer {
+    position: relative;
+    width: 100%;
+    border: none;
+}
+
+
+.filtroInput {
+    display: block; 
+    width: 100%;
+    height: 40px !important;
+    line-height: 40px !important;
+    border-radius: 50px !important;
+    border: 1px solid rgba(78, 204, 187, 0.3) !important; 
+    background: rgba(0, 191, 166, 0.1) !important; 
+    box-sizing: border-box !important; 
+    padding: 0 55px 0 15px !important;
+    font-size: 0.95rem !important;
+    color: #fff !important; 
+
+    outline: none !important;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+
+.filtroInput:focus {
+    border-color: #00e0c0 !important;
+    background: rgba(0, 191, 166, 0.08) !important;
+}
+
+/* 🔄 AJUSTADO: placeholder */
+.filtroInput::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+.filtroInputIcon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 18px;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* ------------------------------------------------------------- */
+/* BOTÃO DE BUSCAR */
+/* ------------------------------------------------------------- */
+
+.botaoBuscar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(to right, #00B9AE, #005955);
+    color: #ffffff; 
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    height: 50px;
+    padding: 0 35px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(48, 48, 48, 0.4),
+        inset 5px 5px 10px #094C4C; 
+    flex-shrink: 0;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 25px; 
+}
+
+.botaoBuscar:hover {
+    background: linear-gradient(to right, #018980, #005955);
+    box-shadow: 0 4px 20px rgba(35, 35, 35, 0.2);
+    transform: translateY(-2px);
+}
+
+.iconeBuscarBotao {
+    color: #000;
+}
+
+/* ------------------------------------------------------------- */
+/* CARROSSEL DE GÊNEROS */
+/* ------------------------------------------------------------- */
+
+.generoCarrosselWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 13px;
+    margin-top: 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.carrosselSeta {
+    background-color: rgba(0, 191, 166, 0.1);
+    border: 1.5px solid #00bfa6; 
+    color: #00bfa6;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.25s, color 0.25s;
+    flex-shrink: 0;
+}
+
+.carrosselSeta:hover {
+    background-color: #00bfa6;
+    color: #000;
+}
+
+.generoBotoesContainer {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    flex-grow: 1;
+    padding: 6px 0;
+    scrollbar-width: none;
+}
+
+.generoBotoesContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.botaoGenero {
+    background: rgba(0, 191, 166, 0.1);
+    border: 2px solid rgba(0, 191, 166, 0.6);
+    color: rgba(216, 219, 219, 0.9);
+    padding: 10px 23px;
+    border-radius: 50px;
+    font-size: 1rem;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    flex-shrink: 0;
+    user-select: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.botaoGenero:hover {
+    background-color: rgba(0, 191, 166, 0.3);
+    border-color: #00bfa6;
+    color: #00e0c0;
+}
+
+.botaoGenero.ativo {
+    background: linear-gradient(to right, #00B9AE, #005955);
+    color: #e5e5e5;
+    box-shadow: 0 0 10px rgba(60, 60, 60, 0.2);
+    border: transparent;
+}
+
+/* ------------------------------------------------------------- */
+/* RESPONSIVIDADE */
+/* ------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+    .barraBuscaFundo {
+        gap: 15px;
+        padding: 30px;
+        justify-content: flex-start;
+    }
+
+    .filtroInputWrapper {
+        min-width: 45%;
+    }
+
+    .botaoBuscar {
+        margin-top: 10px;
+        width: 100%;
+        height: 50px;
+        order: 99;
+    }
+}
+
+@media (max-width: 640px) {
+    .secaoFiltroWrapper {
+        padding: 0 10px;
+    }
+
+    .barraBuscaFundo {
+        padding: 20px;
+        gap: 10px;
+    }
+
+    .filtroInputWrapper {
+        min-width: 100%;
+    }
+
+    .filtroTitulo {
+        margin-left: 10px;
+        font-size: 1rem;
+    }
+
+    .botaoGenero {
+        font-size: 0.9rem;
+        padding: 8px 18px;
+    }
+
+    .generoCarrosselWrapper {
+        gap: 5px;
+    }
+}

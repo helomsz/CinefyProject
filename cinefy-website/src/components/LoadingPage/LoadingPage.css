@@ -1,0 +1,102 @@
+/* ---------------------------------- */
+/* Container Principal (Tela Cheia) */
+/* ---------------------------------- */
+.loadingPageContainer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0f111a; /* tom mais profundo e cinematográfico */
+  z-index: 99999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e8e8e8;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out; /* fade-in suave */
+}
+
+.loadingPageContainer.fadeIn {
+  opacity: 1;
+}
+
+/* ---------------------------------- */
+/* Conteúdo */
+/* ---------------------------------- */
+.loadingContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  animation: popUp 1s ease forwards;
+}
+
+@keyframes popUp {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------- */
+/* Logo (Imagem e Texto) */
+/* ---------------------------------- */
+.loadingLogoImg {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 12px rgba(0, 191, 166, 0.5));
+  animation: logoPulse 2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(0, 191, 166, 0.5)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(0, 191, 166, 0.8)); }
+}
+
+.loadingLogo {
+  font-size: 3.4em;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 191, 166, 0.4);
+}
+
+.loadingLogo i{
+    font-weight: 500;
+}
+
+/* ---------------------------------- */
+/* Texto secundário */
+/* ---------------------------------- */
+.loadingMessage {
+  font-size: 1.6em;
+  color: #a0a0a0;
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
+
+/* ---------------------------------- */
+/* Spinner */
+/* ---------------------------------- */
+.loadingSpinnerWrapper {
+  height: 90px;
+}
+
+.loadingSpinner {
+  font-size: 4em;
+  color: #00bfa6;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,303 @@
+
+.detalhes-main,
+.detalhes__hero {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.detalhes-page-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #0d1117; /* Fundo escuro */
+    color: #f0f6f9; /* Texto claro */
+}
+
+/* Garante que o conteúdo principal (excluindo Menu Lateral) se estenda */
+.main-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.detalhes-main {
+    flex-grow: 1;
+    width: 100%;
+    padding: 0;
+    position: relative;
+}
+
+/* Seção de Hero com Background */
+.detalhes__hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end; /* Alinha o conteúdo na parte inferior */
+}
+
+.detalhes__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradiente para escurecer o background e suavizar a transição para o rodapé */
+    background: linear-gradient(
+        to bottom, 
+        rgba(13, 17, 23, 0.2) 0%, 
+        rgba(13, 17, 23, 0.4) 70%, 
+        #0d1117 100%
+    );
+}
+
+.detalhes__content-wrapper {
+    position: absolute; /* Alinha o conteúdo em relação ao hero */
+    top: 20%; /* Começa mais abaixo do topo (ajuste fino) */
+    left: 40px;
+    right: 40px;
+    z-index: 10;
+    display: flex;
+    gap: 40px;
+}
+.detalhes__poster {
+    width: 280px; /* Largura definida para o poster */
+    height: 420px; /* Altura padrão de 3:2 */
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0; 
+}
+
+.detalhes__content {
+    flex-grow: 1; /* Permite que o conteúdo de texto use o espaço restante */
+    padding: 0; /* Remove padding anterior */
+    max-width: 700px;
+}
+
+/* --- Botão de Edição (Canto Superior Direito) --- */
+.btn-edit-hero {
+    position: absolute;
+    top: 190px; /* Afasta 20px do topo */
+    right: 40px; /* Afasta 40px da direita (considerando o padding lateral) */
+    
+    z-index: 20; /* Garante que fique acima do overlay */
+    
+    /* Estilo visual */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%; /* Torna-o circular */
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-delete-hero {
+    position: absolute;
+    top: 280px; /* Afasta 20px do topo */
+    right: 40px; /* Afasta 40px da direita (considerando o padding lateral) */
+    
+    z-index: 20; /* Garante que fique acima do overlay */
+    
+    /* Estilo visual */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%; /* Torna-o circular */
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-delete-hero:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-edit-hero:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.detalhes__titulo {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.detalhes__info-geral {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+    font-size: 1rem;
+    color: #a8b3c0;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.rating {
+    color: #ffffff;
+}
+
+/* --- Ações (Botões) --- */
+.detalhes__acoes {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn-primary, .btn-secondary {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: #00b894; /* Verde principal */
+    color: #0d1117;
+}
+
+.btn-primary:hover {
+    background-color: #00a080;
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #f0f6f9;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Sinopse e Metadados --- */
+.detalhes__sinopse {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #a8b3c0;
+    margin-bottom: 30px;
+}
+
+
+.detalhes__metadados-e-elenco {
+    padding: 0 40px 60px 60px; /* Mantém o padding inferior e lateral */
+}
+
+.detalhes__metadados {
+    /* REMOVE A BORDA QUE HAVIA ANTES, usa uma linha simples */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    padding-top: 30px;
+    margin-bottom: 70px;
+    
+    /* Usa flexbox para Diretor | Produtora | Gênero */
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 70px; /* Espaçamento entre os blocos */
+}
+/* Garante que o item de metadados se comporte como bloco */
+.metadado-item {
+    padding-right: 0;
+    border-right: none;
+}
+.metadado-item strong {
+    display: block;
+    font-weight: 700;
+    color: #f0f6f9;
+    margin-bottom: 5px;
+    margin-right: 8px;
+}
+
+.badge-nome, .badge-genero {
+    display: inline-block;
+    padding: 6px 14px;
+    margin-right: 8px;
+    margin-top: 5px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.badge-nome {
+    background-color: rgba(255, 255, 255, 0.05); /* Diretor/Produtora/Ator */
+    color: #a8b3c0;
+    margin-right: 8px; 
+    margin-top: 0;
+}
+
+.badge-genero {
+    background-color: #00b894; /* Destaque para Gênero */
+    color: #0d1117;
+    font-weight: 600;
+    margin-right: 8px; 
+    margin-top: 0;
+}
+
+/* --- Elenco --- */
+.detalhes__elenco {
+    /* Garante que o elenco não está com margens estranhas */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* --- Elenco --- */
+.detalhes__elenco h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #f0f6f9;
+}
+
+.elenco__lista {
+    display: flex;
+    gap: 100px; /* Reduzido o gap para 30px, o protótipo parece usar menos espaço */
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.elenco__ator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px; /* Mantido em 100px */
+    flex-shrink: 0;
+}
+
+.ator__imagem {
+    width: 150px; /* Reduzido para um tamanho mais próximo do protótipo */
+    height: 150px; /* Reduzido para um tamanho mais próximo do protótipo */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.ator__nome {
+    text-align: center;
+    font-size: 1rem; /* Aumentado ligeiramente o tamanho do nome do ator */
+    color: #f0f6f9; /* Mudado para a cor principal de texto */
+    font-weight: 500;
+}
+

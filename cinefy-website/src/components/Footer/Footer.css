@@ -1,0 +1,129 @@
+.mainFooter {
+    background: rgba(68, 68, 68, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 40px 60px 20px 60px; 
+    border-radius: 40px; 
+    margin-top: 80px; 
+    box-shadow: 
+        inset 0 0 10px rgba(255, 255, 255, 0.3),
+        0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+}
+
+.footerContainer {
+    display: flex;
+    justify-content: space-between; /* Espaçamento entre as colunas */
+    align-items: flex-start;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória sutil */
+}
+
+/* Estilo das Colunas */
+.footerColuna {
+    flex-grow: 1; /* Permite que as colunas cresçam */
+    max-width: 300px; 
+}
+
+/* Coluna da Logo e Descrição */
+.infoColuna {
+    flex-grow: 2; /* Faz a primeira coluna ser mais larga */
+    max-width: 400px;
+}
+
+.logoFooter {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logoTexto i{
+    font-weight: 400;
+}
+
+.logoIcon {
+    width: 30px; /* Ajuste o tamanho do ícone da logo se usar uma imagem */
+    height: 30px;
+    margin-right: 8px;
+    /* Exemplo: Se o ícone tiver a cor verde */
+    /* filter: drop-shadow(0 0 5px #00a896); */ 
+}
+
+.descricaoFooter {
+    font-size: 0.9rem;
+    color: #cccccc;
+    line-height: 1.6;
+}
+
+/* Títulos das Colunas (Explore e Suporte) */
+.tituloColuna {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* Lista de Links */
+.listaLinks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.listaLinks li {
+    margin-bottom: 10px;
+}
+
+.listaLinks a {
+    color: #cccccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.listaLinks a:hover {
+    color: #00B9AE; /* Cor de destaque (magenta) ao passar o mouse */
+}
+
+/* Linha de Rodapé Inferior (Design Info e Mídias Sociais) */
+.footerBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.designInfo {
+    font-size: 0.8rem;
+    color: #999999;
+    margin: 0;
+}
+
+.socialMedia {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.socialText {
+    font-size: 0.85rem;
+    color: #cccccc;
+    margin: 0;
+}
+
+.socialIcons {
+    display: flex;
+    gap: 15px;
+}
+
+.socialIcons a {
+    color: #ffffff;
+    transition: color 0.2s ease;
+}
+
+.socialIcons a:hover {
+    color: #00B9AE; /* Cor de destaque ao passar o mouse */
+}

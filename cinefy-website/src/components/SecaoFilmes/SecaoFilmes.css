@@ -1,0 +1,58 @@
+
+.secaoFilmes {
+    align-items: center;
+    width: 100%; 
+}
+
+.cabecalhoSecao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.tituloSecao {
+    font-size: 1.5em;
+    color: #ffffff; 
+    margin: 0;
+}
+
+.linkVerTodos {
+    display: flex; /* Fundamental para alinhar o texto e o ícone */
+    align-items: center; /* Centraliza verticalmente o ícone e o texto */
+    gap: 4px; /* Pequeno espaçamento entre o texto e o ícone */
+    font-size: 0.9rem;
+    color: #9c9c9c; /* Cor do link em repouso */
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+.linkVerTodos:hover {
+    color: #ffffff; /* Fica branco ao passar o mouse */
+}
+
+/* Estilo específico para o ícone (FaChevronRight) */
+.linkVerTodos .iconeSeta {
+    /* Transição para o movimento suave do ícone */
+    transition: transform 0.2s ease-in-out; 
+}
+
+/* Efeito ao passar o mouse: Ícone desliza sutilmente para a direita */
+.linkVerTodos:hover .iconeSeta {
+    transform: translateX(2px);
+}
+
+.containerCards {
+    display: flex;
+    overflow-x: auto; 
+    scroll-behavior: smooth; 
+    padding-bottom: 70px; 
+}
+
+.containerCards::-webkit-scrollbar {
+    display: none;
+}
+
+.containerCards {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

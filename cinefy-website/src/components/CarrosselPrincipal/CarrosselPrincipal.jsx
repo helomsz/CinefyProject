@@ -1,0 +1,108 @@
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react'; // Ícones para navegação
+import CardCarrossel from '../CardCarrossel/CardCarrossel'; // O card individual
+import './CarrosselPrincipal.css';
+import JogosVorazes from '../../assets/carrosselCatalogo/jogosVorazesCarrossel.png'
+import PanteraNegra from '../../assets/carrosselCatalogo/panteraNegraCarrossel.png'
+import TelefonePreto from '../../assets/carrosselCatalogo/telelefonePretoCarrossel.png'
+import Batman from '../../assets/carrosselCatalogo/batmanCarrossel.png'
+import JohnWick from '../../assets/carrosselCatalogo/johnWickCarrossel.png'
+
+const mockFilmesCarrossel = [
+    { 
+        id: 1, 
+        titulo: 'Jogos Vorazes', 
+        descricao: 'Em um futuro distópico, Katniss luta nos Jogos Vorazes para salvar sua irmã. A sobrevivência se torna uma batalha contra a opressão.', 
+        capaFundo: JogosVorazes, 
+    },
+    { 
+        id: 2, 
+        titulo: 'Pantera Negra', 
+        descricao: 'T\'Challa, o Pantera Negra, retorna para casa como rei de Wakanda, mas é desafiado por um adversário poderoso.', 
+        capaFundo: PanteraNegra, 
+    },
+    { 
+        id: 3, 
+        titulo: 'O Telefone Preto', 
+        descricao: 'Em O Telefone Preto (2022), um garoto sequestrado descobre um telefone que o conecta às vítimas anteriores de seu raptor.', 
+        capaFundo: TelefonePreto, 
+    },
+    { 
+        id: 4, 
+        titulo: 'Batman', 
+        descricao: 'Em Batman (2022), o herói enfrenta o Charada enquanto desvenda a corrupção e segredos sombrios de Gotham.', 
+        capaFundo: Batman, 
+    },
+    { 
+        id: 5, 
+        titulo: 'John Wick', 
+        descricao: 'Em John Wick (2014), um ex-assassino busca vingança após criminosos destruírem tudo o que lhe restava de paz.', 
+        capaFundo: JohnWick, 
+    },
+];
+
+function CarrosselPrincipal() {
+    const [indiceAtivo, setIndiceAtivo] = useState(0); // Começa no segundo filme (índice 1) para ter 2 de cada lado
+
+    const proximoSlide = () => {
+        setIndiceAtivo((prevIndice) => 
+            (prevIndice + 1) % mockFilmesCarrossel.length
+        );
+    };
+
+    const slideAnterior = () => {
+        setIndiceAtivo((prevIndice) => 
+            (prevIndice - 1 + mockFilmesCarrossel.length) % mockFilmesCarrossel.length
+        );
+    };
+
+    return (
+        <div className="carrosselPrincipalContainer">
+
+
+            {/* A área onde os cards serão exibidos */}
+            <div className="carrosselAreaCards">
+                {mockFilmesCarrossel.map((filme, index) => {
+                    let className = 'cardCarrosselItem';
+                    const diff = (index - indiceAtivo + mockFilmesCarrossel.length) % mockFilmesCarrossel.length;
+                    
+                    if (index === indiceAtivo) {
+                        className += ' ativo';
+                    } else if (diff === 1 || diff === 1 - mockFilmesCarrossel.length) { // Próximo (à direita)
+                        className += ' proximo';
+                    } else if (diff === mockFilmesCarrossel.length - 1 || diff === -1) { // Anterior (à esquerda)
+                        className += ' anterior';
+                    } else if (diff === 2 || diff === 2 - mockFilmesCarrossel.length) { // Segundo à direita
+                        className += ' proximo-distante';
+                    } else if (diff === mockFilmesCarrossel.length - 2 || diff === -2) { // Segundo à esquerda
+                        className += ' anterior-distante';
+                    } else { // Outros cards
+                        className += ' escondido';
+                    }
+
+                    return (
+                        <CardCarrossel 
+                            key={filme.id} 
+                            filme={filme} 
+                            className={className}
+                            onCardClick={proximoSlide}
+                        />
+                    );
+                })}
+            </div>
+
+            {/* Indicadores de slide (os pontinhos) */}
+            <div className="carrosselIndicadores">
+                {mockFilmesCarrossel.map((_, index) => (
+                    <span 
+                        key={index}
+                        className={`indicadorPonto ${index === indiceAtivo ? 'ativo' : ''}`}
+                        onClick={() => setIndiceAtivo(index)}
+                    ></span>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default CarrosselPrincipal;

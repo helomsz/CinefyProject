@@ -1,0 +1,61 @@
+:root {
+    /* Variáveis para o input */
+    --fundo-input: #4A4A52;
+    --texto-claro: #E0E0E0;
+    --texto-muted: #A0A0A0;
+    --cor-acento-clara: #00FFC6;
+}
+
+/* Container que gerencia a margem de todos os inputs */
+.campoInputContainer {
+    margin-bottom: 15px; /* Espaçamento consistente entre os campos */
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Coloca o Label/Placeholder acima do Input */
+}
+
+/* ------------------ Estilo do Campo Principal ------------------ */
+
+.campoInputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: var(--fundo-input);
+    border-radius: 8px; /* Arredondamento do protótipo */
+}
+
+.campoInput {
+    flex-grow: 1;
+    padding: 15px;
+    font-size: 1em;
+    background: none; /* Remove o fundo do input interno, usa o do wrapper */
+    border: none;
+    color: var(--texto-claro);
+    /* Remove o foco padrão do navegador */
+    outline: none; 
+}
+
+/* Estilo do Placeholder do protótipo (Texto mais escuro dentro) */
+.campoInput::placeholder {
+    color: var(--texto-muted);
+}
+
+.campoInput:focus {
+    /* O foco visual agora será no wrapper */
+    box-shadow: none;
+}
+
+/* Efeito visual de Foco na Borda Externa (Wrapper) */
+.campoInputWrapper:focus-within {
+    outline: 2px solid var(--cor-acento-clara);
+}
+
+/* ------------------ Ícone de Visibilidade ------------------ */
+
+.iconeVisibilidade {
+    padding: 0 15px;
+    cursor: pointer;
+    display: flex; 
+    align-items: center;
+}

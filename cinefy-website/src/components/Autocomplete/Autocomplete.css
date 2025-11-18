@@ -1,0 +1,61 @@
+.autocomplete-container {
+    position: relative;
+    z-index: 90;
+    width: 100%;
+}
+
+.aut-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.aut-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.aut-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #2b3a4a; 
+    border: 1px solid #4f6b8a; 
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 150;
+}
+
+.aut-item {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: #ffffff; 
+}
+.aut-item:hover {
+    /* 3. Ajuste o hover para um tom escuro que contraste */
+    background: #4f6b8a; 
+}
+
+.aut-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.aut-add-new {
+    padding: 12px;
+    cursor: pointer;
+    /* 4. Ajuste a cor do botão 'Criar Novo' */
+    background: #3c546b; 
+    color: #ffffff;
+    border-bottom: 1px solid #4f6b8a;
+}

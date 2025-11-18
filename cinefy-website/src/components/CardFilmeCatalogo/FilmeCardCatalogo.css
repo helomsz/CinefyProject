@@ -1,0 +1,180 @@
+/* ---------------------------------- */
+/* 1. Estrutura do Card Vertical      */
+/* ---------------------------------- */
+.cardFilmeTop {
+    width: 200px; 
+    height: 280px; 
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0; 
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); 
+}
+
+.imagemCapa {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: filter 0.3s ease;
+}
+
+
+.imagemCapa::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* CHAVE: Usa a variável CSS definida no React */
+    background-image: var(--background-url); 
+    background-size: cover;
+    background-position: center;
+    
+    transition: filter 0.3s ease, transform 0.3s ease;
+    z-index: 1; /* Deve estar abaixo dos botões e do rodapé (z-index: 10) */
+}
+
+/* NOVO: Efeito de Blur e Escurecimento no hover, aplicado APENAS ao pseudo-elemento */
+.cardFilmeTop:hover .imagemCapa::before {
+    filter: brightness(0.5) blur(5px); 
+    transform: scale(1.02); 
+}
+
+/* ---------------------------------- */
+/* 2. Botão de Favorito (Coração)     */
+/* ---------------------------------- */
+.favoriteButtonContainer {
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    z-index: 10;
+}
+
+.botaoFavorito {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    backdrop-filter: blur(3px);
+}
+
+.botaoFavorito:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.heartIcon {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.heartIcon.ativo {
+  color: #da1711; /* vermelho estilo Netflix */
+}
+
+
+/* ---------------------------------- */
+/* 3. Botão de Play (NOVO)            */
+/* ---------------------------------- */
+.playButtonContainerTop{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5; 
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+}
+
+.cardFilmeTop:hover .playButtonContainerTop{
+    opacity: 1; 
+}
+
+.botaoPlayTop {
+    background-color: rgba(255, 255, 255, 0.3); 
+    border: none;
+    border-radius: 50%;
+    width: 60px; 
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.botaoPlayVertical:hover {
+    background-color: rgba(255, 255, 255, 0.5); 
+}
+
+.iconePlay {
+    color: white;
+    font-size: 24px; 
+    transform: translateX(2px); 
+}
+
+/* ---------------------------------- */
+/* 4. Estilização do Rodapé/Overlay   */
+/* ---------------------------------- */
+.informacoesRodapeTop {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.0) 100%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
+    padding: 15px; 
+    box-sizing: border-box;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: opacity 0.3s ease; 
+    z-index: 5;
+}
+
+/* Oculta as informações do rodapé no hover (opcional) */
+.cardFilmeVerticalTop:hover .informacoesRodapeTop {
+    opacity: 0;
+}
+
+/* ---------------------------------- */
+/* 5. Detalhes (Título e Gênero)      */
+/* ---------------------------------- */
+
+
+.detalhesFilmeVerticalTop {
+    width: 100%;
+}
+
+.tituloFilmeVerticalTop {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.generoFilmeVerticalTop {
+    font-size: 0.8em;
+    opacity: 0.9;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

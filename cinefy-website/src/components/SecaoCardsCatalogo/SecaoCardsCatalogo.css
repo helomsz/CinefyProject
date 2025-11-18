@@ -1,0 +1,26 @@
+.secaoConteudoWrapper {
+    margin-top: 10px; 
+    width: 100%;
+    padding: 20px 0; 
+}
+
+.secaoConteudoTitulo {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #fff;
+    padding: 0 40px 0 80px; 
+}
+
+
+.secaoConteudoCarrossel {
+    display: flex;
+    overflow-x: auto; 
+    padding-bottom: 15px; 
+    scrollbar-width: none; 
+    padding: 0 40px 0 80px; 
+}
+
+.secaoConteudoCarrossel::-webkit-scrollbar {
+    display: none;
+}

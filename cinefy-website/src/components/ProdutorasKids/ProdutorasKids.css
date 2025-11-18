@@ -1,0 +1,82 @@
+
+.produtoras-section {
+    padding-top: 290px; 
+    padding-bottom: 50px;
+    background-color: #16181E; 
+}
+
+
+.produtoras-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+/* ------------------------------------ */
+/* Cards da Produtora */
+/* ------------------------------------ */
+.produtora-card {
+    width: 230px;
+    height: 120px;
+    background-color: #16181E;
+    border-radius: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #3A3D50;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.produtora-card:hover {
+    border-color: #00bfa6; 
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 191, 166, 0.5); /* Efeito de brilho */
+}
+
+/* --- CSS para o Contêiner que segura a imagem --- */
+.produtora-logo-placeholder {
+    /* Torna o contêiner um flex container para centralizar o conteúdo */
+    display: flex; 
+    
+    /* Centraliza o logo horizontalmente */
+    justify-content: center; 
+    
+    /* Centraliza o logo verticalmente */
+    align-items: center; 
+    
+    /* Garante que o contêiner ocupe a altura total do card para centralizar */
+    height: 100%; 
+    width: 100%;
+}
+
+.produtora-logo-image {
+    max-width: 90%; /* Aumentei um pouco para ocupar mais espaço se o logo for pequeno */
+    max-height: 90%; 
+    object-fit: contain; 
+    
+    /* Aplica o filtro para deixá-lo branco, conforme o protótipo */
+    /* Você pode precisar de 'invert(1) grayscale(1)' ou 'brightness(0) invert(1)' dependendo do logo original. */
+    filter: brightness(0) invert(1); 
+    
+    /* Remove as propriedades de alinhamento desnecessárias na tag <img> */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* Se os logos forem coloridos, use filter: grayscale(1) brightness(2); para deixá-los brancos como no protótipo */
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .produtoras-grid {
+        gap: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .produtora-card {
+        width: 150px;
+        height: 80px;
+    }
+}

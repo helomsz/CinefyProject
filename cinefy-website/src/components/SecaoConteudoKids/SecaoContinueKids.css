@@ -1,0 +1,48 @@
+/* SecaoContinueAssistindo.css */
+
+.secaoConteudo {
+    width: 100%;
+    padding: 40px 0; 
+    color: #f6f5f5ff; 
+    background-color: #16181E;
+}
+
+/* ---------------------------------------------------- */
+/* CABEÇALHO (Header) */
+/* ---------------------------------------------------- */
+
+.secaoHeader {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0 40px 0 110px; 
+    margin-bottom: 20px; 
+}
+
+.secaoTitulo {
+    font-size: 1.8rem; 
+    font-weight: 700; 
+    margin: 0;
+}
+
+/* ---------------------------------------------------- */
+/* LISTA DE CARDS (Layout Horizontal) */
+/* ---------------------------------------------------- */
+
+.listaConteudo {
+    display: flex;
+    gap: 30px;
+    
+    /* Adiciona padding horizontal para alinhar o primeiro card com o título e dar espaço para o menu lateral */
+    padding: 0 40px 0 110px; 
+    
+    /* Rolagem e esconder barra mantidos */
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-bottom: 20px; /* Garante que o scrollbar não esconda o conteúdo */
+}
+
+.listaConteudo::-webkit-scrollbar {
+    display: none;
+}

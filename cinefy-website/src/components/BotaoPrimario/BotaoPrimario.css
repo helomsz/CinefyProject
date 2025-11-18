@@ -1,0 +1,27 @@
+:root {
+    --texto-claro: #E0E0E0;
+    --gradiente-botao:linear-gradient(to right, #008574, #016059);;
+}
+
+.botaoPrimario {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 25px;
+    border: 1px solid #1B736E;
+    border-radius: 40px;
+    color: var(--texto-claro);
+    cursor: pointer;
+    background: var(--gradiente-botao);
+    box-shadow: 0 4px 15px rgba(48, 48, 48, 0.4),
+        inset 5px 5px 10px #54908E; 
+    
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.botaoPrimario:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 198, 0.1);
+}

@@ -1,0 +1,233 @@
+:root {
+  --fundo-glass-escuro: rgba(30, 30, 30, 0.5);
+  --fundo-principal: #16161c; 
+  --fundo-card-direito: #25252b;
+  --fundo-input: #4A4A52;
+  --texto-claro: #E0E0E0;
+  --texto-muted: #A0A0A0;
+  --cor-acento-clara: #00FFC6; 
+  --cor-acento-escura: #0072FF; 
+  --gradiente-aside: linear-gradient(to bottom, #29D7CD, #1D3836);
+  --gradiente-botao: linear-gradient(90deg, #00FFC6 0%, #00AE9C 100%);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.paginaWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  color: var(--texto-claro);
+  background: url("../../assets/backgroundLogin/backgroundLoginCadastro.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerRegistro {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  max-width: 1050px;
+  height: 600px;
+  background: var(--fundo-glass-escuro);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  overflow: hidden;
+}
+
+.asideGradiente {
+  margin: 12px;
+  flex: 0 0 380px;
+  background: var(--gradiente-aside);
+  border-radius: 40px;
+}
+
+.formulario {
+  flex-grow: 1;
+  padding: 60px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px; 
+  text-align: left;
+}
+
+.cabecalho {
+  margin-bottom: 10px;
+}
+
+.titulo {
+  font-size: 2.2em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.linkLogin {
+  font-size: 1em;
+  color: var(--texto-muted);
+  margin-top: 10px;
+}
+
+.linkLogin a {
+  color: #82FFF8;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 2px solid #82FFF8;
+  cursor: pointer;
+}
+
+.botaoVoltar {
+  position: absolute;
+  top: 30px;
+  left: 295px;
+  align-content: flex-end;
+  padding: 8px 15px;
+  background-color: var(--fundo-input);
+  color: var(--texto-claro);
+  border-radius: 20px;
+  font-size: 0.9em;
+  cursor: pointer;
+  z-index: 15;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.botaoVoltar:hover {
+  opacity: 1;
+}
+
+.imagemCadastro {
+  width: 450px;
+  margin-top: 66px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grupoInputMetade {
+  display: flex;
+  gap: 15px;
+}
+
+.grupoInputMetade .label {
+  flex: 1;
+}
+
+.campoInputNovo::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+
+.campoInputNovo:hover {
+  border-color: rgba(0, 255, 198, 0.5);
+}
+
+.campoInputNovo:focus {
+  border-color: var(--cor-acento-clara);
+}
+
+
+.inputComIconeCadastro {
+  display: flex;
+  align-items: center;
+  border: 1px solid #393939;
+  border-radius: 15px;
+  padding-right: 15px;
+  transition: all 0.3s;
+}
+
+.inputComIconeCadastro:hover {
+  border-color: rgba(0, 255, 198, 0.5);
+}
+
+.inputComIconeCadastro:focus-within {
+  border-color: var(--cor-acento-clara);
+}
+
+.campoInputNovo {
+  flex-grow: 1;
+  border: none;
+  height: 50px;
+  text-indent: 15px !important;
+  background-color: transparent;
+  color: #aeaeae !important;
+  outline: none;
+}
+
+.iconeOlho {
+  color: #8b8e98;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.iconeOlho:hover {
+  color: #00ffc6;
+}
+
+.formulario .label {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+}
+.formulario .label:has(input:focus) .title {
+  top: 0 !important;
+  left: 0 !important;
+  color: #00FFC6 !important;
+}
+.formulario .label .title {
+  padding: 0 10px !important;
+  transition: all 300ms !important;
+  font-size: 12px !important;
+  color: #8b8e98 !important;
+  font-weight: 600 !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  top: 14px !important;
+  position: relative !important;
+  left: 15px !important;
+  background: transparent !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+.formulario .input-field-registro {
+  width: auto !important;
+  height: 50px !important;
+  text-indent: 15px !important;
+  border-radius: 15px !important;
+  outline: none !important;
+  background-color: transparent !important;
+  border: 1px solid #393939 !important;
+  transition: all 0.3s !important; 
+  caret-color: #00FFC6 !important;
+  color: #aeaeae !important;
+}
+
+.formulario .input-field-registro:hover {
+  border-color: #00FFC6 !important;
+}
+
+.formulario .input-field-registro:focus {
+  border-color: #00FFC6 !important;
+}
+.formulario .split {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 15px;
+}
+.formulario .split label {
+  width: 130px;
+}

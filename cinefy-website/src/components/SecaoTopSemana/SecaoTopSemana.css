@@ -1,0 +1,41 @@
+
+.secaoTop {
+    padding: 0px; 
+    color: white;
+}
+
+.cabecalhoSecaoTop {
+    margin-bottom: 20px;
+}
+
+.tituloSecaoTop {
+    font-size: 1.5em;
+    color: #ffffff; 
+    margin: 0;
+}
+
+.card-lancamento {
+    box-sizing: border-box;
+}
+
+/* ---------------------------------- */
+/* 2. Container de Cards (Grid 6 Colunas) */
+/* ---------------------------------- */
+.containerCardsTop {
+    /* Força o container a se ajustar para 6 colunas */
+    display: grid;
+    /* Define o grid para 6 colunas, distribuindo o espaço igualmente (1fr) */
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 16px; 
+    overflow-x: hidden; /* Desativa a rolagem horizontal */
+    
+    /* Media query para telas menores (ex: tablet), caindo para 4 colunas */
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Media query para telas muito pequenas, caindo para 2 colunas */
+    @media (max-width: 600px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

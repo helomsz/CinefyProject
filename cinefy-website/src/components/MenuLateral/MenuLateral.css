@@ -1,0 +1,227 @@
+:root {
+    --corFundoMenu: #14171a; 
+    --corGradienteInicio: #008574;
+    --corGradienteFim: #016059;
+    --corTexto: #e8e8e8; 
+    --corIconePadrao: #8b8e93; 
+    --larguraFechado: 70px; 
+    --larguraAberto: 250px; 
+    --bordaRaio: 35px; 
+}
+
+.menuLateral {
+    position: fixed; 
+    left: 20px;
+    height: calc(100vh - 60px); /* reduzindo 20px do topo/rodapé */
+    top: 30px; /* ajuste para centralizar verticalmente */
+    color: var(--corTexto);
+    padding: 10px 0;
+    z-index: 1000; 
+    transition: width 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--bordaRaio); 
+    background-color: rgba(20, 23, 26, 0.5); 
+    backdrop-filter: blur(8px); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.menuLateral.fechado {
+    width: var(--larguraFechado);
+    align-items: center; 
+}
+
+.menuLateral.aberto {
+    width: var(--larguraAberto);
+}
+
+/* --- LOGO SUPERIOR --- */
+.logoSuperior {
+    padding: 0 10px 30px 10px; 
+}
+
+.botaoLogoTopo {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 0;
+    width: 100%;
+    justify-content: center;
+}
+
+.botaoLogoTopo.fechar {
+    justify-content: space-between; 
+}
+
+.imagemLogoTopo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+}
+
+.botaoLogoTopo.fechar .nomeApp {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #fff;
+    flex-grow: 1; 
+    text-align: left;
+    margin-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nomeApp i{
+    font-weight: 500;
+}
+
+.iconeFechar {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* --- LISTAS --- */
+.listaMenuPrincipal,
+.listaMenuRodape {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menuLateralItem {
+    margin: 25px 0
+}
+
+/* --- BOTÃO DE ITEM --- */
+.botaoItemMenu {
+    display: flex;
+    align-items: center;
+    color: var(--corIconePadrao);
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    padding: 0 15px;
+    gap: 15px;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+/* --- ÍCONE WRAPPER --- */
+.iconeWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; 
+    height: 50px;
+    z-index: 2;
+}
+
+/* --- ITEM ATIVO --- */
+.menuLateral.aberto .itemDestaque .botaoItemMenu {
+    background: linear-gradient(to right, var(--corGradienteInicio), var(--corGradienteFim));
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-weight: 500;
+    border-radius: var(--bordaRaio);
+    margin: 0;
+}
+
+.menuLateral.fechado .itemDestaque .botaoItemMenu {
+    background: none;
+    justify-content: center;
+    padding: 0;
+}
+
+.menuLateral.fechado .itemDestaque .iconeWrapper {
+    background: linear-gradient(to right, var(--corGradienteInicio), var(--corGradienteFim));
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 8px rgba(0, 133, 116, 0.3);
+}
+
+/* --- HOVER --- */
+.menuLateral.aberto .menuLateralItem .botaoItemMenu:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--corTexto);
+    border-radius: var(--bordaRaio); 
+    margin: 0 ;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.menuLateral.fechado .menuLateralItem .botaoItemMenu:hover .iconeWrapper {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transition: background-color 0.25s ease;
+}
+
+/* --- ÍCONES --- */
+.iconeMenu {
+    width: 30px; 
+    height: 30px;
+    object-fit: contain;
+    opacity: 0.6; 
+    transition: opacity 0.2s ease;
+}
+
+.itemDestaque .iconeMenu {
+    opacity: 1; 
+}
+
+.menuLateralItem .botaoItemMenu:hover .iconeMenu,
+.itemSair a:hover .iconeMenu {
+    opacity: 0.8;
+}
+
+.menuLateral.fechado .iconeMenu {
+    width: 30px;
+    height: 30px;
+}
+
+.textoItem {
+    white-space: nowrap; 
+    z-index: 2;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 19px;
+}
+
+/* --- SEPARADOR E SAIR --- */
+.separador {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 15px 15px;
+}
+
+.itemSair {
+    margin-top: auto; 
+    padding-bottom: 20px;
+}
+
+.itemSair a {
+    display: flex;
+    align-items: center;
+    color: var(--corIconePadrao);
+    text-decoration: none;
+    gap: 15px;
+    padding: 0 15px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.itemSair a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--corTexto);
+    border-radius: var(--bordaRaio);
+    margin: 0 8px;
+}
+
+.menuLateral.fechado .itemSair a {
+    justify-content: center;
+    padding: 10px 0;
+}

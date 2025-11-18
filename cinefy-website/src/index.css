@@ -1,0 +1,67 @@
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+ html, body, #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #16181E;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+main, section, article {
+  width: 100%;
+  max-width: 100vw; 
+  overflow-x: hidden;
+}
+
+/* 1. Define a largura da barra de rolagem (vertical) */
+::-webkit-scrollbar {
+    width: 8px; /* Mais fina que o padrão (geralmente 12px) */
+    height: 8px; /* Para scroll bar horizontal, se houver */
+}
+
+/* 2. Estiliza a trilha (a área por onde o polegar se move) */
+::-webkit-scrollbar-track {
+    background: transparent; /* Deixa o fundo transparente ou muito sutilmente escuro */
+    border-radius: 10px;
+    margin: 20px 0; /* Opcional: Adiciona espaço no topo e base para um visual mais limpo */
+}
+
+/* 3. Estiliza o polegar (o elemento que o usuário arrasta) */
+::-webkit-scrollbar-thumb {
+    /* COR: Usa uma cor escura ou a cor do seu degradê para destaque */
+    background: #3a3f4b; 
+    border-radius: 10px; /* Borda arredondada */
+    
+    /* SUAVIZAÇÃO: Adiciona uma transição ao passar o mouse */
+    transition: background 0.3s ease;
+}
+
+/* 4. Estiliza o polegar ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+    background: #505562; /* Fica um pouco mais claro no hover */
+}
+
+/* PageTransition.css */
+.fade-enter {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}

@@ -1,0 +1,178 @@
+/* ------------------------------------ */
+/* Seção Principal (Hero) */
+/* ------------------------------------ */
+.favorites-hero {
+  margin-left: 70px; 
+  width: calc(100% - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+  background-color: var(--kids-color-bg-dark, #12161F);
+  position: relative;
+  z-index: 1;
+  padding: 100px 50px;
+}
+
+
+/* Gradiente de Fundo */
+.favorites-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%; 
+    background: radial-gradient(
+        circle at 50% 0%, 
+        rgba(0, 191, 166, 0.15) 0%,
+        rgba(0, 191, 166, 0.05) 40%,
+        rgba(18, 22, 31, 0) 70% 
+    );
+    filter: blur(80px); 
+    z-index: -1; 
+}
+
+
+.hero-content-text {
+    max-width: 800px; 
+    margin: 0 auto 50px auto; 
+    align-items: center;
+    text-align: center; 
+    position: relative;
+    z-index: 2;
+    transform: translateX(-125px);
+    justify-content: center;
+}
+
+.hero-subtitle {
+    display: inline-block; 
+    padding: 6px 15px; 
+    border-radius: 20px; 
+    background: linear-gradient(to right, #1D3836, #026B66);
+    backdrop-filter: blur(8px);
+    color: #00bfa6; 
+    font-size: 1rem; 
+    font-weight: 500;
+    margin-bottom: 30px; 
+    margin-top: 70px;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(0, 191, 166, 0.3);
+}
+
+.hero-title {
+    width: 100%;  
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(0, 191, 166, 0.2); 
+}
+
+.titulo{
+    font-size: 4.8rem;
+    max-width: 900px;
+    margin-bottom: 20px;
+    background: linear-gradient(to left, #B1B1B1, white); 
+    -webkit-background-clip: text; 
+    background-clip: text;
+    color: transparent; 
+    -webkit-text-fill-color: transparent; 
+    text-shadow: 0 0 15px rgba(0, 191, 166, 0.2); 
+    transform: translateX(15px);
+}
+.hero-description {
+    font-size: 1.3rem;
+    color: #ffffff; 
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto; 
+    transform: translateX(15px);
+}
+
+/* ------------------------------------ */
+/* Botão de Ação */
+/* ------------------------------------ */
+.add-to-list-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(to right, #005955, #00B9AE);
+    border: 2px solid #2A6563;
+    color: #ffffff; 
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative; 
+    z-index: 2;
+    font-family: inherit; 
+}
+
+.add-to-list-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.iconeSetaWrapper{
+    width: 36px; 
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0; 
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0; 
+    margin-left: 2px;
+}
+
+.icone{
+    color: #005955;
+}
+
+/* ------------------------------------ */
+/* Imagem ÚNICA (Mockup Completo) */
+/* ------------------------------------ */
+.hero-image-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.phone-mockup-complete {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centraliza a imagem no container */
+    transform: translateY(-30px);
+    transform: translateX(-110px);
+    z-index: 5;
+}
+
+/* Efeito de desvanecimento na parte inferior */
+.favorites-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; 
+    background: linear-gradient(to top, #12161F, transparent);
+    z-index: 6; 
+    pointer-events: none;
+}

@@ -1,0 +1,370 @@
+/* ================================
+   SEÇÃO DESTAQUES KIDS
+=================================== */
+.destaques-kids-section {
+  padding-top: 30px;
+  padding-bottom: 0;
+  background-color:#16181E;
+}
+
+/* Centraliza o carrossel */
+.destaques-list-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0px;
+}
+
+/* ==========================================
+   CARD PRINCIPAL (BANNER)
+============================================= */
+.destaque-card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1750px;
+  height: 385px;
+  overflow: hidden;
+  background-color: #16181E;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+
+}
+
+
+/* Fundo do banner */
+.card-background-art {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  filter: brightness(0.7) blur(1px);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.card-background-art.fade {
+  opacity: 0;
+}
+
+/* ==========================================
+   CONTEÚDO INTERNO DO CARD
+============================================= */
+.destaque-card-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 50px;
+  padding: 40px 130px;
+  width: 100%;
+  z-index: 2;
+}
+
+/* Poster do filme */
+.card-poster-container {
+  position: relative;
+  width: 256px;
+  height: 323px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.card-poster-container:hover {
+  transform: scale(1.02);
+}
+
+.card-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================
+   DETALHES DO FILME
+============================================= */
+.card-details {
+  color: white;
+  text-align: left;
+  margin-right: auto;
+}
+
+.card-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0px;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+
+.card-genre {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+/* Tempo e ano */
+.card-runtime {
+  font-size: 1rem;
+  color: #c4c4c4;
+  margin-bottom: 20px;
+}
+
+/* Estrelas */
+.rating-stars {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 25px;
+}
+
+/* Botão “Assistir trailer” */
+.trailer-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(90deg, #005955, #00B9AE);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(48, 48, 48, 0.4),
+        inset 5px 5px 10px #2a4746; 
+}
+
+.trailer-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(19, 19, 19, 0.2);
+}
+
+/* ==========================================
+   SETAS DE NAVEGAÇÃO (LADO A LADO À DIREITA)
+============================================= */
+.slider-arrows {
+  position: absolute;
+  top: 80%;
+  right: 35px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  z-index: 5;
+  pointer-events: none; /* evita bloquear fundo */
+}
+
+.arrow-button {
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: 2px solid #00B8AD;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.arrow-button:hover {
+  background:rgba(0, 191, 166, 0.3);
+  border-color: #026e67;
+  transform: scale(1.1);
+}
+
+/* ==========================================
+   INDICADORES (PONTINHOS)
+============================================= */
+.slider-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #555;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.indicator.active {
+  background-color: #00bfa6;
+  transform: scale(1.2);
+}
+
+/* ================================
+   MODAL DE TRAILER
+=================================== */
+.trailer-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.9); 
+    backdrop-filter: blur(5px);
+}
+
+.trailer-modal-content {
+  background: #1e1e1e;
+    padding: 0; 
+    border-radius: 12px;
+    max-width: 90%;
+    width: 800px; /* Largura máxima do modal */
+    position: relative; /* Precisa ser relative para o close button, mas não interfere na correção */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden; 
+}
+
+.trailer-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: #ff4c4c;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 3px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.trailer-modal-close:hover {
+  background-color: #e04343;
+}
+
+.trailer-modal-iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+}
+
+.trailer-modal-iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ==========================================
+   ESTILOS DO MODAL DE TRAILER (IDÊNTICO À IMAGEM)
+============================================= */
+
+/* Fundo Escuro do Modal */
+.trailer-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999; /* Garante que está acima de tudo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.95); /* Fundo bem escuro */
+    /* Removido blur para simplificar e focar na aparência da imagem */
+}
+
+/* Container Principal do Modal */
+.trailer-modal-content {
+    background: #1e1e1e;
+    padding: 0; 
+    border-radius: 12px;
+    max-width: 90%;
+    width: 800px; /* Largura máxima do modal */
+    position: relative; /* Precisa ser relative para o close button, mas não interfere na correção */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden; 
+}
+
+/* Cabeçalho do Modal (Verde-Azulado) */
+.trailer-modal-header {
+    background: linear-gradient(to right, #025550, #318A84);
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.trailer-modal-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+/* Botão de Fechar 'X' */
+.trailer-modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 0;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.trailer-modal-close:hover {
+    color: #ccc;
+}
+
+/* Container para o Iframe (Vídeo) */
+.trailer-modal-iframe-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Relação de aspecto 16:9 */
+    background-color: #2c2c2c; 
+    padding-bottom: 0px; 
+}
+
+.trailer-modal-iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}

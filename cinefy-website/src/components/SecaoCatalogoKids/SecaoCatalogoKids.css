@@ -1,0 +1,71 @@
+.secaoFilmesWrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 50px auto; 
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: white;
+    min-height: 400px;
+    padding: 0 40px 0 80px; 
+
+}
+
+/* ---------------------------------- */
+/* Layout Grid (Grade) */
+/* ---------------------------------- */
+.filmesGrid {
+    display: grid;
+    /* Colunas responsivas: mín. 200px para o card */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px; /* Espaço entre os cards */
+    padding-top: 20px;
+}
+
+/* Responsividade */
+@media (min-width: 1024px) {
+    .filmesGrid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+     .filmesGrid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* ---------------------------------- */
+/* Estados de Carregamento e Debug */
+/* ---------------------------------- */
+.loadingState {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    height: 300px;
+}
+
+.debug-info {
+    font-size: 0.75em;
+    color: #999;
+    margin-top: 20px;
+    word-break: break-all;
+}
+
+/* Loader Simples */
+.loader {
+  border: 4px solid rgba(0, 191, 166, 0.3); /* Cor verde-água (seu tema) */
+  border-radius: 50%;
+  border-top: 4px solid #00bfa6; 
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

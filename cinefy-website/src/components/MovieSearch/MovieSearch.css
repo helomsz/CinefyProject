@@ -1,0 +1,132 @@
+.searchComponent {
+    /* Mantenha position: relative. Isso ANCORA o dropdown (absolute) */
+    position: relative;
+    display: flex; /* Garante que a lupa e o input fiquem lado a lado */
+    align-items: center;
+    /* Define uma largura máxima, se preferir que ele não seja muito largo */
+    max-width: 300px; 
+}
+
+
+.areaPesquisa {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1); /* Fundo sutil */
+    border-radius: 30px;
+    padding: 0;
+    border: 1px solid transparent; 
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* 2. Estilo do Input */
+.areaPesquisa input {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+    color: white;
+    padding: 5px 10px;
+    outline: none; 
+    min-width: 150px; 
+}
+
+.areaPesquisa.fechada input {
+    width: 0; /* Largura zero */
+    padding: 0;
+    margin: 0;
+    visibility: hidden;
+    transition: width 0.3s ease, visibility 0.3s ease;
+}
+
+
+.areaPesquisa.aberta input {
+    width: 200px; 
+    padding: 5px 10px;
+    visibility: visible;
+    transition: width 0.3s ease, visibility 0.3s ease;
+}
+
+/* Estilo do Botão Lupa */
+.botaoPesquisa {
+    background:linear-gradient(to top , #16736E, #174745);
+    border: none;
+    cursor: pointer;
+    padding: 8px 10px;
+    display: flex;
+}
+
+/* --- ESTILO DO DROPDOWN/MODAL (FLUTUANTE) --- */
+.dropdownResultados {
+    position: absolute;
+    top: 115%; 
+    left: -27px; 
+    width: 320px; 
+    z-index: 1000; 
+    background: var(--cor-fundo-modal, #1e1e1e); 
+    border: 1px solid var(--cor-borda-nav, #444);
+    border-top: none;
+    border-radius: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    padding: 3px 0; /* Espaçamento interno menor */
+}
+.listaFilmesResultados {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.itemResultadoFilme {
+    padding: 2px 10px;
+}
+
+.itemResultadoFilme a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--cor-texto-link, #ccc);
+    padding: 6px; 
+    transition: background-color 0.1s;
+}
+
+.itemResultadoFilme a:hover {
+    background-color: var(--cor-hover-fundo, #2a2a2a);
+    border-radius: 10px;
+}
+
+.capaMini {
+    width: 37px; /* Capa menor (ajuste conforme o seu design) */
+    height: 47px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.statusMensagem {
+    padding: 10px;
+    text-align: center;
+    color: #888;
+    font-size: 0.9em;
+}
+
+.infoResultado {
+    display: flex; /* Para manter o título e o ano lado a lado */
+    flex-direction: column; /* Faz com que o ano fique embaixo do titulo */
+    /* OU display: flex; align-items: baseline; se quiser na mesma linha. */
+}
+
+.tituloResultado {
+    font-weight: bold;
+    font-size: 1em;
+    color: white; /* Ou sua cor de texto principal */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.anoResultado {
+    font-size: 0.8em;
+    color: #999; /* Cor mais suave para o ano */
+    margin-top: 2px;
+}

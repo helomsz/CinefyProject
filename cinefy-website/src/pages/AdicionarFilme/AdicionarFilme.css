@@ -1,0 +1,555 @@
+:root {
+    --bg-dark: #0f1416;
+    --card-bg: #1A1F25;
+    --input-card-bg: #23282b; 
+    --text-primary: #eaf6f5; 
+    --text-muted: #98A0A6;
+    --accent-color: #0d8376;
+    --accent-color-light: #16b7a5;
+    --border-radius-lg: 18px;
+    --border-radius-md: 12px;
+    --border-radius-sm: 8px;
+    --shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ----------------------------------------------------
+   Estrutura Geral e Layout (Replicando o Container)
+   ---------------------------------------------------- */
+.add-movie-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    color: var(--text-primary);
+    background-image: url('../../assets/adicionarfilme/backgroundADD.png'); 
+    background-size: cover; 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.main-content {
+    display: flex;
+    max-width: 1200px; 
+    width: 100%;
+    padding: 40px;
+    margin-top: 100px;
+    gap: 40px;
+}
+
+
+.preview-area {
+    flex: 0 0 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.poster-preview {
+    background: var(--input-card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius:45px;
+    min-height: 700px;
+    box-shadow: var(--shadow-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.banner-preview {
+    background: var(--input-card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 45px;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-dark);
+    overflow: hidden; 
+}
+
+/* NOVO: Estilo para a imagem de pré-visualização */
+.preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra todo o container mantendo a proporção */
+}
+
+/* Opcional: Estilo para o texto placeholder */
+.poster-preview p, .banner-preview p {
+    margin: 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+
+.form-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+/* ----------------------------------------------------
+   Cabeçalho do Formulário
+   ---------------------------------------------------- */
+header {
+    margin-bottom: 10px;
+}
+
+.subtitle-header {
+    color: #ffff;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.title-header {
+    font-size: 2.3rem;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+/* ----------------------------------------------------
+   Estrutura de Formulário e Grid (CHAVE para o layout)
+   ---------------------------------------------------- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+
+.input-card {
+    background: linear-gradient(to right, #626262, #515050) !important;
+    padding: 12px 18px 8px !important; 
+    border-radius:17px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-card:focus-within {
+    border: 2px solid #2FD8CD;
+    box-shadow: 0 0 0 1px var(--accent-color); 
+}
+
+
+.form-group input {
+    width: 100%
+    672.344px;
+    padding: 12px;
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--cor-texto-claro);
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem; 
+    font-weight: 500;
+    color: #CDCDCD;
+    margin-bottom: 2px;
+    line-height: 1;
+}
+
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    background: transparent !important; 
+    border: none !important;
+    color: var(--text-primary) !important;
+    padding: 0; 
+    font-size: 1.15rem; 
+    font-weight: 500; 
+    line-height: 1.4;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    box-shadow: none;
+    transition: color 0.2s;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #fff; 
+    font-weight: 500;
+    opacity: 1; 
+}
+
+textarea { 
+    min-height: 80px; 
+    resize: vertical; 
+}
+/* Estilo para SELECT (Diretor/Produtora) - Ajustando para o look de "Input Card" */
+.card-select {
+    background-color: var(--input-bg);
+    border-radius: var(--border-radius-md);
+    padding: 15px 20px;
+    border: 1px solid var(--border-color);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.card-select:focus-within {
+    border-color: var(--accent-teal);
+    box-shadow: 0 0 0 1px var(--accent-teal);
+}
+.select-wrapper {
+    position: relative;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    padding-right: 30px; 
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 0;
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.4;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 30px; 
+    
+    /* Icone customizado (seta para baixo) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23a0a8b3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+    background-size: 16px;
+}
+
+select option {
+    background-color: #1a1a20; /* Fundo mais escuro para opções */
+    color: var(--text-primary);
+}
+
+
+.form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2398A0A6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+
+
+.input-card .label-with-icon-add {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Cor dos ícones nas labels */
+.label-with-icon-add svg {
+    color: var(--text-muted);
+}
+
+
+.categories-section, .actors-section {
+    padding-top: 5px;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.category-tag {
+    /* Estilo padrão (Não selecionado) */
+    background: linear-gradient(to right, #626262, #515050);
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.category-tag:hover {
+    border-color: #2FD8CD;
+}
+
+.category-tag.selected {
+    background: var(--accent-color);
+    color: var(--text-primary);
+    border-color: var(--accent-color);
+}
+
+
+.category-tag:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: transparent;
+}
+
+
+/* ----------------------------------------------------
+   Seção de Atores (Cards Separados)
+   ---------------------------------------------------- */
+
+.actors-section {
+    padding: 15px 0;
+}
+
+.actors-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.actor-item {
+    /* Cada ator é um input-card, mas com layout especial */
+    background: linear-gradient(to right, #626262, #515050);
+    border-radius: var(--border-radius-md);
+    padding: 12px 18px 8px;
+    border: 1px solid transparent; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.actor-item.selected-actor {
+    background: #333941 !important; /* Cor de fundo das tags de ator */
+    border-radius: var(--border-radius-md) !important;
+    padding: 8px 12px !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: inline-flex !important;
+    align-items: center !important;
+    border: 1px solid #444c56 !important;
+}
+
+
+.actor-item:focus-within {
+    border: 2px solid #2FD8CD;
+    box-shadow: 0 0 0 1px var(--accent-color);
+}
+
+.actor-item input[type="text"] {
+    flex-grow: 1;
+    font-size: 1.15rem; 
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 0;
+}
+
+.suggestions-list {
+    top: calc(100% + 5px);
+    background: #1a1a20; 
+    border: 1px solid #333941;
+}
+
+.suggestions-list li {
+    padding: 12px 15px;
+    font-weight: 400;
+}
+
+.suggestions-list .create-new-option {
+    background-color: #121217; 
+    color: var(--accent-teal);
+    font-weight: bold;
+    border-top: 1px solid #333941;
+}
+.suggestions-list .create-new-option:hover {
+    background-color: #1e1e24;
+}
+
+.remove-actor-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 4px;
+    transition: color 0.2s;
+}
+
+.remove-actor-btn:hover {
+    color: red;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.add-actor-btn {
+    background: transparent;
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+    border-radius: var(--border-radius-sm);
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.add-actor-btn:hover {
+    border-color: var(--accent-color-light);
+    color: var(--accent-color-light);
+}
+
+/* ----------------------------------------------------
+   Botão de Envio
+   ---------------------------------------------------- */
+.submit-area {
+    margin-top: 20px;
+    text-align: center; 
+}
+
+.submit-button-add {
+    background: linear-gradient(to right, #00B9AE, #005955);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 17px 25px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Montserrat', sans-serif;
+    transition: background 0.3s;
+}
+
+.submit-button-add:hover {
+    background: linear-gradient(to right, #04847b, #005955);
+}
+
+.submit-button:disabled {
+    background: #444;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+/* ----------------------------------------------------
+   Mensagem de Feedback
+   ---------------------------------------------------- */
+.feedback-message {
+    padding: 15px;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.feedback-message.success {
+    background-color: rgba(13, 131, 118, 0.2);
+    color: var(--accent-color-light);
+    border: 1px solid var(--accent-color);
+}
+
+.feedback-message.error {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #ff6b6b;
+    border: 1px solid #ff0000;
+}
+
+/* ----------------------------------------------------
+   Responsividade (para telas menores)
+   ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    .main-content {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .preview-area {
+        flex: auto;
+        flex-direction: row;
+        gap: 15px;
+        height: auto;
+    }
+    
+    .poster-preview {
+        flex: 1;
+        min-height: 200px;
+    }
+
+    .banner-preview {
+        flex: 1;
+        min-height: 200px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr; /* Coluna única em mobile */
+        gap: 15px;
+    }
+}
+
+/* Estilo para a mensagem de erro nos formulários */
+.form-group.error-message {
+    background-color: #fef2f2; /* Fundo vermelho claro */
+    color: #991b1b; /* Texto vermelho escuro */
+    border: 1px solid #fecaca; /* Borda vermelha */
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
