@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./CardTopSemana.css";
 import { FaRegHeart, FaHeart, FaPlay } from "react-icons/fa";
 
-function CardTopSemana({ titulo, genero, posterCapa }) {
+function CardTopSemana({ titulo, genero, posterCapa, onClick }) { // <-- adicionado onClick
   const imagemCaminho = posterCapa || "assets/images/placeholder.png";
   const urlImagem = `http://localhost:8000/${imagemCaminho}`;
 
@@ -29,7 +29,7 @@ function CardTopSemana({ titulo, genero, posterCapa }) {
 
   // ❤️ Alterna favorito + salva/remover do localStorage
   const toggleFavorito = (e) => {
-    e.stopPropagation();
+    e.stopPropagation(); // <-- impede clique do card
     const favs = JSON.parse(localStorage.getItem("favoritos") || "[]");
 
     if (favoritado) {
@@ -49,6 +49,7 @@ function CardTopSemana({ titulo, genero, posterCapa }) {
     <article
       className="cardFilmeTop"
       style={{ "--background-url": `url(${urlImagem})` }}
+      onClick={onClick} // <-- adiciona clique no card
     >
       <div className="imagemCapa">
         <div className="favoriteButtonContainer">

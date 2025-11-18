@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Play, Star, Plus, Volume2, Pencil, Trash2 } from 'lucide-react';
+import { Play, Star, Plus, Volume2, Pencil, Trash2, ArrowLeft } from 'lucide-react';
 import { useUserSession } from '../../components/useUserSession';
+import { FaTimes } from 'react-icons/fa'; // IMPORTAÇÃO ADICIONAL
 
 // Assumindo que você tem os seguintes componentes e estilos
 import NavbarCentralizada from '../../components/NavbarCentralizada/NavbarCentralizada.jsx';
@@ -19,15 +20,26 @@ const DetalhesFilme = () => {
     const [filme, setFilme] = useState(null);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState('');
-    
-    // 2. OBTER DADOS DA SESSÃO E CRIAR ESTADO DE DELEÇÃO
     const [isDeleting, setIsDeleting] = useState(false);
     const { user, token, isLoggedIn, isLoading: isLoadingSession } = useUserSession();
-    // O hook 'useUserSession' agora deve ser importado corretamente
 
-
-    // Determina se é admin (só depois que a sessão carregar)
     const isAdmin = !isLoadingSession && user?.role === 'admin';
+
+    // --- INÍCIO: ESTADO PARA MODAL ---
+    const [isTrailerModalOpen, setIsTrailerModalOpen] = useState(false);
+
+    const handleOpenTrailerModal = () => {
+        if (filme?.trailer) {
+            setIsTrailerModalOpen(true);
+        } else {
+            alert("Trailer indisponível.");
+        }
+    };
+
+    const handleCloseTrailerModal = () => {
+        setIsTrailerModalOpen(false);
+    };
+    // --- FIM: ESTADO PARA MODAL ---
 
     useEffect(() => {
         const controller = new AbortController(); 
@@ -52,8 +64,6 @@ const DetalhesFilme = () => {
                 }
 
                 const data = await response.json();
-                
-                // Assumindo que a API pode enviar o filme na raiz ou dentro de um obj 'filme'
                 if (data && data.filme) {
                     setFilme(data.filme); 
                 } else if (data) {
@@ -126,7 +136,6 @@ const DetalhesFilme = () => {
     };
 
 
-    // --- Lógica de renderização de estado ---
     
     if (carregando || isLoadingSession) {
         return <PageTransitionLoader />;
@@ -159,21 +168,27 @@ const DetalhesFilme = () => {
 
                 <main className="detalhes-main">
                     <section className="detalhes__hero" style={backgroundStyle}>
+                        <button
+                            className="btn-voltar-hero"
+                            onClick={() => navigate(-1)}
+                            title="Voltar"
+                        >
+                            <ArrowLeft size={24} color="#f0f6f9" />
+                        </button>
+
                         
                         {isLoggedIn && (
                             <div className="admin-actions-container">
                                 
-                                {/* Botão de Editar: APARECE PARA TODOS OS LOGADOS */}
+
                                 <button
                                     className="btn-edit-hero"
-                                    // 6. CORRIGIR ROTA: O backend espera /filme/editar, não /admin/editar
                                     onClick={() => navigate(`/editar/${id}`)} 
                                     title="Sugerir Edição"
                                 >
                                     <Pencil size={25} color="#f0f6f9" />
                                 </button>
-                                
-                                {/* Botão de Deletar: APARECE SÓ PARA ADMIN */}
+
                                 {isAdmin && (
                                     <button
                                         className="btn-delete-hero" 
@@ -201,7 +216,6 @@ const DetalhesFilme = () => {
                                     className="detalhes__poster"
                                 />
                             )}
-                            {/* 2. CONTEÚDO PRINCIPAL (Título, Botões, Sinopse) */}
                             <div className="detalhes__content">
                                 <div className="detalhes__header">
                                     <h1 className="detalhes__titulo">{filme.titulo}</h1>
@@ -215,36 +229,29 @@ const DetalhesFilme = () => {
                                 </div>
 
                                 <div className="detalhes__acoes">
-                                    <button className="btn-primary" onClick={() => navigate(`/player/${id}`)}>
-                                        <Play size={20} /> Assistir Trailer
-                                    </button>
-                                    <button className="btn-secondary">
-                                        <Plus size={20} /> Lista
-                                    </button>
-                                    <button className="btn-secondary">
-                                        <Volume2 size={20} />
+                                    <button className="btn-primary" onClick={handleOpenTrailerModal}>
+                                        <Play size={20} fill="#ffffffff" color="#ffffffff" /> Assistir Trailer
                                     </button>
                                 </div>
 
                                 <p className="detalhes__sinopse">{filme.sinopse}</p>
 
-                            </div> {/* Fim de detalhes__content */}
-                        </div> {/* Fim de detalhes__content-wrapper */}
-                    </section> {/* Fim de detalhes__hero */}
+                            </div>
+                        </div>
+                    </section>
 
-                    {/* 3. METADADOS e ELENCO */}
                     <div className="detalhes__metadados-e-elenco">
                         <div className="detalhes__metadados">
                             <div className="metadado-item">
-                                <strong>Diretor:</strong>
+                                <strong>Diretor</strong>
                                 {diretores.map((d, i) => <span key={i} className="badge-nome">{d.trim()}</span>)}
                             </div>
                             <div className="metadado-item">
-                                <strong>Produtora:</strong>
+                                <strong>Produtora</strong>
                                 {produtoras.map((p, i) => <span key={i} className="badge-nome">{p.trim()}</span>)}
                             </div>
                             <div className="metadado-item">
-                                <strong>Gênero:</strong>
+                                <strong>Gênero</strong>
                                 {generos.map((g, i) => <span key={i} className="badge-genero">{g.trim()}</span>)}
                             </div>
                         </div>
@@ -271,7 +278,35 @@ const DetalhesFilme = () => {
                     </div> 
                 </main>
 
+                {/* --- MODAL DO TRAILER --- */}
+                {isTrailerModalOpen && filme?.trailer && (
+                    <div className="modalOverlay" onClick={handleCloseTrailerModal}>
+                        <div className="modalContent" onClick={e => e.stopPropagation()}>
+                            <div className="modalHeader">
+                                <h4 className="modalTitle">
+                                    <span className="modalTitleLabel">Trailer</span>
+                                    <span className="modalTitleContent">{filme.titulo} | {filme.ano}</span>
+                                </h4>
+                                <button className="modalCloseButton" onClick={handleCloseTrailerModal}>
+                                    <FaTimes />
+                                </button>
+                            </div>
+                            <div className="iframeContainer">
+                                <iframe
+                                    src={`https://www.youtube.com/embed/${filme.trailer}?autoplay=1&rel=0`}
+                                    title={`${filme.titulo} Trailer`}
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                ></iframe>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+            <div className="footerDetalhesWrapper">
                 <Footer />
+            </div>
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 import React from "react";
 import CardFilmeVertical from "../CardFilmeVertical/CardFilmeVertical.jsx";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import "./SecaoLancamentos.css"; // Novo CSS para este layout
 
 /**
@@ -15,7 +16,7 @@ function SecaoLancamentos({
   favoritos,
   toggleFavorito,
 }) {
-  // Se a lista de filmes for vazia, não renderiza a seção
+  const navigate = useNavigate();
   if (listaFilmes.length === 0) {
     return null;
   }
@@ -28,21 +29,16 @@ function SecaoLancamentos({
 
       <div className="containerCardsLancamento">
         {listaFilmes.map((filme) => (
-          <Link
+          <CardFilmeVertical
             key={filme.id}
-            to={`/detalhes/${filme.id}`}
-            className="filme-card-link"
-          >
-            <CardFilmeVertical
-              key={filme.id}
-              titulo={filme.titulo}
-              genero={filme.generos || "Ação | Drama"} // Usando um pipe | para o gênero
-              status={filme.status || "Novo"}
-              posterCapa={filme.poster}
-              toggleFavorito={toggleFavorito}
-              favoritos={favoritos}
-            />
-          </Link>
+            titulo={filme.titulo}
+            genero={filme.generos || "Ação | Drama"}
+            status={filme.status || "Novo"}
+            posterCapa={filme.poster}
+            toggleFavorito={toggleFavorito}
+            favoritos={favoritos}
+            onClick={() => navigate(`/detalhes/${filme.id}`)} 
+          />
         ))}
       </div>
     </section>

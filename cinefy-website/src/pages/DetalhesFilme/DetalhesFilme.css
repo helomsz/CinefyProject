@@ -16,15 +16,15 @@ body, html {
     display: flex;
     width: 100%;
     min-height: 100vh;
-    background-color: #0d1117; /* Fundo escuro */
-    color: #f0f6f9; /* Texto claro */
+    background-color: #0d1117; 
+    color: #f0f6f9;
 }
 
-/* Garante que o conteúdo principal (excluindo Menu Lateral) se estenda */
 .main-content-wrapper {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    margin-left: 0;
 }
 
 .detalhes-main {
@@ -34,16 +34,16 @@ body, html {
     position: relative;
 }
 
-/* Seção de Hero com Background */
+
 .detalhes__hero {
     position: relative;
-    width: 100%;
+    margin-left: -250px;       
+    width: calc(100% + 250px); 
+    max-width: 100%;
     min-height: 100vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: flex;
-    align-items: flex-end; /* Alinha o conteúdo na parte inferior */
 }
 
 .detalhes__overlay {
@@ -52,50 +52,43 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Gradiente para escurecer o background e suavizar a transição para o rodapé */
     background: linear-gradient(
         to bottom, 
         rgba(13, 17, 23, 0.2) 0%, 
         rgba(13, 17, 23, 0.4) 70%, 
         #0d1117 100%
     );
+    z-index: 1;
 }
 
 .detalhes__content-wrapper {
-    position: absolute; /* Alinha o conteúdo em relação ao hero */
-    top: 20%; /* Começa mais abaixo do topo (ajuste fino) */
-    left: 40px;
-    right: 40px;
-    z-index: 10;
+    position: relative; /* dentro do fluxo */
+    z-index: 2;
     display: flex;
     gap: 40px;
+    padding: 16% 40px 0 40px;
 }
 .detalhes__poster {
-    width: 280px; /* Largura definida para o poster */
-    height: 420px; /* Altura padrão de 3:2 */
+    width: 280px; 
+    height: 410px; 
     border-radius: 25px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     flex-shrink: 0; 
 }
 
 .detalhes__content {
-    flex-grow: 1; /* Permite que o conteúdo de texto use o espaço restante */
-    padding: 0; /* Remove padding anterior */
-    max-width: 700px;
+    flex-grow: 1; 
+    padding: 0;
+    max-width: 720px;
 }
 
-/* --- Botão de Edição (Canto Superior Direito) --- */
 .btn-edit-hero {
     position: absolute;
-    top: 190px; /* Afasta 20px do topo */
-    right: 40px; /* Afasta 40px da direita (considerando o padding lateral) */
-    
-    z-index: 20; /* Garante que fique acima do overlay */
-    
-    /* Estilo visual */
+    top: 190px; 
+    right: 40px; 
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%; /* Torna-o circular */
+    border-radius: 50%; 
     width: 55px;
     height: 55px;
     display: flex;
@@ -103,19 +96,21 @@ body, html {
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.2s;
+     z-index: 3
+}
+.btn-edit-hero:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+
 }
 
 .btn-delete-hero {
     position: absolute;
-    top: 280px; /* Afasta 20px do topo */
-    right: 40px; /* Afasta 40px da direita (considerando o padding lateral) */
-    
-    z-index: 20; /* Garante que fique acima do overlay */
-    
-    /* Estilo visual */
+    top: 280px; 
+    right: 40px; 
+    z-index: 20; 
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%; /* Torna-o circular */
+    border-radius: 50%; 
     width: 55px;
     height: 55px;
     display: flex;
@@ -123,14 +118,13 @@ body, html {
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.2s;
+     z-index: 3
 }
 .btn-delete-hero:hover{
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(197, 13, 13, 0.2);
 }
 
-.btn-edit-hero:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
+
 
 .detalhes__titulo {
     font-size: 3.5rem;
@@ -142,7 +136,7 @@ body, html {
 .detalhes__info-geral {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     gap: 20px;
     font-size: 1rem;
     color: #a8b3c0;
@@ -168,22 +162,25 @@ body, html {
 .btn-primary, .btn-secondary {
     display: flex;
     align-items: center;
-    padding: 12px 25px;
+    padding: 15px 29px;
     border: none;
-    border-radius: 8px;
+    border-radius: 550px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.2s ease-in-out;
-    gap: 8px;
+    gap: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
 }
 
 .btn-primary {
-    background-color: #00b894; /* Verde principal */
-    color: #0d1117;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #FFF;
 }
 
 .btn-primary:hover {
-    background-color: #00a080;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-secondary {
@@ -199,27 +196,24 @@ body, html {
 .detalhes__sinopse {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #a8b3c0;
+    color: #ffffff;
     margin-bottom: 30px;
 }
 
 
 .detalhes__metadados-e-elenco {
-    padding: 0 40px 60px 60px; /* Mantém o padding inferior e lateral */
+    padding: 0 40px 60px 60px; 
 }
 
 .detalhes__metadados {
-    /* REMOVE A BORDA QUE HAVIA ANTES, usa uma linha simples */
     border-top: 1px solid rgba(255, 255, 255, 0.1); 
     padding-top: 30px;
     margin-bottom: 70px;
-    
-    /* Usa flexbox para Diretor | Produtora | Gênero */
     display: flex; 
     flex-wrap: wrap;
-    gap: 70px; /* Espaçamento entre os blocos */
+    gap: 70px;
 }
-/* Garante que o item de metadados se comporte como bloco */
+
 .metadado-item {
     padding-right: 0;
     border-right: none;
@@ -234,31 +228,32 @@ body, html {
 
 .badge-nome, .badge-genero {
     display: inline-block;
-    padding: 6px 14px;
+    padding: 6px 15px;
     margin-right: 8px;
     margin-top: 5px;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 .badge-nome {
-    background-color: rgba(255, 255, 255, 0.05); /* Diretor/Produtora/Ator */
+    background-color: rgba(189, 188, 188, 0.05); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: #a8b3c0;
     margin-right: 8px; 
-    margin-top: 0;
+    margin-top: 20px;
 }
 
 .badge-genero {
-    background-color: #00b894; /* Destaque para Gênero */
-    color: #0d1117;
-    font-weight: 600;
+    background-color: rgba(0, 185, 174, 0.25);
+    border: 1px solid #0EEDE0;
+    color: #0EEDE0;
+    font-weight: 500;
     margin-right: 8px; 
-    margin-top: 0;
+    margin-top: 20px;
 }
 
 /* --- Elenco --- */
 .detalhes__elenco {
-    /* Garante que o elenco não está com margens estranhas */
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -272,22 +267,22 @@ body, html {
 
 .elenco__lista {
     display: flex;
-    gap: 100px; /* Reduzido o gap para 30px, o protótipo parece usar menos espaço */
+    gap: 150px; 
     overflow-x: auto;
-    padding-bottom: 10px;
+    padding: 10px 0 10px 60px;
 }
 
 .elenco__ator {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100px; /* Mantido em 100px */
+    width: 100px;
     flex-shrink: 0;
 }
 
 .ator__imagem {
-    width: 150px; /* Reduzido para um tamanho mais próximo do protótipo */
-    height: 150px; /* Reduzido para um tamanho mais próximo do protótipo */
+    width: 190px; /* Reduzido para um tamanho mais próximo do protótipo */
+    height: 190px; 
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
@@ -296,8 +291,129 @@ body, html {
 
 .ator__nome {
     text-align: center;
-    font-size: 1rem; /* Aumentado ligeiramente o tamanho do nome do ator */
-    color: #f0f6f9; /* Mudado para a cor principal de texto */
+    font-size: 1rem;
+    color: #f0f6f9; 
     font-weight: 500;
 }
 
+.footerDetalhesWrapper {
+    width: calc(100% - 120px); /* 60px padding lateral de cada lado */
+    margin-left: 60px;
+    margin-right: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.btn-voltar-hero {
+    position: absolute;
+    top: 140px;
+    left: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    z-index: 25; 
+}
+
+.btn-voltar-hero:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ---------------------------------------------------- */
+/* 6. ESTILOS DO MODAL (ESTILIZAÇÃO DO PROTÓTIPO)        */
+/* ---------------------------------------------------- */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+    backdrop-filter: blur(5px);
+}
+
+.modalContent {
+    background: #1e1e1e; 
+    padding: 0; 
+    border-radius: 12px;
+    max-width: 90%;
+    width: 900px; 
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden; 
+}
+
+.modalHeader {
+    background: linear-gradient(to right, #025550, #318A84);
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalTitle {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.modalTitleLabel {
+    font-size: 0.85em;
+    font-weight: 400;
+    opacity: 0.8;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.modalTitleContent {
+    font-weight: 600;
+}
+
+
+.modalCloseButton {
+    position: static; 
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px; 
+    cursor: pointer;
+    opacity: 1; 
+    transition: color 0.2s;
+}
+
+.modalCloseButton:hover {
+    opacity: 1;
+    color: #f2f2f2; 
+}
+
+
+.iframeContainer {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; 
+    background-color: #2c2c2c;
+    padding-bottom: 0px; 
+}
+
+.iframeContainer iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0; 
+}

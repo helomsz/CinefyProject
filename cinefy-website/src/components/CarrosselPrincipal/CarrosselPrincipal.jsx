@@ -14,32 +14,38 @@ const mockFilmesCarrossel = [
         titulo: 'Jogos Vorazes', 
         descricao: 'Em um futuro distópico, Katniss luta nos Jogos Vorazes para salvar sua irmã. A sobrevivência se torna uma batalha contra a opressão.', 
         capaFundo: JogosVorazes, 
+        trailer: '7HDfIssATE4'
     },
     { 
         id: 2, 
         titulo: 'Pantera Negra', 
         descricao: 'T\'Challa, o Pantera Negra, retorna para casa como rei de Wakanda, mas é desafiado por um adversário poderoso.', 
         capaFundo: PanteraNegra, 
+        trailer: 'wL4a4MafSjQ'
     },
     { 
         id: 3, 
         titulo: 'O Telefone Preto', 
         descricao: 'Em O Telefone Preto (2022), um garoto sequestrado descobre um telefone que o conecta às vítimas anteriores de seu raptor.', 
         capaFundo: TelefonePreto, 
+        trailer: 'dCAbPQnFAU4&t=30s'
     },
     { 
         id: 4, 
         titulo: 'Batman', 
         descricao: 'Em Batman (2022), o herói enfrenta o Charada enquanto desvenda a corrupção e segredos sombrios de Gotham.', 
         capaFundo: Batman, 
+        trailer: 'mqqft2x_Aa4'
     },
     { 
         id: 5, 
         titulo: 'John Wick', 
         descricao: 'Em John Wick (2014), um ex-assassino busca vingança após criminosos destruírem tudo o que lhe restava de paz.', 
         capaFundo: JohnWick, 
+        trailer: '3OtwXTiygOM'
     },
 ];
+
 
 function CarrosselPrincipal() {
     const [indiceAtivo, setIndiceAtivo] = useState(0); // Começa no segundo filme (índice 1) para ter 2 de cada lado
@@ -85,6 +91,7 @@ function CarrosselPrincipal() {
                             key={filme.id} 
                             filme={filme} 
                             className={className}
+                            trailer={filme.trailer}
                             onCardClick={proximoSlide}
                         />
                     );

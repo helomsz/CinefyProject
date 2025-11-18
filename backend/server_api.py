@@ -12,7 +12,7 @@ import jwt
 DB_CONFIG = {
     'host': "localhost",
     'user': "root",
-    'password': "senai",
+    'password': "root",
     'database': "SERVIDORFILMES"
 }
 

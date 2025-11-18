@@ -1,5 +1,6 @@
 import React from 'react';
 import CardTopSemana from '../CardTopSemana/CardTopSemana';
+import { useNavigate } from "react-router-dom";
 import './SecaoTopSemana.css'; 
 /**
  * Componente dedicado à seção de Lançamentos, utilizando o layout de cards verticais.
@@ -8,7 +9,8 @@ import './SecaoTopSemana.css';
  * @param {array} listaFilmes - Lista dos objetos de filmes a serem exibidos.
  */
 function SecaoTopSemana({ tituloSecao, listaFilmes = [], favoritos, toggleFavorito }) { 
-    
+ 
+    const navigate = useNavigate();
     // Se a lista de filmes for vazia, não renderiza a seção
     if (listaFilmes.length === 0) {
         return null;
@@ -29,6 +31,7 @@ function SecaoTopSemana({ tituloSecao, listaFilmes = [], favoritos, toggleFavori
                         posterCapa={filme.poster}
                         toggleFavorito={toggleFavorito}
                         favoritos={favoritos}
+                        onClick={() => navigate(`/detalhes/${filme.id}`)} 
                     />
                 ))}
             </div>

@@ -1,14 +1,13 @@
 import React from 'react';
 import './SecaoSagas.css';
+import { Link } from "react-router-dom"; // <-- import Link do react-router-dom
 import ImagemJogosVorazes from '../../assets/sagas/jogosVorazesHome.png'; 
 import ImagemStarWars from '../../assets/sagas/starWarsHome.png'; 
 import ImagemMazeRunner from '../../assets/sagas/mazeRunnerHome.png';
 
 
-const CardSaga = ({ titulo, imagemUrl, linkUrl, tag, subtitulo }) => (
-    <a href={linkUrl} className="cardSaga">
-        
-
+const CardSaga = ({ titulo, imagemUrl, tag, subtitulo }) => (
+    <div className="cardSaga"> {/* <-- trocar <a> por <div> */}
         <img 
             src={imagemUrl} 
             alt={`Ver detalhes da Saga: ${titulo}`} 
@@ -16,18 +15,13 @@ const CardSaga = ({ titulo, imagemUrl, linkUrl, tag, subtitulo }) => (
         />
 
         <div className="infoOverlay">
-            {/* Tag */}
             <span className="tagSaga">{tag}</span>
-            
-            {/* Título Principal */}
             <h3 className="tituloSaga">{titulo}</h3>
-            
-            {/* Subtítulo */}
             <p className="subtituloSaga">{subtitulo}</p> 
         </div>
-
-    </a>
+    </div>
 );
+
 
 
 function SecaoSagas() {
