@@ -1,0 +1,394 @@
+:root {
+    --bg-dark: #0f1416;
+    --card-bg: #1A1F25;
+    --input-card-bg: #23282b; 
+    --text-primary: #eaf6f5; 
+    --text-muted: #98A0A6;
+    --accent-color: #0d8376;
+    --accent-color-light: #16b7a5;
+    --border-radius-lg: 18px;
+    --border-radius-md: 12px;
+    --border-radius-sm: 8px;
+    --shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ----------------------------------------------------
+   Estrutura Geral e Layout
+   ---------------------------------------------------- */
+.add-movie-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    color: var(--text-primary);
+    /* ATENÇÃO: Verifique se o caminho da imagem está correto para a pasta onde este arquivo está */
+    background-image: url('../../assets/adicionarfilme/backgroundADD.png'); 
+    background-size: cover; 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.main-content {
+    display: flex;
+    max-width: 1200px; 
+    width: 100%;
+    padding: 40px;
+    margin-top: 100px;
+    gap: 40px;
+    box-sizing: border-box; /* Importante para não estourar */
+}
+
+.preview-area {
+    flex: 0 0 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.poster-preview {
+    background: var(--input-card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 45px;
+    min-height: 700px;
+    box-shadow: var(--shadow-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.poster-preview img, 
+.banner-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-preview {
+    background: var(--input-card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 45px;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-dark);
+    overflow: hidden; 
+}
+
+.form-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 20px;
+    min-width: 0; /* Impede que flex items estourem o pai */
+}
+
+/* ----------------------------------------------------
+   Cabeçalho
+   ---------------------------------------------------- */
+header {
+    margin-bottom: 10px;
+}
+
+.subtitle-header {
+    color: #ffff;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.title-header {
+    font-size: 2.3rem;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+/* ----------------------------------------------------
+   Formulário e Inputs
+   ---------------------------------------------------- */
+.movie-form-add {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.input-card {
+    background: linear-gradient(to right, #626262, #515050) !important;
+    padding: 12px 18px 8px !important; 
+    border-radius: 17px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-card:focus-within {
+    border: 2px solid #2FD8CD !important;
+    box-shadow: 0 0 0 1px var(--accent-color) !important; 
+}
+
+.form-group input {
+    width: 100%; /* CORRIGIDO: Estava com lixo de código aqui */
+    padding: 12px;
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem; 
+    font-weight: 500;
+    color: #CDCDCD;
+    margin-bottom: 2px;
+    line-height: 1;
+}
+
+/* Estilização Global de Inputs dentro deste escopo */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    background: transparent !important; 
+    border: none !important;
+    color: var(--text-primary) !important;
+    padding: 0; 
+    font-size: 1.15rem; 
+    font-weight: 500; 
+    line-height: 1.4;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    box-shadow: none;
+    transition: color 0.2s;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6); 
+    font-weight: 500;
+}
+
+textarea { 
+    min-height: 80px; 
+    resize: vertical; 
+}
+
+/* ----------------------------------------------------
+   Selects
+   ---------------------------------------------------- */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 0;
+    font-size: 1.05rem;
+    font-weight: 400;
+    outline: none;
+    
+    /* Icone customizado */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2398A0A6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0px center;
+    background-size: 16px;
+}
+
+select option {
+    background-color: #1a1a20;
+    color: var(--text-primary);
+}
+
+/* ----------------------------------------------------
+   Categorias e Atores
+   ---------------------------------------------------- */
+.categories-section, .actors-section {
+    padding-top: 5px;
+}
+
+.categories-section h3, .actors-section h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.category-tag {
+    background: linear-gradient(to right, #626262, #515050);
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.category-tag:hover {
+    border-color: #2FD8CD;
+}
+
+.category-tag.selected {
+    background: var(--accent-color);
+    color: var(--text-primary);
+    border-color: var(--accent-color);
+}
+
+.category-tag:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Cards de Atores */
+.actors-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.actor-item {
+    background: linear-gradient(to right, #626262, #515050);
+    border-radius: var(--border-radius-md);
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 10px;
+}
+
+.actor-item input {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+    color: white;
+    outline: none;
+}
+
+.actor-item button {
+    background: transparent;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.actor-item.add-new {
+    background: rgba(255, 255, 255, 0.05);
+    border-style: dashed;
+}
+
+.actor-item.add-new button {
+    color: var(--accent-color-light);
+}
+
+/* ----------------------------------------------------
+   Botão de Envio
+   ---------------------------------------------------- */
+.submit-area {
+    margin-top: 20px;
+    text-align: center; 
+}
+
+.submit-button-add {
+    background: linear-gradient(to right, #00B9AE, #005955);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.submit-button-add:hover {
+    background: linear-gradient(to right, #04847b, #005955);
+    transform: scale(1.02);
+}
+
+.error-message {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #ff6b6b;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ff0000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ----------------------------------------------------
+   Responsividade
+   ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    .main-content {
+        flex-direction: column;
+        padding: 20px;
+        margin-top: 80px;
+    }
+
+    .preview-area {
+        flex: auto;
+        flex-direction: row;
+        gap: 15px;
+    }
+    
+    .poster-preview {
+        min-height: 300px;
+        flex: 1;
+    }
+    
+    .banner-preview {
+        display: none; /* Geralmente esconde banner em mobile se ficar apertado */
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}

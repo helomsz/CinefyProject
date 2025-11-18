@@ -1,6 +1,5 @@
-// src/components/User/UserProfileDropdown.jsx
-
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Importe o useNavigate
 import { User, Settings, Info, LogOut } from 'lucide-react'; // Ícones modernos
 
 import './UserProfileDropdown.css'; // O CSS vem a seguir
@@ -12,7 +11,8 @@ import './UserProfileDropdown.css'; // O CSS vem a seguir
  * @param {function} onClose - Função para fechar o dropdown.
  */
 function UserProfileDropdown({ onLogout, user, onClose }) {
-    
+    const navigate = useNavigate(); // useNavigate deve ser chamado no início do componente
+
     // Lista dos itens do menu conforme sua solicitação
     const menuItems = [
         { icon: User, label: 'Perfil', action: () => { 
@@ -25,11 +25,10 @@ function UserProfileDropdown({ onLogout, user, onClose }) {
         }, link: '/contato' },
     ];
 
-    // Função que lida com o Sair, chamando a função passada
     const handleLogout = () => {
-        onLogout(); // Função do useUserSession que limpa o estado e o localStorage
-        onClose();
-        // Redirecionamento deve ser feito após o logout, se necessário
+        onLogout(); // Limpa o estado de login e session storage
+        onClose();  // Fecha o dropdown
+        navigate('/login'); // Redireciona para a página de login
     };
 
     return (

@@ -85,22 +85,33 @@
 }
 
 
-.filtroInput {
-    display: block; 
+.filtroInputContainer .filtroInput {
+    display: block;
     width: 100%;
     height: 40px !important;
     line-height: 40px !important;
     border-radius: 50px !important;
-    border: 1px solid rgba(78, 204, 187, 0.3) !important; 
-    background: rgba(0, 191, 166, 0.1) !important; 
-    box-sizing: border-box !important; 
-    padding: 0 55px 0 15px !important;
+    border: 1px solid rgba(78, 204, 187, 0.3) !important;
+    background: rgba(0, 191, 166, 0.1) !important;
+    box-sizing: border-box !important;
+    padding: 0 55px 0 15px !important; /* Ajustado conforme seu style inline */
     font-size: 0.95rem !important;
-    color: #fff !important; 
-
+    color: #fff !important;
     outline: none !important;
+    font-family: 'Montserrat', sans-serif; /* Adicionei para garantir a fonte */
     transition: border-color 0.2s, background-color 0.2s;
 }
+
+/* Estados de Focus e Placeholder também precisam ser específicos */
+.filtroInputContainer .filtroInput:focus {
+    border-color: #00e0c0 !important;
+    background: rgba(0, 191, 166, 0.08) !important;
+}
+
+.filtroInputContainer .filtroInput::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
 
 
 .filtroInput:focus {

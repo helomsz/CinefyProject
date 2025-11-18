@@ -84,25 +84,38 @@
     border: none !important;
 }
 
-/* Estilo do input */
-.inputFiltro {
-    display: block !important; 
-    width: 100% !important;
+/* SOLUÇÃO NUCLEAR DE ESPECIFICIDADE 
+   Estamos combinando 3 classes + 1 tag + 1 atributo para vencer o global
+*/
+.secaoFiltroWrapper .inputComIconeFiltro input.inputFiltro[type="text"] {
+    display: block;
+    width: 100%;
     height: 40px !important;
     line-height: 40px !important;
     border-radius: 50px !important;
-    border: 1px solid rgba(78, 204, 187, 0.3) !important; 
-    background: rgba(0, 191, 166, 0.1) !important; 
-    box-sizing: border-box !important; 
-    padding: 0 75px 0 15px !important;
+    border: 1px solid rgba(78, 204, 187, 0.3) !important;
+    background: rgba(0, 191, 166, 0.1) !important;
+    box-sizing: border-box !important;
+    padding: 0 55px 0 15px !important;
     font-size: 0.95rem !important;
-    color: #fff !important; 
-
+    color: #fff !important;
     outline: none !important;
-    transition: border-color 0.2s, background-color 0.2s !important;
+    font-family: 'Montserrat', sans-serif !important;
+    transition: border-color 0.2s, background-color 0.2s;
+    box-shadow: none !important; /* Remove sombras indesejadas do global */
 }
 
+/* Focus - Também ultra específico */
+.secaoFiltroWrapper .inputComIconeFiltro input.inputFiltro[type="text"]:focus {
+    border-color: #00e0c0 !important;
+    background: rgba(0, 191, 166, 0.08) !important;
+}
 
+/* Placeholder */
+.secaoFiltroWrapper .inputComIconeFiltro input.inputFiltro[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+    opacity: 1; /* Firefox as vezes diminui a opacidade */
+}
 .inputFiltro:focus {
     border-color: #00e0c0 !important;
     background: rgba(0, 191, 166, 0.08) !important;

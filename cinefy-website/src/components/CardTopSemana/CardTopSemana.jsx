@@ -45,11 +45,23 @@ function CardTopSemana({ titulo, genero, posterCapa, onClick }) { // <-- adicion
     }
   };
 
+  const handleCardClick = (e) => {
+    // 1. Log para verificar se o clique chegou no <article>
+    console.log(`[CLICK DEBUG] Card Clicado: ${titulo}`);
+
+    // 2. Chame a função de navegação, se ela existir
+    if (typeof onClick === 'function') {
+      onClick(e);
+    } else {
+      console.error('[CLICK DEBUG] Prop onClick NÃO é uma função!', onClick);
+    }
+  };
+
   return (
     <article
       className="cardFilmeTop"
       style={{ "--background-url": `url(${urlImagem})` }}
-      onClick={onClick} // <-- adiciona clique no card
+      onClick={handleCardClick}
     >
       <div className="imagemCapa">
         <div className="favoriteButtonContainer">
@@ -63,7 +75,14 @@ function CardTopSemana({ titulo, genero, posterCapa, onClick }) { // <-- adicion
 
         {/* Container para o Botão de Play */}
         <div className="playButtonContainerTop">
-          <button className="botaoPlayTop">
+          <button
+            className="botaoPlayTop"
+            // CORREÇÃO CRÍTICA NO BOTÃO DE PLAY
+            onClick={(e) => {
+              e.stopPropagation();
+              console.log(`[CLICK DEBUG] Clicou no Play de ${titulo}.`);
+            }}
+          >
             <FaPlay className="iconePlay" fill="white" />
           </button>
         </div>

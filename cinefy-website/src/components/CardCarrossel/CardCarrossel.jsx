@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom'; // 1. IMPORTAR ISSO
 import { Play } from 'lucide-react';
 import { FaTimes } from 'react-icons/fa';
 import './CardCarrossel.css';
@@ -12,7 +13,7 @@ function CardCarrossel({ filme, className, onCardClick, trailer }) {
         : null;
 
     const handleOpenModal = (e) => {
-        e.stopPropagation(); // evita disparar o onCardClick do card
+        e.stopPropagation();
         if (youtubeEmbedUrl) {
             setIsModalOpen(true);
         }
@@ -21,6 +22,32 @@ function CardCarrossel({ filme, className, onCardClick, trailer }) {
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
+
+    // Lógica do Modal separada para facilitar leitura
+    const modalContent = (
+        <div className="modalOverlayCarrossel" onClick={handleCloseModal}>
+            <div className="modalContentCarrossel" onClick={(e) => e.stopPropagation()}>
+                <div className="modalHeaderCarrossel">
+                    <h4 className="modalTitle">
+                        <span className="modalTitleLabel">Trailer</span>
+                        <span className="modalTitleContent">{titulo}</span>
+                    </h4>
+                    <button className="modalCloseButton" onClick={handleCloseModal}>
+                        <FaTimes />
+                    </button>
+                </div>
+                <div className="iframeContainerCarrossel">
+                    <iframe
+                        src={youtubeEmbedUrl}
+                        title={`${titulo} Trailer`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    );
 
     return (
         <>
@@ -38,29 +65,10 @@ function CardCarrossel({ filme, className, onCardClick, trailer }) {
                 </div>
             </div>
 
-            {isModalOpen && youtubeEmbedUrl && (
-                <div className="modalOverlay" onClick={handleCloseModal}>
-                    <div className="modalContent" onClick={(e) => e.stopPropagation()}>
-                        <div className="modalHeader">
-                            <h4 className="modalTitle">
-                                <span className="modalTitleLabel">Trailer</span>
-                                <span className="modalTitleContent">{titulo}</span>
-                            </h4>
-                            <button className="modalCloseButton" onClick={handleCloseModal}>
-                                <FaTimes />
-                            </button>
-                        </div>
-                        <div className="iframeContainer">
-                            <iframe
-                                src={youtubeEmbedUrl}
-                                title={`${titulo} Trailer`}
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            ></iframe>
-                        </div>
-                    </div>
-                </div>
+            {/* 2. USO DO PORTAL AQUI */}
+            {isModalOpen && youtubeEmbedUrl && ReactDOM.createPortal(
+                modalContent,
+                document.body // Renderiza o modal direto no <body>
             )}
         </>
     );

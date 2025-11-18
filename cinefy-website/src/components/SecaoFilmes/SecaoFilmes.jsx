@@ -1,12 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";  // Importar o useNavigate corretamente
 import CardFilme from '../CardFilme/CardFilme.jsx'; 
 import CardFilmeVertical from '../CardFilmeVertical/CardFilmeVertical.jsx'; 
 import './SecaoFilmes.css'; 
 import { FaChevronRight } from 'react-icons/fa';
 import ScrollRevealContainer from '../ScrollRevealContainer/ScrollRevealContainer.jsx';
 
-function SecaoFilmes({ tituloSecao, listaFilmes = [] }) { 
+function SecaoFilmes({ tituloSecao, listaFilmes = [] }) {
+    const navigate = useNavigate(); // Chame o useNavigate dentro do componente
+
+    // Verifique se a lista de filmes está vazia
+    if (listaFilmes.length === 0) {
+        return null;
+    }
+
     return (
         <section className="secaoFilmes">
             <header className="cabecalhoSecao">
@@ -19,19 +26,15 @@ function SecaoFilmes({ tituloSecao, listaFilmes = [] }) {
 
             <div className="containerCards">
                 {listaFilmes.map((filme) => (
-                    <Link 
-                        key={filme.id} 
-                        to={`/detalhes/${filme.id}`} 
-                        className="filme-card-link"
-                    >
-                        <CardFilme
-                            titulo={filme.titulo}
-                            genero={filme.generos || 'Gênero Desconhecido'} 
-                            nota={filme.avaliacao_media || 0.0} 
-                            posterMini={filme.poster_mini}
-                            trailer={filme.trailer} 
-                        />
-                    </Link>
+                    <CardFilme
+                        key={filme.id} // Adiciona a chave única para cada card
+                        titulo={filme.titulo}
+                        genero={filme.generos || 'Gênero Desconhecido'} 
+                        nota={filme.avaliacao_media || 0.0} 
+                        posterMini={filme.poster_mini}
+                        trailer={filme.trailer} 
+                        onClick={() => navigate(`/detalhes/${filme.id}`)} 
+                    />
                 ))}
             </div>
         </section>
