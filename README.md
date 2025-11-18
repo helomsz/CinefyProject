@@ -25,8 +25,8 @@ Este repositório inclui o **Front-end (React + Vite)** e o **Back-end (Python +
 ├── backend/
 │   ├── app.py
 │   ├── requirements.txt
-│   ├── db/
-│   └── routes/
+│   ├── db.py
+│   └── server_api.py
 │
 └── frontend/
     ├── src/
