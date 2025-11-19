@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom"; // Importação NECESSÁRIA
+
 import HeroSection from "../../components/HeroSection/HeroSection";
 import NavbarCentralizada from "../../components/NavbarCentralizada/NavbarCentralizada";
 import MenuLateral from "../../components/MenuLateral/MenuLateral";
@@ -7,6 +9,7 @@ import SecaoLancamentos from "../../components/SecaoLancamentos/SecaoLancamentos
 import SecaoPlanos from "../../components/SecaoPlanos/SecaoPlanos";
 import SecaoSagas from "../../components/SecaoSagas/SecaoSagas";
 import SecaoTopSemana from "../../components/SecaoTopSemana/SecaoTopSemana";
+import CardErroCentralizado from "../../components/CardErroCentralizado/CardErroCentralizado";
 import Footer from "../../components/Footer/Footer";
 import "./Home.css";
 
@@ -18,6 +21,9 @@ function HomePage() {
   const [erro, setErro] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
 
+  // Chame o useLocation
+  const location = useLocation();
+
   useEffect(() => {
     const controller = new AbortController();
 
@@ -26,10 +32,14 @@ function HomePage() {
       setErro(null);
 
       try {
-        const response = await fetch(URL_API_FILMES, { signal: controller.signal });
+        const response = await fetch(URL_API_FILMES, {
+          signal: controller.signal,
+        });
 
         if (!response.ok) {
-          throw new Error(`Erro HTTP ${response.status}. Falha ao carregar filmes.`);
+          throw new Error(
+            `Erro HTTP ${response.status}. Falha ao carregar filmes.`
+          );
         }
 
         const dadosJson = await response.json();
@@ -46,7 +56,8 @@ function HomePage() {
 
     buscarFilmes();
     return () => controller.abort();
-  }, []);
+    // Altera a dependência para rodar sempre que o caminho mudar
+  }, [location.pathname]);
 
   const filmesEmAlta = filmes.slice(0, 4);
   const filmesRecomendados = filmes.slice(4, 8);
@@ -55,18 +66,20 @@ function HomePage() {
 
   if (erro) {
     return (
-      <main className="containerPrincipal p-10 text-red-400">
-        <p>🚨 Erro ao carregar os filmes: {erro}</p>
-        <p>
-          Verifique se o servidor Python (localhost:8000) está ativo e se a
-          conexão com o banco MySQL está OK.
-        </p>
+      <main className="containerPrincipal">
+        <MenuLateral />
+        <NavbarCentralizada />
+        <CardErroCentralizado
+          mensagemErro={`Erro ao carregar os filmes: ${erro}`}
+        />
       </main>
     );
   }
 
   return (
-    <main className={`containerPrincipal ${fadeIn ? "fade-in" : "fade-hidden"}`}>
+    <main
+      className={`containerPrincipal ${fadeIn ? "fade-in" : "fade-hidden"}`}
+    >
       <div className="nav">
         <NavbarCentralizada />
       </div>
@@ -80,10 +93,7 @@ function HomePage() {
       <div className="HomePageContent">
         {/* Em Alta */}
         {filmesEmAlta.length > 0 && (
-          <SecaoFilmes
-            tituloSecao="Em Alta"
-            listaFilmes={filmesEmAlta}
-          />
+          <SecaoFilmes tituloSecao="Em Alta" listaFilmes={filmesEmAlta} />
         )}
 
         {/* Recomendados */}
@@ -102,18 +112,13 @@ function HomePage() {
           />
         )}
 
-       
-
         {/* Seções fixas */}
         <SecaoPlanos />
         <SecaoSagas />
 
-         {/* Top da Semana */}
+        {/* Top da Semana */}
         {TopSemana.length > 0 && (
-          <SecaoTopSemana
-            tituloSecao="Top da Semana"
-            listaFilmes={TopSemana}
-          />
+          <SecaoTopSemana tituloSecao="Top da Semana" listaFilmes={TopSemana} />
         )}
 
         {/* Fallback quando não há filmes */}

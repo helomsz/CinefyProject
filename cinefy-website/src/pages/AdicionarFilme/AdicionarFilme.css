@@ -553,3 +553,73 @@ select option {
     align-items: center;
     gap: 0.5rem;
 }
+
+.centered-message-container {
+    margin-top: 70px; /* Margem para passar a navbar, se for o caso */
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center; /* Centraliza Horizontalmente */
+    align-items: center; /* Centraliza Verticalmente */
+    min-height: calc(100vh - 190px); 
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* Correção para o estilo do Access Denied Card */
+.access-denied-card {
+    /* REMOVA ou COMENTE: background: #fff; */ 
+    /* Use o fundo de card escuro do seu tema */
+    background: var(--card-bg); /* Ou var(--input-card-bg) para ser mais escuro */
+    
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px; 
+    padding: 40px;
+    max-width: 450px; 
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-dark);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.access-denied-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-color);
+}
+
+.icon-denied {
+    color: #ff5e5e; 
+    margin-bottom: 15px;
+}
+
+.denied-title {
+ font-size: 2.2rem;
+ font-weight: 700;
+ color: #ff5e5e; 
+ margin: 0 0 10px 0;
+}
+
+.denied-message {
+ font-size: 1.1rem;
+ color: var(--text-muted);
+ margin-bottom: 30px;
+ line-height: 1.5;
+}
+
+.denied-login-button {
+ width: 100%;
+padding: 15px 25px; 
+border: none;
+ border-radius: var(--border-radius-lg);
+  background: var(--accent-color); /* Cor verde-água */
+color: var(--text-primary);
+ font-size: 1.1rem;
+font-weight: 600;
+cursor: pointer;
+transition: background 0.2s ease, transform 0.1s;
+}
+
+.denied-login-button:hover {
+ background: var(--accent-color-light);
+ transform: translateY(-1px);
+}
