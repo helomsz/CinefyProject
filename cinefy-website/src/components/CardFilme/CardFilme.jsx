@@ -79,7 +79,7 @@ function CardFilme({ titulo, genero, nota, posterMini, trailer, onClick }) {
                             {/* Assumindo que você tem o ano: {titulo} | {ano} */}
                             <h4 className="modalTitle">
                                 <span className="modalTitleLabel">Trailer</span>
-                                <span className="modalTitleContent">{titulo} | 2024</span>
+                                <span className="modalTitleContent">{titulo}</span>
                             </h4>
 
                             {/* Botão de fechar (movido para o header) */}

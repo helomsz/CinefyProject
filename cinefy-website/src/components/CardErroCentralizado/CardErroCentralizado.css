@@ -1,5 +1,6 @@
 
 .erro-container-full {
+    margin-top: 80px;
     min-height: 80vh; 
     display: flex;
     justify-content: center;

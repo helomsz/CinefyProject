@@ -1,38 +1,31 @@
 import React, { useState } from 'react';
 import { CreditCard, Lock, ArrowLeft } from 'lucide-react';
-
-// Importa estilos e componentes que assumimos que existem no seu projeto
-import './PaymentScreen.css'; 
 import NavbarCentralizada from '../../components/NavbarCentralizada/NavbarCentralizada.jsx'; 
 import MenuLateral from '../../components/MenuLateral/MenuLateral.jsx';
-import Footer from '../../components/Footer/Footer.jsx'; 
+import Footer from '../../components/Footer/Footer.jsx';  
+import './PaymentScreen.css'; 
 
-
-// Dados do Plano Fixo (Simulação: Premium já selecionado)
 const PLANO_PADRAO = { 
     nome: 'Premium', 
     precoMensal: 'R$ 49,90' 
 };
 
-
-const PaymentForm = ({ planoAtual = PLANO_PADRAO, onBack = () => console.log('Voltar'), onPaymentSuccess = () => {} }) => {
+const FormularioPagamento = ({ planoAtual = PLANO_PADRAO, onVoltar = () => console.log('Voltar'), onPagamentoSucesso = () => {} }) => {
     
-    // Estado para armazenar os dados do formulário de pagamento
     const [dadosCartao, setDadosCartao] = useState({
-        cardNumber: '',
-        cardName: '',
-        expiryDate: '',
+        numeroCartao: '',
+        nomeNoCartao: '',
+        dataVencimento: '',
         cvv: '',
         cpfCnpj: '',
     });
 
-    // Handler para capturar a mudança de valor dos campos do cartão
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         setDadosCartao(prev => ({ ...prev, [id]: value }));
     };
 
-    const handleFinalizePayment = (e) => {
+    const handleFinalizarPagamento = (e) => {
         e.preventDefault();
         
         console.log("--- Dados da Transação ---");
@@ -40,69 +33,68 @@ const PaymentForm = ({ planoAtual = PLANO_PADRAO, onBack = () => console.log('Vo
         console.log("Dados do Cartão (Simulação de Envio):", dadosCartao);
         
         alert(`Pagamento do plano ${planoAtual.nome} no valor de ${planoAtual.precoMensal}/mês simulado com sucesso!`);
-        onPaymentSuccess();
+        onPagamentoSucesso();
     };
 
-    // Renderização do Formulário de Pagamento (A sua solicitação)
-    const renderPaymentForm = () => (
-        <div className="payment__content-wrapper">
-            <button className="payment__back-button" onClick={onBack}>
-                <ArrowLeft size={20} /> Voltar
+    const renderFormularioPagamento = () => (
+        <div className="formulario__wrapper">
+            <button className="formulario__voltar-button" onClick={() => { navigate(-1);}} title="Voltar">
+                <ArrowLeft size={29} />
             </button>
 
-            <h1 className="payment__title">Finalizar Assinatura: {planoAtual.nome}</h1>
-            <p className="payment__subtitle">
-                Total Mensal: <span className="highlight-price">{planoAtual.precoMensal}</span>
+            <h1 className="formulario__titulo">Finalizar Assinatura: {planoAtual.nome}</h1>
+            <p className="formulario__subtitulo">
+                Total Mensal: <span className="destaque-preco">{planoAtual.precoMensal}</span>
             </p>
             
-            <div className="payment__form-container">
-                <div className="payment__security-message">
+            <div className="formulario__container">
+                <div className="formulario__mensagem-seguranca">
                     <Lock size={18} /> Seu pagamento é processado de forma segura.
                 </div>
                 
-                <form onSubmit={handleFinalizePayment}>
-                    <div className="form-group">
-                        <label htmlFor="cardNumber">Número do Cartão</label>
-                        <div className="input-group">
+                <form onSubmit={handleFinalizarPagamento}>
+                    <div className="grupo-formulario">
+                        <label htmlFor="numeroCartao">Número do Cartão</label>
+                        <div className="input-grupo">
                             <CreditCard size={20} className="input-icon" />
                             <input 
                                 type="text" 
-                                id="cardNumber" 
+                                id="numeroCartao" 
                                 placeholder="0000 0000 0000 0000" 
                                 required 
                                 maxLength="19" 
-                                value={dadosCartao.cardNumber}
+                                value={dadosCartao.numeroCartao}
                                 onChange={handleInputChange}
                             />
                         </div>
                     </div>
                     
-                    <div className="form-group">
-                        <label htmlFor="cardName">Nome no Cartão</label>
+                    <div className="grupo-formulario">
+                        <label htmlFor="nomeNoCartao">Nome no Cartão</label>
                         <input 
                             type="text" 
-                            id="cardName" 
+                            id="nomeNoCartao" 
                             placeholder="Seu Nome Completo" 
                             required 
-                            value={dadosCartao.cardName}
+                            value={dadosCartao.nomeNoCartao}
                             onChange={handleInputChange}
                         />
                     </div>
 
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label htmlFor="expiryDate">Vencimento</label>
+                    <div className="linha-formulario">
+                        <div className="grupo-formulario">
+                            <label htmlFor="dataVencimento">Vencimento</label>
                             <input 
                                 type="text" 
-                                id="expiryDate" 
+                                id="dataVencimento" 
                                 placeholder="MM/AA" 
                                 required 
                                 maxLength="5" 
-                                value={dadosCartao.expiryDate}
+                                value={dadosCartao.dataVencimento}
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="grupo-formulario">
                             <label htmlFor="cvv">CVV</label>
                             <input 
                                 type="text" 
@@ -116,7 +108,7 @@ const PaymentForm = ({ planoAtual = PLANO_PADRAO, onBack = () => console.log('Vo
                         </div>
                     </div>
                     
-                    <div className="form-group">
+                    <div className="grupo-formulario">
                         <label htmlFor="cpfCnpj">CPF / CNPJ</label>
                         <input 
                             type="text" 
@@ -128,7 +120,7 @@ const PaymentForm = ({ planoAtual = PLANO_PADRAO, onBack = () => console.log('Vo
                         />
                     </div>
 
-                    <button type="submit" className="payment__submit-button">
+                    <button type="submit" className="formulario__submit-button">
                         Assinar {planoAtual.nome} Agora
                     </button>
                 </form>
@@ -137,14 +129,14 @@ const PaymentForm = ({ planoAtual = PLANO_PADRAO, onBack = () => console.log('Vo
     );
 
     return (
-        <div className="payment-page-container">
+        <div className="pagina-pagamento-container">
             <MenuLateral />
             
-            <div className="main-content-wrapper">
+            <div className="conteudo-principal-wrapper">
                 <NavbarCentralizada />
                 
-                <main className="payment-main">
-                    {renderPaymentForm()}
+                <main className="pagina-pagamento-main">
+                    {renderFormularioPagamento()}
                 </main>
                 
                 <Footer />
@@ -153,4 +145,4 @@ const PaymentForm = ({ planoAtual = PLANO_PADRAO, onBack = () => console.log('Vo
     );
 };
 
-export default PaymentForm;
+export default FormularioPagamento;

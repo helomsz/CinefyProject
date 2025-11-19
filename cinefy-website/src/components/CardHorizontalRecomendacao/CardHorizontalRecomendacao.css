@@ -1,79 +1,72 @@
-/* Variáveis de cores baseadas nas suas outras implementações */
+/* SecaoCarrosselFavoritos.css */
+
+/* Variáveis para cores */
 :root {
-    --kids-color-teal: #00bfa6;
-    --kids-color-bg-dark: #12161F;
-    --kids-color-bg-light: #181c26; /* Cor mais clara para elementos */
     --cor-texto-claro: #E0E0E0;
-    --cor-acento-hover: #00FFC6;
+    /* Cor de fundo do anexo é escura, o texto é claro */
 }
 
 /* ------------------------------------------------------------- */
 /* SEÇÃO PRINCIPAL (Wrapper e Título) */
 /* ------------------------------------------------------------- */
 
-.secao-carrossel-wrapper {
-    /* Retorna a posição do Hero para evitar conflito com transform no Favorites.jsx */
+.secao-carrossel-favoritos-wrapper {
+    /* O padding e margin aqui dependem do layout da sua página principal */
     padding: 20px 60px 50px 60px;
-    margin-top: -70px; /* Sobe o carrossel para a área abaixo do hero */
     width: 100%;
     box-sizing: border-box;
 }
 
-.secao-carrossel__cabecalho {
+.secao-carrossel-favoritos__cabecalho {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
 }
 
-.secao-carrossel__titulo {
+.secao-carrossel-favoritos__titulo {
     font-size: 2.2em;
     font-weight: 700;
     margin: 0;
     color: var(--cor-texto-claro);
 }
 
-/* ------------------------------------------------------------- */
-/* CARROSSEL DE ITENS (Lista Horizontal) */
-/* ------------------------------------------------------------- */
 
-.secao-carrossel__lista {
+.secao-carrossel-favoritos__lista {
     display: flex;
-    /* Faz o container se comportar como carrossel */
-    overflow-x: auto; 
-    /* Garante que os itens não quebrem linha */
-    white-space: nowrap; 
+    overflow-x: scroll;
+    white-space: nowrap;
     gap: 20px;
-    padding-bottom: 10px; /* Espaço para a barra de rolagem (se visível) */
-    
-    /* Configuração de Scroll Snap para uma rolagem mais agradável */
+
+    padding-bottom: 10px;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    
-    /* Esconde a barra de rolagem (opcional, mas comum em carrosséis) */
     scrollbar-width: none;
 }
 
-.secao-carrossel__lista::-webkit-scrollbar {
+.secao-carrossel-favoritos__lista::-webkit-scrollbar {
     display: none;
 }
 
-/* ------------------------------------------------------------- */
-/* ARROW NAVIGATION (Botões de Navegação) */
-/* ------------------------------------------------------------- */
+.secao-carrossel-favoritos__lista>.cardFilme {
 
-.secao-carrossel__navegacao {
+    scroll-snap-align: start;
+}
+
+
+.secao-carrossel-favoritos__navegacao {
     display: flex;
-    gap: 15px;
+    gap: 10px;
 }
 
 .carrossel-seta {
-    background-color: var(--kids-color-teal);
-    color: var(--kids-color-bg-dark);
-    width: 45px;
-    height: 45px;
+    transform: translateX(0);
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,169 +75,30 @@
     flex-shrink: 0;
 }
 
-.carrossel-seta:hover {
-    background-color: var(--cor-acento-hover);
-    transform: scale(1.05);
+.carrossel-seta.esquerda {
+    /* Mova-a 45px para a esquerda (negativo) */
+    transform: translateX(-75px); 
 }
 
-.carrossel-seta:disabled {
-    background-color: rgba(0, 191, 166, 0.3);
-    color: rgba(18, 22, 31, 0.5);
-    cursor: not-allowed;
-    transform: scale(1);
+/* CORREÇÃO PARA A SETA DA DIREITA (Opcional: move para fora do padding direito) */
+.carrossel-seta.direita {
+    /* Mova-a 45px para a direita (positivo) */
+    transform: translateX(-65px);
 }
 
-/* ------------------------------------------------------------- */
-/* CARD INDIVIDUAL (Visual idêntico ao protótipo) */
-/* ------------------------------------------------------------- */
-
-.card-recomendacao {
-    display: inline-block; /* Crucial para o white-space: nowrap */
-    width: 250px; /* Largura base para desktop */
-    min-width: 250px;
-    scroll-snap-align: start;
-    position: relative;
-    cursor: pointer;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s ease;
-}
-
-.card-recomendacao:hover {
-    transform: scale(1.03);
-    z-index: 10;
-    box-shadow: 0 5px 20px rgba(0, 191, 166, 0.3);
-}
-
-.card-recomendacao__imagem {
-    width: 100%;
-    height: 350px; /* Altura fixa para manter proporção */
-    position: relative;
-    overflow: hidden;
-}
-
-.card-recomendacao__imagem img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.card-recomendacao__overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
-    display: flex;
-    align-items: flex-end;
-    padding: 10px 15px;
-    transition: opacity 0.3s;
-}
-
-.card-recomendacao:hover .card-recomendacao__overlay {
-    height: 100%; /* Expande o overlay */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
-    align-items: center;
-    justify-content: center;
-}
-
-/* Informações do filme (gênero e nota) */
-.card-recomendacao__info {
-    position: absolute;
-    bottom: 10px;
-    left: 15px;
-    right: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 5;
-    pointer-events: none; /* Não interfere no clique do card */
-}
-
-.card-recomendacao__generos {
-    font-size: 0.85em;
+.carrossel-seta.ativo {
     color: rgba(255, 255, 255, 0.8);
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 3px 8px;
-    border-radius: 5px;
 }
 
-.card-recomendacao__nota {
-    font-size: 0.95em;
-    font-weight: 700;
-    color: var(--cor-acento-hover);
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 3px 8px;
-    border-radius: 5px;
-}
-
-/* Ícone de Play (Visível no hover) */
-.card-recomendacao__icone-play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.carrossel-seta.ativo:hover {
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
-    opacity: 0;
-    transition: opacity 0.3s, transform 0.3s;
-    background-color: rgba(0, 191, 166, 0.6);
-    border-radius: 50%;
-    padding: 15px;
 }
 
-.card-recomendacao:hover .card-recomendacao__icone-play {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.1);
-}
-
-/* ------------------------------------------------------------- */
-/* RESPONSIVIDADE */
-/* ------------------------------------------------------------- */
-
-@media (max-width: 1200px) {
-    .card-recomendacao {
-        width: 220px; 
-        min-width: 220px;
-    }
-}
-
-@media (max-width: 900px) {
-    .secao-carrossel-wrapper {
-        padding: 20px 20px 30px 20px;
-    }
-    .secao-carrossel__titulo {
-        font-size: 1.8em;
-    }
-    .card-recomendacao {
-        width: 180px; 
-        min-width: 180px;
-    }
-    .card-recomendacao__imagem {
-        height: 280px; 
-    }
-}
-
-@media (max-width: 600px) {
-    .secao-carrossel-wrapper {
-        padding: 20px 15px 30px 15px;
-    }
-    .secao-carrossel__cabecalho {
-        margin-bottom: 20px;
-    }
-    .secao-carrossel__titulo {
-        font-size: 1.5em;
-    }
-    .carrossel-seta {
-        width: 35px;
-        height: 35px;
-    }
-    .card-recomendacao {
-        width: 150px; 
-        min-width: 150px;
-    }
-    .card-recomendacao__imagem {
-        height: 220px; 
-    }
+.carrossel-seta.inativo {
+    opacity: 0.5;
+    cursor: not-allowed;
+    /* A borda e o ícone devem ser menos visíveis */
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
 }

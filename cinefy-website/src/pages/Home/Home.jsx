@@ -27,9 +27,11 @@ function HomePage() {
   useEffect(() => {
     const controller = new AbortController();
 
+    // Função de busca de filmes
     const buscarFilmes = async () => {
       setCarregando(true);
       setErro(null);
+      setFilmes([]); // Resetar os filmes a cada nova busca
 
       try {
         const response = await fetch(URL_API_FILMES, {
@@ -56,8 +58,7 @@ function HomePage() {
 
     buscarFilmes();
     return () => controller.abort();
-    // Altera a dependência para rodar sempre que o caminho mudar
-  }, [location.pathname]);
+  }, [location.pathname]); // Dependência no caminho para recarregar os filmes ao mudar de URL
 
   const filmesEmAlta = filmes.slice(0, 4);
   const filmesRecomendados = filmes.slice(4, 8);

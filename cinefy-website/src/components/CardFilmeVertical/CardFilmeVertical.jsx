@@ -1,37 +1,35 @@
+// CardFilmeVertical.jsx
 import React, { useEffect, useState } from "react";
 import { FaHeart, FaPlay } from 'react-icons/fa';
 import './CardFilmeVertical.css';
 
-function CardFilmeVertical({ titulo, genero, status, posterCapa  }) {
+function CardFilmeVertical({ titulo, genero, status, posterCapa, onClick }) {
   const imagemCaminho = posterCapa || 'assets/images/placeholder.png';
   const urlImagem = `http://localhost:8000/${imagemCaminho}`;
 
-const [favoritado, setFavoritado] = useState(false);
+  const [favoritado, setFavoritado] = useState(false);
 
-useEffect(() => {
-  try {
-    const favs = JSON.parse(localStorage.getItem("favoritos") || "[]");
-    // filtra apenas objetos válidos que tenham título
-    const validos = Array.isArray(favs)
-      ? favs.filter((f) => f && typeof f === "object" && f.titulo)
-      : [];
- 
-    setFavoritado(validos.some((f) => f.titulo === titulo));
- 
-    // salva de volta os válidos (corrige o localStorage)
-    localStorage.setItem("favoritos", JSON.stringify(validos));
-  } catch (e) {
-    console.error("Erro ao ler favoritos:", e);
-    localStorage.setItem("favoritos", "[]");
-  }
-}, [titulo]);
- 
- 
-  // ❤️ Alterna favorito + salva/remover do localStorage
+  useEffect(() => {
+    try {
+      const favs = JSON.parse(localStorage.getItem("favoritos") || "[]");
+      const validos = Array.isArray(favs)
+        ? favs.filter((f) => f && typeof f === "object" && f.titulo)
+        : [];
+
+      setFavoritado(validos.some((f) => f.titulo === titulo));
+
+      // salva de volta os válidos (corrige o localStorage)
+      localStorage.setItem("favoritos", JSON.stringify(validos));
+    } catch (e) {
+      console.error("Erro ao ler favoritos:", e);
+      localStorage.setItem("favoritos", "[]");
+    }
+  }, [titulo]);
+
   const toggleFavorito = (e) => {
-    e.stopPropagation();
+    e.stopPropagation(); // Evita que o clique no favorito propague para o card e dispare a navegação
     const favs = JSON.parse(localStorage.getItem("favoritos") || "[]");
- 
+
     if (favoritado) {
       // se já estava favoritado, remove
       const novos = favs.filter((f) => f.titulo !== titulo);
@@ -45,15 +43,13 @@ useEffect(() => {
     }
   };
 
-
-
   return (
-    <article 
+    <article
       className="cardFilmeVertical"
       style={{ '--background-url': `url(${urlImagem})` }}
+      onClick={onClick}
     >
       <div className="imagemCapa">
-        
         <div className="favoriteButtonContainer">
           <button className="botaoFavorito" onClick={toggleFavorito}>
             <FaHeart

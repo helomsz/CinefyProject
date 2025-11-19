@@ -42,7 +42,7 @@ const DetalhesFilme = () => {
     // --- FIM: ESTADO PARA MODAL ---
 
     useEffect(() => {
-        const controller = new AbortController(); 
+        const controller = new AbortController();
         const signal = controller.signal;
 
         const buscarFilme = async () => {
@@ -51,7 +51,7 @@ const DetalhesFilme = () => {
 
             try {
                 const response = await fetch(`${API_BASE_URL}/filme/detalhes/${id}`, {
-                    signal, 
+                    signal,
                 });
 
                 if (!response.ok) {
@@ -60,12 +60,12 @@ const DetalhesFilme = () => {
                     } else {
                         throw new Error(`Erro na rede ou servidor: Status ${response.status}`);
                     }
-                    return; 
+                    return;
                 }
 
                 const data = await response.json();
                 if (data && data.filme) {
-                    setFilme(data.filme); 
+                    setFilme(data.filme);
                 } else if (data) {
                     setFilme(data);
                 } else {
@@ -91,7 +91,7 @@ const DetalhesFilme = () => {
         return () => controller.abort();
     }, [id]);
 
-  
+
     const handleDeleteFilme = async () => {
         if (!window.confirm(`Tem certeza que deseja deletar o filme "${filme.titulo}"? Esta ação não pode ser desfeita.`)) {
             return;
@@ -102,7 +102,7 @@ const DetalhesFilme = () => {
             return;
         }
 
-        setIsDeleting(true); 
+        setIsDeleting(true);
         setErro('');
 
         try {
@@ -121,7 +121,7 @@ const DetalhesFilme = () => {
 
             if (data.status === 'sucesso') {
                 alert("Filme deletado com sucesso!");
-                navigate('/'); 
+                navigate('/');
             } else {
                 throw new Error(data.mensagem || 'Erro desconhecido ao deletar.');
             }
@@ -129,14 +129,14 @@ const DetalhesFilme = () => {
         } catch (err) {
             console.error("Falha na operação de deleção:", err);
             setErro(err.message);
-            alert(`Falha ao deletar: ${err.message}`); 
+            alert(`Falha ao deletar: ${err.message}`);
         } finally {
-            setIsDeleting(false); 
+            setIsDeleting(false);
         }
     };
 
 
-    
+
     if (carregando || isLoadingSession) {
         return <PageTransitionLoader />;
     }
@@ -166,24 +166,27 @@ const DetalhesFilme = () => {
             <div className="main-content-wrapper">
                 <NavbarCentralizada />
 
-                <main className="detalhes-main">
+                <main className="detalhes-main" key={id}>
                     <section className="detalhes__hero" style={backgroundStyle}>
                         <button
                             className="btn-voltar-hero"
-                            onClick={() => navigate(-1)}
+                            onClick={() => {
+                                setFilme(null); // Resetando o estado ao voltar
+                                navigate(-1);
+                            }}
                             title="Voltar"
                         >
                             <ArrowLeft size={24} color="#f0f6f9" />
                         </button>
 
-                        
+
                         {isLoggedIn && (
                             <div className="admin-actions-container">
-                                
+
 
                                 <button
                                     className="btn-edit-hero"
-                                    onClick={() => navigate(`/editar/${id}`)} 
+                                    onClick={() => navigate(`/editar/${id}`)}
                                     title="Sugerir Edição"
                                 >
                                     <Pencil size={25} color="#f0f6f9" />
@@ -191,7 +194,7 @@ const DetalhesFilme = () => {
 
                                 {isAdmin && (
                                     <button
-                                        className="btn-delete-hero" 
+                                        className="btn-delete-hero"
                                         onClick={handleDeleteFilme}
                                         disabled={isDeleting}
                                         title="Deletar Filme (Admin)"
@@ -205,7 +208,7 @@ const DetalhesFilme = () => {
                                 )}
                             </div>
                         )}
-                        
+
                         <div className="detalhes__overlay"></div>
                         <div className="detalhes__content-wrapper">
                             {/* 1. POSTER */}
@@ -275,7 +278,7 @@ const DetalhesFilme = () => {
                                 ))}
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </main>
 
                 {/* --- MODAL DO TRAILER --- */}
@@ -304,9 +307,9 @@ const DetalhesFilme = () => {
                     </div>
                 )}
 
-            <div className="footerDetalhesWrapper">
-                <Footer />
-            </div>
+                <div className="footerDetalhesWrapper">
+                    <Footer />
+                </div>
             </div>
         </div>
     );

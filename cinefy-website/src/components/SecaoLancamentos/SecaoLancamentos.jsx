@@ -1,15 +1,9 @@
+// SecaoLancamentos.jsx
 import React from "react";
 import CardFilmeVertical from "../CardFilmeVertical/CardFilmeVertical.jsx";
 import { useNavigate } from "react-router-dom";
+import "./SecaoLancamentos.css"; 
 
-import "./SecaoLancamentos.css"; // Novo CSS para este layout
-
-/**
- * Componente dedicado à seção de Lançamentos, utilizando o layout de cards verticais.
- * Esta seção é ideal para exibir N cards em um grid fixo de 6 colunas.
- * * @param {string} tituloSecao - O título da seção (ex: "Lançamentos").
- * @param {array} listaFilmes - Lista dos objetos de filmes a serem exibidos.
- */
 function SecaoLancamentos({
   tituloSecao,
   listaFilmes = [],
@@ -37,7 +31,7 @@ function SecaoLancamentos({
             posterCapa={filme.poster}
             toggleFavorito={toggleFavorito}
             favoritos={favoritos}
-            onClick={() => navigate(`/detalhes/${filme.id}`)} 
+            onClick={() => navigate(`/detalhes/${filme.id}`)} // Passa a função de navegação
           />
         ))}
       </div>

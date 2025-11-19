@@ -39,7 +39,7 @@ function App() {
             />
             <Route path="/adicionar" element={<AdicionarFilme />} />
             <Route path="/pagamento" element={<PaymentScreen />} />
-            <Route path="/detalhes/:id" element={<DetalhesFilme />} />
+            <Route path="/detalhes/:id" element={<DetalhesFilme />} key={window.location.pathname}/>
             <Route path="/editar/:id" element={<EditarFilme/>} />
             <Route 
             path="/admin" 
