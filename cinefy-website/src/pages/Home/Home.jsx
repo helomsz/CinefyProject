@@ -21,17 +21,17 @@ function HomePage() {
   const [erro, setErro] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
 
-  // Chame o useLocation
+  // chama o useLocation
   const location = useLocation();
 
   useEffect(() => {
     const controller = new AbortController();
 
-    // Função de busca de filmes
+    // função de busca de filmes
     const buscarFilmes = async () => {
       setCarregando(true);
       setErro(null);
-      setFilmes([]); // Resetar os filmes a cada nova busca
+      setFilmes([]); // reseta os filmes a cada nova busca
 
       try {
         const response = await fetch(URL_API_FILMES, {
@@ -58,7 +58,7 @@ function HomePage() {
 
     buscarFilmes();
     return () => controller.abort();
-  }, [location.pathname]); // Dependência no caminho para recarregar os filmes ao mudar de URL
+  }, [location]);
 
   const filmesEmAlta = filmes.slice(0, 4);
   const filmesRecomendados = filmes.slice(4, 8);

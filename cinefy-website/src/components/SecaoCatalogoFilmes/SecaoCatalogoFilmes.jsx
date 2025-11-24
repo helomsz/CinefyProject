@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import FilmeCardCatalogo from '../CardFilmeCatalogo/CardFilmeCatalogo'; 
 import './SecaoCatalogoFilmes.css';
 
 const API_URL_FILMES = 'http://localhost:8000/listar_filmes';
 
 function SecaoCatalogoFilmes({ filmesFiltrados }) {
+    const navigate = useNavigate();
     const [filmes, setFilmes] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -88,6 +90,7 @@ function SecaoCatalogoFilmes({ filmesFiltrados }) {
                         titulo={filme.titulo}
                         genero={filme.genero}
                         posterCapa={filme.posterCapa} 
+                        onClick={() => navigate(`/detalhes/${filme.id}`)}
                     />
                 ))}
             </div>

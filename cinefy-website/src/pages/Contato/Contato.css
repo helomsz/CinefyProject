@@ -265,8 +265,11 @@ body {
     transform: rotate(-45deg) scale(1.1); 
 }
 
-/* --- Seção do Formulário de Contato --- */
-.contact-form-section {
+/* =============================
+   FORMULÁRIO — CORREÇÃO IMPORTANTE
+   ============================= */
+
+   .contact-form-section {
     margin-top: 100px;
     padding: 1rem;
     border-radius: 2.5rem;
@@ -277,7 +280,6 @@ body {
         inset 0 0 10px rgba(255, 255, 255, 0.3),
         0 8px 32px 0 rgba(0, 0, 0, 0.37);
     width: 100%;
-    height: 100%; 
     display: flex;
     flex-direction: column;
 }
@@ -287,13 +289,12 @@ body {
     flex-direction: column;
     gap: 1.5rem;
     width: 100%; 
-    flex-grow: 1;
 }
 
-.form-input {
+.contact-form .form-input-contato {
     width: 100%;
     padding: 1.4rem 1.2rem;
-    border-radius: 1.5rem; 
+    border-radius: 1.5rem;
     background: rgba(255, 255, 255, 0.09);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -303,26 +304,28 @@ body {
     transition: border-color 0.3s, box-shadow 0.3s;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    min-height: 50px;
 }
 
-.form-input::placeholder {
+
+.contact-form .form-input-contato::placeholder {
     color: #D4D5D6;
-    font-size: 1rem;
-    opacity: 0.8; 
-    text-align: left;
+    opacity: .8;
 }
 
-.form-input:focus {
+.contact-form .form-input-contato:focus {
     border-color: var(--color-teal);
-    box-shadow: 0 0 0 1px var(--color-teal), inset 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 0 0 1px var(--color-teal),
+        inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.textarea {
-    resize: none; 
-    min-height: 270px; 
-    flex-grow: 1;
-    box-sizing: border-box;
+/* Textarea */
+.contact-form .form-input-contato.textarea {
+    resize: none;
+    min-height: 270px;
 }
+
 /* --- Botão de Envio (Gradiente e Sombra) --- */
 .submit-button {
     display: flex;
@@ -369,7 +372,7 @@ body {
     height: 400px;
     border-radius: 50%;
     filter: blur(150px);
-    opacity: 0.3; /* Ajustado para ser mais sutil */
+    opacity: 0.3;
     z-index: 0;
 }
 
@@ -417,7 +420,7 @@ body {
     flex-basis: 40%;
 }
 
-/* Exemplo: Estilo para títulos das colunas (Explore/Suporte) */
+
 .footer-wrapper h3 {
     color: var(--color-text-primary);
     font-size: 1.25rem;
@@ -425,7 +428,6 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Exemplo: Estilo para links */
 .footer-wrapper a {
     color: var(--color-text-secondary);
     text-decoration: none;
@@ -435,29 +437,24 @@ body {
 .status-message {
     max-width: 460px;
     padding: 1rem;
-    border-radius: 1rem; /* Borda arredondada como no protótipo */
+    border-radius: 1rem;
     display: flex;
     align-items: center;
     gap: 1rem;
     width: 100%;
-    /* Garante que a mensagem de status não quebre o layout vertical */
     flex-shrink: 0; 
 }
 
-/* Estilo para Mensagem de Sucesso (Fundo Verde Escuro) */
 .status-message.success {
-    /* Cor de fundo verde escura, como no protótipo */
     background-color: #1a3c3c; 
-    border: 1px solid #4ade80; /* Borda fina e clara */
+    border: 1px solid #4ade80; 
 }
 
 .status-icon-wrapper {
-    /* Wrapper para o círculo do ícone (simula a cor de fundo do ícone) */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0; 
-    /* Cor mais clara para o ícone de check */
     color: #4ade80; 
 }
 
@@ -466,28 +463,26 @@ body {
 }
 
 .status-title {
-    font-weight: 700; /* Título em negrito */
-    color: var(--color-text-primary); /* Texto principal branco */
+    font-weight: 700;
+    color: var(--color-text-primary);
     margin: 0;
 }
 
 .status-text {
     font-size: 0.9rem;
-    color: var(--color-text-secondary); /* Texto secundário cinza */
+    color: var(--color-text-secondary);
     margin: 0;
 }
 
-/* Opcional: Estilo de Erro (para consistência) */
 .status-message.error {
-    background-color: #422020; /* Fundo vermelho escuro */
-    border: 1px solid #fca5a5; /* Borda vermelha clara */
+    background-color: #422020;
+    border: 1px solid #fca5a5;
 }
 
 .status-message.error .status-icon-wrapper {
     color: #fca5a5;
 }
 
-/* Se você usar o ícone de fechar (X) */
 .status-close-icon {
     color: var(--color-text-secondary);
     cursor: pointer;

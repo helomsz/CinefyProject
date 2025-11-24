@@ -144,7 +144,7 @@ const Contato = () => {
           <section className="contact-form-section">
             <form onSubmit={handleSubmit} className="contact-form">
               
-              <div className="form-group">
+              <div className="form-group-contato">
                 <input
                   type="text"
                   id="name"
@@ -153,11 +153,11 @@ const Contato = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="form-input"
+                  className="form-input-contato"
                 />
               </div>
 
-              <div className="form-group">
+              <div className="form-group-contato">
                 <input
                   type="email"
                   id="email"
@@ -166,11 +166,11 @@ const Contato = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="form-input"
+                  className="form-input-contato"
                 />
               </div>
 
-              <div className="form-group">
+              <div className="form-group-contato">
                 <textarea
                   id="message"
                   name="message"
@@ -179,7 +179,7 @@ const Contato = () => {
                   onChange={handleChange}
                   required
                   rows="7"
-                  className="form-input textarea"
+                  className="form-input-contato textarea"
                 ></textarea>
               </div>
 

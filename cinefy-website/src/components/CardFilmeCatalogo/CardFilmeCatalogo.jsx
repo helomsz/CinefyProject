@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./FilmeCardCatalogo.css";
 import { FaHeart, FaPlay } from "react-icons/fa";
 
-function FilmeCardCatalogo({ titulo, genero, posterCapa }) {
+function FilmeCardCatalogo({ titulo, genero, posterCapa, onClick}) {
   const imagemCaminho = posterCapa || "assets/images/placeholder.png";
   const urlImagem = `http://localhost:8000/${imagemCaminho}`;
   const [favoritado, setFavoritado] = useState(false);
@@ -26,7 +26,6 @@ function FilmeCardCatalogo({ titulo, genero, posterCapa }) {
     }
   }, [titulo]);
 
-  // ❤️ Alterna favorito + salva/remover do localStorage
   const toggleFavorito = (e) => {
     e.stopPropagation();
     const favs = JSON.parse(localStorage.getItem("favoritos") || "[]");
@@ -48,6 +47,7 @@ function FilmeCardCatalogo({ titulo, genero, posterCapa }) {
     <article
       className="cardFilmeTop"
       style={{ "--background-url": `url(${urlImagem})` }}
+      onClick={onClick}
     >
       <div className="imagemCapa">
         <div className="favoriteButtonContainer">

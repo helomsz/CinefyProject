@@ -12,12 +12,11 @@ import jwt
 DB_CONFIG = {
     'host': "localhost",
     'user': "root",
-    'password':"root",
+    'password':"senai",
     'database': "SERVIDORFILMES"
 }
 
 def get_db_connection():
-    """Tenta estabelecer uma nova conexão com o banco de dados."""
     try:
         conn = mysql.connector.connect(**DB_CONFIG)
         conn.autocommit = False 
@@ -32,14 +31,12 @@ def gerar_jwt(user_id, role):
     payload = {
         'user_id': user_id,
         'role': role,
-        # Define a validade do token (usando UTC para compatibilidade com JWT)
+        # define a validade do token
         'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24), 
         'iat': datetime.datetime.utcnow()
     }
-    # Codifica o token e garante que retorna uma string (necessário em algumas libs)
+    # codifica o token e garante que retorna uma string
     token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
-    
-    # Se 'jwt.encode' retornar bytes (depende da versão/config), decodificar para string.
     if isinstance(token, bytes):
         return token.decode('utf-8')
     return token
