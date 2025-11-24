@@ -1,39 +1,53 @@
+/* VARIÁVEIS DE COR E TEMA */
 :root {
     --cor-fundo-escuro: #12161F;
     --cor-fundo-claro: #181c26;
+    --cor-card: #1A212E;
     --cor-texto-claro: #E0E0E0;
+    --cor-texto-secundario: #B0B0B0;
+    --cor-acento-principal: #00bfa6;
     --cor-acento-hover: #00FFC6;
-    --cor-card: #181c26;
     --cor-borda-input: #3d465d;
     --cor-borda-hover: #00bfa6;
-    --cor-botao: #00bfa6;
+    --cor-seguranca: #ffd700;
 }
+
+
 
 .pagina-pagamento-container {
     display: flex;
     min-height: 100vh;
     background-color: var(--cor-fundo-escuro);
     color: var(--cor-texto-claro);
+    background:
+        radial-gradient(circle at 10% 10%, rgba(0, 191, 166, 0.05) 0%, transparent 30%),
+        radial-gradient(circle at 90% 90%, rgba(0, 255, 198, 0.07) 0%, transparent 30%),
+        var(--cor-fundo-escuro);
 }
 
 .conteudo-principal-wrapper {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    padding-left: 80px;
+    padding-left: 20px;
+    padding-top: 90px;
+    width: calc(100% - 80px);
 }
 
 .pagina-pagamento-main {
     flex-grow: 1;
     width: 100%;
     padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .formulario__wrapper {
-    top: 40px;
     max-width: 1000px;
     margin: 0 auto;
     width: 100%;
+    position: relative;
 }
 
 .formulario__titulo {
@@ -41,77 +55,119 @@
     font-weight: 700;
     margin-bottom: 10px;
     text-align: center;
+    text-shadow: 0 0 10px rgba(0, 255, 198, 0.2);
 }
 
 .formulario__subtitulo {
     font-size: 1.1em;
-    color: rgba(224, 224, 224, 0.7);
+    color: var(--cor-texto-secundario);
     margin-bottom: 40px;
     text-align: center;
 }
 
+.destaque-preco {
+    color: var(--cor-acento-hover);
+    font-weight: 800;
+    font-size: 1.2em;
+    padding: 0 5px;
+    text-shadow: 0 0 5px rgba(0, 255, 198, 0.4);
+}
+
+
 .formulario__container {
     background-color: var(--cor-card);
     padding: 40px;
-    border-radius: 12px;
+    border-radius: 48px;
     max-width: 600px;
     margin: 30px auto 0 auto;
+    border: 1px solid rgba(0, 191, 166, 0.3);
+
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5),
+                0 0 25px rgba(0, 255, 198, 0.15);
+    transition: all 0.4s ease;
+}
+
+.formulario__container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(0, 255, 198, 0.3);
 }
 
 .formulario__mensagem-seguranca {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #ffd700;
+    color: var(--cor-seguranca);
     margin-bottom: 25px;
     font-size: 0.95em;
+    padding: 10px 15px;
+    background-color: rgba(255, 215, 0, 0.08);
+    border-radius: 8px;
+    border-left: 4px solid var(--cor-seguranca);
 }
 
-.grupo-formulario {
-    margin-bottom: 20px;
+
+.grupo-formulario-pagamento {
+    margin-bottom: 25px;
 }
 
-.grupo-formulario label {
+.grupo-formulario-pagamento label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: rgba(224, 224, 224, 0.9);
-}
-
-.grupo-formulario input {
-    width: 100%;
-    padding: 12px;
-    background-color: #242a38;
-    border: 1px solid var(--cor-borda-input);
-    border-radius: 6px;
     color: var(--cor-texto-claro);
-    font-size: 1em;
-    box-sizing: border-box;
 }
 
-.grupo-formulario input:focus {
-    outline: none;
-    border-color: var(--cor-borda-hover);
-    box-shadow: 0 0 5px rgba(0, 191, 166, 0.5);
-}
-
-.input-grupo {
+.input-grupo-pagamento {
     display: flex;
     align-items: center;
     background-color: #242a38;
     border: 1px solid var(--cor-borda-input);
-    border-radius: 6px;
+    border-radius: 8px;
+    padding: 10px;
+    gap: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-.input-grupo .input-icon {
+.input-grupo-pagamento:focus-within {
+    border-color: var(--cor-borda-hover);
+    box-shadow: 0 0 8px rgba(0, 255, 198, 0.5);
+}
+
+.input-grupo-pagamento .input-icon {
     color: #8899a6;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
-.input-grupo input {
+/* REGRA 1: Estiliza APENAS os inputs simples (Nome e CPF) */
+.grupo-formulario-pagamento input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #242a38;
+    border: 1px solid var(--cor-borda-input); /* A borda será aplicada aqui */
+    border-radius: 8px;
+    color: var(--cor-texto-claro);
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+
+.grupo-formulario-pagamento input:focus{
+    outline: none;
+    border-color: var(--cor-borda-hover);
+}
+
+.input-grupo-pagamento input {
     border: none;
     background: none;
-    flex-grow: 1;
+    padding: 12px 15px 12px 10px;
+}
+
+.input-grupo-pagamento input:focus {
+    outline: none;
+    border-color: var(--cor-borda-hover);
 }
 
 .linha-formulario {
@@ -119,55 +175,132 @@
     gap: 20px;
 }
 
-.linha-formulario .grupo-formulario {
-    flex: 1;
+@media (max-width: 600px) {
+    .linha-formulario {
+        flex-direction: column;
+        gap: 0;
+    }
 }
+
+/* -------------------------------------- */
+/* BOTÕES */
+/* -------------------------------------- */
 
 .formulario__submit-button {
     display: block;
     width: 100%;
     max-width: 400px;
-    margin: 0 auto;
-    padding: 15px 30px;
-    background: linear-gradient(90deg, #00bfa6, #00FFC6);
-    color: var(--cor-fundo-escuro);
+    margin: 40px auto 0 auto;
+    padding: 18px 30px;
+    background: linear-gradient(to right, #328B85, #00BFB6);;
+    color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 1.2em;
+    border-radius: 50px;
+    font-size: 1.3em;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .formulario__submit-button:hover {
-    box-shadow: 0 0 15px rgba(0, 255, 198, 0.7);
-    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.9);
+    transform: translateY(-1px);
+    background: linear-gradient(to right, #2a7570, #01928b);
 }
 
 .formulario__voltar-button {
-    color: white;
+    color: var(--cor-acento-hover);
     position: absolute;
-    top: 140px;
-    left: 160px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    top: 10px;
+    left: -85px;
+    background-color: rgba(0, 255, 198, 0.05);
+    border: 1px solid rgba(0, 255, 198, 0.3);
     border-radius: 50%;
-    width: 65px;
-    height: 65px;
+    width: 70px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
+
     cursor: pointer;
-    transition: background-color 0.2s;
-    z-index: 25; 
+    transition: all 0.3s ease;
+
+    z-index: 25;
 }
 
 .formulario__voltar-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 255, 198, 0.15);
+    transform: scale(1.05);
 }
 
-.destaque-preco {
-    color: var(--cor-acento-hover);
-    font-weight: bold;
-    font-size: 1.1em;
+/* -------------------------------------- */
+/* MODAL DE SUCESSO NA COMPRA */
+/* -------------------------------------- */
+
+.success-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.success-modal-content {
+    background-color: var(--cor-card);
+    padding: 40px;
+    border-radius: 35px;
+    box-shadow: 0 10px 30px rgba(0, 255, 198, 0.4);
+    text-align: center;
+    font-size: 20px;
+    max-width: 400px;
+    color: var(--cor-texto-claro);
+    border: 1px solid var(--cor-acento-hover);
+}
+
+.close-modal-button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background: linear-gradient(to right, #2a7570, #01928b);
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* -------------------------------------- */
+/* TENTATIVA DE RESPONSIVIDADE */
+/* -------------------------------------- */
+
+@media (max-width: 900px) {
+    .conteudo-principal-wrapper {
+        padding-left: 0;
+    }
+    .formulario__voltar-button {
+        left: 20px;
+        top: 20px;
+    }
+    .formulario__wrapper {
+        padding-top: 60px;
+    }
+}
+
+@media (max-width: 500px) {
+    .formulario__container {
+        padding: 30px 20px;
+    }
+    .formulario__titulo {
+        font-size: 2em;
+    }
+    .formulario__submit-button {
+        font-size: 1.1em;
+        padding: 15px 20px;
+    }
 }

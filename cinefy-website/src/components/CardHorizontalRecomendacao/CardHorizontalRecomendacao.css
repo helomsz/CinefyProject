@@ -1,9 +1,6 @@
-/* SecaoCarrosselFavoritos.css */
 
-/* Variáveis para cores */
 :root {
     --cor-texto-claro: #E0E0E0;
-    /* Cor de fundo do anexo é escura, o texto é claro */
 }
 
 /* ------------------------------------------------------------- */
@@ -11,7 +8,6 @@
 /* ------------------------------------------------------------- */
 
 .secao-carrossel-favoritos-wrapper {
-    /* O padding e margin aqui dependem do layout da sua página principal */
     padding: 20px 60px 50px 60px;
     width: 100%;
     box-sizing: border-box;
@@ -37,7 +33,6 @@
     overflow-x: scroll;
     white-space: nowrap;
     gap: 20px;
-
     padding-bottom: 10px;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
@@ -63,8 +58,8 @@
     transform: translateX(0);
     background-color: transparent;
     color: rgba(255, 255, 255, 0.6);
-    width: 35px;
-    height: 35px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
@@ -76,13 +71,10 @@
 }
 
 .carrossel-seta.esquerda {
-    /* Mova-a 45px para a esquerda (negativo) */
-    transform: translateX(-75px); 
+    transform: translateX(-65px); 
 }
 
-/* CORREÇÃO PARA A SETA DA DIREITA (Opcional: move para fora do padding direito) */
 .carrossel-seta.direita {
-    /* Mova-a 45px para a direita (positivo) */
     transform: translateX(-65px);
 }
 
@@ -98,7 +90,6 @@
 .carrossel-seta.inativo {
     opacity: 0.5;
     cursor: not-allowed;
-    /* A borda e o ícone devem ser menos visíveis */
     border-color: rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.3);
 }

@@ -4,7 +4,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import CardFilme from '../CardFilme/CardFilme'; 
 import './CardHorizontalRecomendacao.css';
 
-// Define o limite máximo de filmes
 const MAX_FILMES = 8; 
 
 const SecaoCarrosselRecomendacoes = ({ filmes = [], tituloSecao = "Baseado no que você assistiu" }) => {
@@ -13,7 +12,6 @@ const SecaoCarrosselRecomendacoes = ({ filmes = [], tituloSecao = "Baseado no qu
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
-  // NOVO: Aplica o limite de 8 filmes
   const filmesExibidos = filmes.slice(0, MAX_FILMES);
 
   const updateScrollButtons = () => {
@@ -22,12 +20,9 @@ const SecaoCarrosselRecomendacoes = ({ filmes = [], tituloSecao = "Baseado no qu
 
     const scrollEnd = scrollWidth - clientWidth;
 
-    // Verifica se a rolagem é possível (se o conteúdo ultrapassa o container)
     const canScroll = scrollWidth > clientWidth;
 
-    // A seta esquerda fica ativa se já rolou para a direita
     setCanScrollLeft(canScroll && scrollLeft > 1);
-    // A seta direita fica ativa se ainda houver conteúdo para rolar
     setCanScrollRight(canScroll && scrollLeft < scrollEnd - 1);
   };
 

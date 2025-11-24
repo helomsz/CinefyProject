@@ -555,13 +555,14 @@ select option {
 }
 
 .centered-message-container {
-    margin-top: 70px; /* Margem para passar a navbar, se for o caso */
+    position: absolute; /* ou fixed, se o fundo for rolável */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     flex-grow: 1; 
     display: flex;
     justify-content: center; /* Centraliza Horizontalmente */
     align-items: center; /* Centraliza Verticalmente */
-    min-height: calc(100vh - 190px); 
-    padding: 40px;
     box-sizing: border-box;
 }
 
@@ -622,4 +623,16 @@ transition: background 0.2s ease, transform 0.1s;
 .denied-login-button:hover {
  background: var(--accent-color-light);
  transform: translateY(-1px);
+}
+
+.centered-message-container .access-denied-card {
+    background: var(--card-bg) !important; /* Temporário, apenas para teste */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px; 
+    padding: 40px;
+    max-width: 450px; 
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-dark);
 }

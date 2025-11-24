@@ -9,10 +9,10 @@
     color: white;
 }
 .favorites-page-container > footer {
-    width: 90%; /* Reduz a largura para que caiba no contêiner */
-    max-width: 1300px; /* Opcional: define uma largura máxima razoável */
-    margin: 30px auto; /* Centraliza horizontalmente e adiciona margem vertical */
-    padding: 30px; /* Adiciona algum padding lateral interno */
+    width: 85%; 
+    max-width: 1300px; 
+    margin: 30px auto;
+    padding: 30px;
     box-sizing: border-box; 
 }
 .main-content-wrapper {

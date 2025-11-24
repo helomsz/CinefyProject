@@ -50,8 +50,6 @@ function App() {
             } 
           />
           </Routes>
-          
-          
         </PageTransitionLoader>
       </main>
     </Router>

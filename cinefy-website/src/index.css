@@ -16,35 +16,27 @@ main, section, article {
   overflow-x: hidden;
 }
 
-/* 1. Define a largura da barra de rolagem (vertical) */
 ::-webkit-scrollbar {
-    width: 8px; /* Mais fina que o padrão (geralmente 12px) */
-    height: 8px; /* Para scroll bar horizontal, se houver */
+    width: 8px;
+    height: 8px; 
 }
 
-/* 2. Estiliza a trilha (a área por onde o polegar se move) */
 ::-webkit-scrollbar-track {
-    background: transparent; /* Deixa o fundo transparente ou muito sutilmente escuro */
+    background: transparent;
     border-radius: 10px;
-    margin: 20px 0; /* Opcional: Adiciona espaço no topo e base para um visual mais limpo */
+    margin: 20px 0; 
 }
 
-/* 3. Estiliza o polegar (o elemento que o usuário arrasta) */
 ::-webkit-scrollbar-thumb {
-    /* COR: Usa uma cor escura ou a cor do seu degradê para destaque */
     background: #3a3f4b; 
-    border-radius: 10px; /* Borda arredondada */
-    
-    /* SUAVIZAÇÃO: Adiciona uma transição ao passar o mouse */
+    border-radius: 10px;
     transition: background 0.3s ease;
 }
 
-/* 4. Estiliza o polegar ao passar o mouse */
 ::-webkit-scrollbar-thumb:hover {
-    background: #505562; /* Fica um pouco mais claro no hover */
+    background: #505562; 
 }
 
-/* PageTransition.css */
 .fade-enter {
   opacity: 0;
   transform: scale(0.98);

@@ -6,6 +6,7 @@ import MenuLateral from "../../components/MenuLateral/MenuLateral";
 import Footer from "../../components/Footer/Footer";
 import { useUserSession } from "../../components/useUserSession";
 import PageTransitionLoader from "../../components/PageTransitionLoader/PageTransitionLoader";
+import AccessDeniedCard from "../../components/AccessDeniedCard/AccessDeniedCard";
 
 const ACTOR_LIMIT = 3;
 const API_BASE_URL = "http://localhost:8000";
@@ -184,21 +185,8 @@ const AdicionarFilme = () => {
       <div className="add-movie-page">
         <MenuLateral />
         <NavbarCentralizada />
-        <div className="centered-message-container">
-          <div className="access-denied-card">
-            <Zap size={48} className="icon-denied" />
-            <h1 className="denied-title">Acesso Negado</h1>
-            <p className="denied-message">
-              Você precisa estar logado para acessar esta página.
-            </p>
-            <button
-              onClick={() => navigate("/login")}
-              className="denied-login-button"
-            >
-              Ir para Login
-            </button>
-          </div>
-        </div>
+        <AccessDeniedCard />
+        
       </div>
     );
   }
