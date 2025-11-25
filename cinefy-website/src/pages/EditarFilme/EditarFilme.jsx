@@ -4,7 +4,6 @@ import {Film, LayoutList, Link, Zap, Tag, Users,Check, Plus, Trash2, Send, Alert
 import './EditarFilme.css';
 import { useUserSession } from '../../components/useUserSession';
 
-// Componentes reutilizados
 import NavbarCentralizada from '../../components/NavbarCentralizada/NavbarCentralizada';
 import MenuLateral from '../../components/MenuLateral/MenuLateral';
 import Footer from '../../components/Footer/Footer';
@@ -79,9 +78,7 @@ const EditarFilme = () => {
                 setFormData({
                     titulo: dataFilme.titulo || '',
                     sinopse: dataFilme.sinopse || '',
-                        // Garante que tempo_duracao seja string (para inputs controlados)
                     tempo_duracao: String(dataFilme.tempo_duracao || ''), 
-                        // Garante que ano seja string (para inputs controlados)
                     ano: String(dataFilme.ano || ''), 
                     url_poster: dataFilme.poster || '',
                     url_banner: dataFilme.background || '',
@@ -194,7 +191,6 @@ const EditarFilme = () => {
         );
     }
 
-    // -------- JSX FINAL -------------
     const categoryLimitReached = formData.categorias.length >= 2;
 
     return (
@@ -231,7 +227,6 @@ const EditarFilme = () => {
                             <h1 className="title-header">Editar {formData.titulo}</h1>
                         </header>
 
-                        {/* ------ CAMPOS DO FORM -------- */}
                         <div className="form-group full-width input-card">
                             <label>Título</label>
                             <input
@@ -271,7 +266,6 @@ const EditarFilme = () => {
                             </div>
                         </div>
 
-                        {/* Poster */}
                         <div className="form-group full-width input-card">
                             <label><Link size={16} /> Poster</label>
                             <input
@@ -281,7 +275,6 @@ const EditarFilme = () => {
                             />
                         </div>
 
-                        {/* Banner */}
                         <div className="form-group full-width input-card">
                             <label><Link size={16} /> Banner</label>
                             <input
@@ -291,7 +284,6 @@ const EditarFilme = () => {
                             />
                         </div>
 
-                        {/* Trailer */}
                         <div className="form-group full-width input-card">
                             <label><Film size={16} /> Trailer</label>
                             <input
@@ -301,7 +293,6 @@ const EditarFilme = () => {
                             />
                         </div>
 
-                        {/* Categorias */}
                         <div className="form-group full-width categories-section">
                             <h3><Tag size={16} /> Categorias</h3>
                             <div className="categories-list">
@@ -325,7 +316,6 @@ const EditarFilme = () => {
                             </div>
                         </div>
 
-                        {/* Diretores e Produtoras */}
                         <div className="form-grid">
                             <div className="form-group input-card">
                                 <label><Users size={16} /> Diretor</label>
@@ -356,7 +346,6 @@ const EditarFilme = () => {
                             </div>
                         </div>
 
-                        {/* Atores */}
                         <div className="form-group full-width actors-section">
                             <h3><Users size={16} /> Atores</h3>
 
@@ -388,7 +377,6 @@ const EditarFilme = () => {
                             </div>
                         </div>
 
-                        {/* Botão */}
                         <div className="form-group full-width submit-area">
                             <button type="submit" disabled={loading} className="submit-button-add">
                                 {loading ? "Salvando..." : "Salvar alterações"}

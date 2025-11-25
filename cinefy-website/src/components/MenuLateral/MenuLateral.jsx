@@ -18,13 +18,10 @@ const itensMenu = [
   { nome: 'Adicionar filme', icone: IconeAdicionar, link: '/adicionar' },
 ];
 
-const itensRodape = [
-  { nome: 'Perfil', icone: IconePerfil, link: '/perfil' },
-];
 
 function MenuLateral() {
   const [estaAberto, setEstaAberto] = useState(false);
-  const [travado, setTravado] = useState(false); // 👈 novo estado
+  const [travado, setTravado] = useState(false);
   const [itemAtivo, setItemAtivo] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,8 +34,8 @@ function MenuLateral() {
   }, [location.pathname]);
 
   const alternarMenu = () => {
-    setTravado(!travado); // 👈 clique trava/destrava o menu
-    setEstaAberto(!travado); // se travar, mantém aberto
+    setTravado(!travado);
+    setEstaAberto(!travado);
   };
 
   const handleMouseEnter = () => {
@@ -80,7 +77,7 @@ function MenuLateral() {
       <div className="logoSuperior">
         <button
           className={`botaoLogoTopo ${estaAberto ? 'fechar' : 'abrir'}`}
-          onClick={alternarMenu} // clique agora trava/destrava
+          onClick={alternarMenu}
           title={estaAberto ? 'Fechar Menu' : 'Abrir Menu'}
         >
           <img src={Logo} alt="Logo Cinefy" className="imagemLogoTopo" />

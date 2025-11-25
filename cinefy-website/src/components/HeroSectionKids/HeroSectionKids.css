@@ -129,9 +129,9 @@
   z-index: 10;
 }
 
-/* ------------------------------ */
-/* Posições e tamanhos individuais */
-/* ------------------------------ */
+/* ---------------------------------------------*/
+/* Posições e tamanhos individuais dos cards */
+/* ---------------------------------------------*/
 .card-home {
   transform: rotate(-7deg) translateX(-460px);
   bottom: 240px;

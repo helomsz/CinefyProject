@@ -12,8 +12,8 @@
 .menuLateral {
     position: fixed; 
     left: 20px;
-    height: calc(100vh - 60px); /* reduzindo 20px do topo/rodapé */
-    top: 30px; /* ajuste para centralizar verticalmente */
+    height: calc(100vh - 60px);
+    top: 30px;
     color: var(--corTexto);
     padding: 10px 0;
     z-index: 1000; 
@@ -37,7 +37,7 @@
     width: var(--larguraAberto);
 }
 
-/* --- LOGO SUPERIOR --- */
+
 .logoSuperior {
     padding: 0 10px 30px 10px; 
 }
@@ -192,7 +192,7 @@
     font-size: 19px;
 }
 
-/* --- SEPARADOR E SAIR --- */
+
 .separador {
     border: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);

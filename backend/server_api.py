@@ -43,9 +43,8 @@ def gerar_jwt(user_id, role):
 
 
 def validar_jwt(token):
-    """Decodifica e valida um token JWT, retornando o payload ou None em caso de falha."""
     try:
-        # Decodifica o token usando a chave secreta e o algoritmo HS256
+        # decodifica o token usando a chave secreta e o algoritmo HS256
         payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
         return payload
     except jwt.ExpiredSignatureError:
@@ -56,25 +55,18 @@ def validar_jwt(token):
         return None
 
 def validar_autenticacao(auth_header):
-    """
-    Extrai o token do cabeçalho 'Authorization' e o valida.
-    Retorna o payload (dict) se válido, ou None se falhar.
-    """
     if not auth_header:
         return None
-    
-    # Espera o formato 'Bearer <token>'
     try:
         scheme, token = auth_header.split(' ', 1)
         if scheme.lower() == 'bearer':
             return validar_jwt(token)
     except ValueError:
-        pass # Formato do cabeçalho inválido
+        pass 
     
     return None
 
 def decodificar_jwt(token):
-    """Decodifica e valida o token, retornando o payload."""
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
         return payload
@@ -84,7 +76,6 @@ def decodificar_jwt(token):
         return {"error": "Token inválido"}
 
 def inserir_usuario(nome, sobrenome, email, senha_pura):
-    """Insere um novo usuário, hasheando a senha antes de salvar."""
     meu_banco = get_db_connection()
     if not meu_banco:
         return json.dumps({"status": "erro", "mensagem": "Falha na conexão com o banco de dados."}, ensure_ascii=False)
@@ -99,8 +90,6 @@ def inserir_usuario(nome, sobrenome, email, senha_pura):
         salt = bcrypt.gensalt()
         senha_hash_bytes = bcrypt.hashpw(bytes_senha, salt)
         senha_hash = senha_hash_bytes.decode('utf-8')
-
-
         sql = "INSERT INTO usuario (nome, sobrenome, email, senha, tipo) VALUES (%s, %s, %s, %s, 'comum')"
         valores = (nome, sobrenome, email, senha_hash)
         cursor.execute(sql, valores)
@@ -121,13 +110,12 @@ def inserir_usuario(nome, sobrenome, email, senha_pura):
             meu_banco.close()
 
 def gerar_hash_senha(senha_pura):
-    """Gera o hash bcrypt para uma senha."""
+    #gera o hash bcrypt para uma senha.
     senha_bytes = senha_pura.encode('utf-8')
     salt = bcrypt.gensalt(rounds=12) 
     return bcrypt.hashpw(senha_bytes, salt).decode('utf-8')
 
 def autenticar_usuario(login, senha_pura):
-    """Autentica o usuário, migra a senha para hash se necessário, e gera um JWT."""
     meu_banco = get_db_connection()
     if not meu_banco:
         return json.dumps({"status": "erro", "mensagem": "Falha na conexão com o banco de dados."}, ensure_ascii=False)
@@ -142,8 +130,6 @@ def autenticar_usuario(login, senha_pura):
             return json.dumps({"status": "erro", "mensagem": "E-mail ou senha inválidos."}, ensure_ascii=False)
         
         user_id, user_name, user_type, senha_hash_ou_pura = resultado
-        
-        # GARANTIR STRINGS (CORREÇÃO DEFENSIVA)
         if isinstance(user_name, bytes):
             user_name = user_name.decode('utf-8')
         if isinstance(user_type, bytes):
@@ -153,29 +139,24 @@ def autenticar_usuario(login, senha_pura):
             
         senha_correta = False
         
-        #  Tenta verificar a senha com bcrypt 
+        #  tenta verificar a senha com bcrypt 
         if senha_hash_ou_pura and (senha_hash_ou_pura.startswith('$2b$') or senha_hash_ou_pura.startswith('$2a$') or senha_hash_ou_pura.startswith('$2d$')):
             try:
-                # O bcrypt.checkpw requer AMBOS os valores em BYTES
                 if bcrypt.checkpw(senha_pura.encode('utf-8'), senha_hash_ou_pura.encode('utf-8')):
                     senha_correta = True
             except ValueError as e:
-                # Captura erros comuns do bcrypt (ex: hash corrompido ou formato inválido)
                 print(f"DEBUG: Erro de bcrypt ao verificar senha: {e}")
-                senha_correta = False # Se o bcrypt falhar, a senha não é correta
+                senha_correta = False # se o bcrypt falhar, a senha não é correta
                 
-        #  Tenta verificar a senha sem hash (para migração)
+        #  tenta verificar a senha sem hash
         if not senha_correta and senha_hash_ou_pura == senha_pura:
             senha_correta = True
             print(f"DEBUG: Migrando senha para hash para o usuário {login}...")
         
         # LÓGICA DE VERIFICAÇÃO E MIGRAÇÃO 
-
         if senha_correta:
 
             token_jwt = gerar_jwt(user_id, user_type)
-            
-            #  o JSON DEVE ser serializado, pois contém apenas strings
             return json.dumps({
                 "status": "sucesso",
                 "mensagem": "Usuário logado",
@@ -187,20 +168,11 @@ def autenticar_usuario(login, senha_pura):
             return json.dumps({"status": "erro", "mensagem": "E-mail ou senha inválidos."}, ensure_ascii=False)
 
     except Exception as err:
-        # Quando um erro ocorre na linha 163, ele cai aqui.
         print(f"DEBUG: Erro durante a autenticação. Detalhes do Erro: {repr(err)}")
-        # SE O ERRO DE SERIALIZAÇÃO CONTINUAR, O ÚNICO CAMINHO É QUE O VALOR DE RETORNO DO BANCO 
-        # (user_id, user_name, user_type, senha_hash_ou_pura) ESTÁ SENDO INFLUENCIADO POR UMA FALHA DE ENCODING GLOBAL.
-        
-        # VAMOS RETORNAR UM JSON VAZIO PARA ISOLAR A FALHA DE SERIALIZAÇÃO DA MENSAGEM DE ERRO
         try:
-             # TENTA SERIALIZAR A MENSAGEM DE ERRO SIMPLES NOVAMENTE
              return json.dumps({"status": "erro", "mensagem": "Erro interno no servidor."}, ensure_ascii=False)
         except:
-             # SE ATÉ ISSO FALHAR, RETORNAMOS UMA STRING SIMPLES
              return '{"status": "erro", "mensagem": "Erro de serialização crítica no servidor."}'
-
-
     finally:
         if cursor:
             cursor.close()
@@ -209,11 +181,6 @@ def autenticar_usuario(login, senha_pura):
             
             
 def _inserir_relacionamento(cursor, filme_id, tabela_rel, coluna_id_rel, lista):
-    """
-    Insere os relacionamentos na tabela de junção.
-    - lista: pode ser lista de IDs (int) ou string de nomes separados por vírgula.
-    - Para nomes, a função tenta buscar o ID na tabela de referência (apenas para gêneros).
-    """
     if not lista:
         return
     if isinstance(lista, str):
@@ -238,10 +205,6 @@ def _inserir_relacionamento(cursor, filme_id, tabela_rel, coluna_id_rel, lista):
         cursor.execute(sql_insert_rel, (filme_id, id_relacionamento))
 
 def inserir_filme(titulo, sinopse, tempo_duracao, ano, poster, background, trailer, avaliacao_media, generos, diretores, atores, produtoras):
-    """
-    Insere um novo filme e todos os seus relacionamentos (Gêneros, Diretores, Atores, Produtoras)
-    em uma única transação.
-    """
     meu_banco = get_db_connection()
     if not meu_banco:
         return json.dumps({"status": "erro", "mensagem": "Falha na conexão com o banco de dados."}, ensure_ascii=False)
@@ -283,13 +246,7 @@ def inserir_filme(titulo, sinopse, tempo_duracao, ano, poster, background, trail
             meu_banco.close()
 
 
-
-
 def listar_progresso_simulado():
-    """
-    Busca filmes específicos pelo título e os ordena para a seção 'Continue Assistindo' (Geral).
-    Adiciona dados de progresso simulado.
-    """
     meu_banco = get_db_connection()
     if not meu_banco:
         return []
@@ -344,10 +301,6 @@ def listar_progresso_simulado():
 
 
 def listar_progresso_simulado_infantil():
-    """
-    Busca filmes da categoria 'Filmes Infantis' e os formata para a seção 'Continue Assistindo' infantil,
-    adicionando dados de progresso simulado.
-    """
     meu_banco = get_db_connection()
     if not meu_banco:
         return []
@@ -403,10 +356,6 @@ def listar_progresso_simulado_infantil():
             meu_banco.close()
 
 def buscar_filmes_rapido(termo_busca):
-    """
-    Busca rápida de filmes por título para a funcionalidade de autocompletar.
-    Retorna apenas ID, título e poster_mini para otimização.
-    """
     if not termo_busca or len(termo_busca.strip()) < 3:
         return [] 
         
@@ -449,10 +398,6 @@ def buscar_filmes_rapido(termo_busca):
             cursor.close()
 
 def buscar_detalhes_filme(filme_id):
-    """
-    Busca todos os detalhes de um filme específico, incluindo sinopse e 
-    todos os relacionamentos (Gêneros, Produtoras, Diretores, Atores).
-    """
     meu_banco = get_db_connection()
     if not meu_banco:
         return None
@@ -570,15 +515,12 @@ def _get_or_create_ator_ids(nomes_atores, cursor):
         nome_limpo = nome.strip()
         if not nome_limpo:
             continue
-            
-        # O cursor precisa estar com dictionary=True
         cursor.execute("SELECT id FROM ator WHERE nome = %s", (nome_limpo,))
         resultado = cursor.fetchone()
         
         if resultado:
             ator_ids.append(resultado['id'])
         else:
-            # Ator não existe, vamos criá-lo com uma foto placeholder
             print(f"DEBUG: Criando novo ator: {nome_limpo}")
             sql_novo_ator = "INSERT INTO ator (nome, fotoAtor) VALUES (%s, %s)"
             cursor.execute(sql_novo_ator, (nome_limpo, DEFAULT_ACTOR_PHOTO_URL))
@@ -594,19 +536,12 @@ def _executar_adicao_filme(dados_filme, conn):
     """
     cursor = conn.cursor()
     try:
-        # 1. Mapeia Nomes de Gênero para IDs
         nomes_generos = dados_filme.get('categorias', [])
         genero_ids = [GENERO_ID_MAP[nome] for nome in nomes_generos if nome in GENERO_ID_MAP]
         
-        # 2. Extrai IDs de Atores
         ator_ids = [ator['id'] for ator in dados_filme.get('atores', []) if 'id' in ator]
-        
-        # 3. [CORRIGIDO] Extrai IDs de Diretor e Produtora
-        # O AdicionarFilme.jsx envia 'diretor' e 'produtora' como os IDs
         diretor_id = dados_filme.get('diretor')
         produtora_id = dados_filme.get('produtora')
-
-        # 4. [CORRIGIDO] Adiciona o filme principal (SEM diretor/produtora)
         sql_filme = """
             INSERT INTO filme (titulo, sinopse, tempo_duracao, ano, poster, background, trailer, avaliacao_media)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s) 
@@ -644,10 +579,6 @@ def _executar_adicao_filme(dados_filme, conn):
         return {"status": "erro", "mensagem": str(e)}
     
 def _executar_edicao_filme(filme_id, dados_filme, conn):
-    """
-    Função interna transacional para EDITAR um filme.
-    "dados_filme" vem do EditarFilme.jsx.
-    """
     cursor = conn.cursor(dictionary=True) 
     try:
         nomes_generos = dados_filme.get('categorias', [])
@@ -700,7 +631,7 @@ def _executar_edicao_filme(filme_id, dados_filme, conn):
         return {"status": "erro", "mensagem": str(e)}
     
 def _criar_solicitacao(usuario_id, tipo_acao, filme_id, dados_propostos_json, conn):
-    """ Salva uma nova solicitação no banco. """
+    #salva uma nova solicitação no banco.
     cursor = conn.cursor()
     try:
         sql = """
@@ -717,7 +648,7 @@ def _criar_solicitacao(usuario_id, tipo_acao, filme_id, dados_propostos_json, co
         return {"status": "erro", "mensagem": str(e)}
 
 def _listar_solicitacoes_pendentes(conn):
-    """ Lista solicitações pendentes para o dashboard do admin. """
+    #lista solicitações pendentes para o dashboard do admin.
     cursor = conn.cursor(dictionary=True)
     try:
         sql = """
@@ -739,7 +670,7 @@ def _listar_solicitacoes_pendentes(conn):
         return []
     
 def _atualizar_status_solicitacao(solicitacao_id, novo_status, conn):
-    """ Atualiza o status (APROVADA, REJEITADA) de uma solicitação. """
+    #atualiza o status (APROVADA, REJEITADA) de uma solicitação.
     cursor = conn.cursor()
     try:
         cursor.execute("UPDATE solicitacoes_edicao SET status = %s WHERE id = %s", (novo_status, solicitacao_id))
@@ -749,13 +680,6 @@ def _atualizar_status_solicitacao(solicitacao_id, novo_status, conn):
         return False
 
 def _processar_aprovacao(solicitacao_id, conn):
-    """
-    Função Mágica: Aprova uma solicitação.
-    1. Lê a solicitação.
-    2. Executa a ação (Adicionar, Editar) nos dados propostos.
-    3. Atualiza o status da solicitação para 'APROVADA'.
-    TUDO em uma única transação.
-    """
     cursor = conn.cursor(dictionary=True)
     try:
         cursor.execute("SELECT * FROM solicitacoes_edicao WHERE id = %s AND status = 'PENDENTE'", (solicitacao_id,))
@@ -770,7 +694,6 @@ def _processar_aprovacao(solicitacao_id, conn):
         
         resultado_acao = {}
 
-
         if tipo_acao == 'ADICAO':
             print(f"DEBUG: Processando aprovação de ADICAO para sol_id {solicitacao_id}")
             resultado_acao = _executar_adicao_filme(dados_propostos, conn)
@@ -782,13 +705,9 @@ def _processar_aprovacao(solicitacao_id, conn):
             resultado_acao = _executar_edicao_filme(filme_id, dados_propostos, conn)
             
         elif tipo_acao == 'DELECAO':
-            # (Você não mencionou deleção, mas a estrutura suporta)
-            # resultado_acao = _executar_delecao_filme(filme_id, conn)
             pass
 
-        # 3. Verifica se a ação deu certo
         if resultado_acao.get("status") == "sucesso":
-            # 4. Atualiza o status da solicitação
             _atualizar_status_solicitacao(solicitacao_id, 'APROVADA', conn)
             conn.commit()
             print(f"DEBUG: Solicitação {solicitacao_id} aprovada com sucesso.")
@@ -802,7 +721,6 @@ def _processar_aprovacao(solicitacao_id, conn):
         return {"status": "erro", "mensagem": f"Falha ao aprovar: {e}"}
     
 def aprovar_filme_db(filme_id):
-    """Atualiza o status de aprovação de um filme para 'Aprovado'."""
     conn = get_db_connection()
     if not conn: return False
     try:
@@ -822,7 +740,6 @@ def aprovar_filme_db(filme_id):
             conn.close()
             
 def deletar_filme_db(filme_id):
-    """Deleta um filme pelo ID."""
     conn = get_db_connection()
     if not conn: return False
     try:
@@ -839,9 +756,7 @@ def deletar_filme_db(filme_id):
             conn.close()
 
 class MeuManipulador(SimpleHTTPRequestHandler):
-
     def _set_api_headers(self, status_code):
-        """Define cabeçalhos de resposta padrão para APIs (CORS)."""
         self.send_response(status_code)
         self.send_header('Content-type', 'application/json')
         self.send_header('Access-Control-Allow-Origin', '*')
@@ -850,9 +765,7 @@ class MeuManipulador(SimpleHTTPRequestHandler):
         self.end_headers()
 
     def _serve_file(self, filename, content_type):
-        """Helper para servir arquivos estáticos com cabeçalhos CORS (SPA fallback)"""
         try:
-            # O sistema espera que o index.html esteja na raiz ou pasta de build
             filepath = os.path.join(".", filename) 
             with open(filepath, "rb") as f:
                 self.send_response(200)
@@ -881,7 +794,7 @@ class MeuManipulador(SimpleHTTPRequestHandler):
         self.end_headers()
         
     def _read_json_body(self):
-        # Lê o corpo da requisição e tenta decodificar como JSON
+        # le o corpo da requisição e tenta decodificar como JSON
         content_length = int(self.headers.get('Content-Length', 0))
         if content_length > 0:
             raw_data = self.rfile.read(content_length).decode('utf-8')
@@ -893,23 +806,20 @@ class MeuManipulador(SimpleHTTPRequestHandler):
         return None
     
     def _extrair_jwt(self):
-        """Extrai o token JWT do cabeçalho Authorization."""
         auth_header = self.headers.get('Authorization')
         if not auth_header:
             return None
-        
-        # O token deve vir no formato "Bearer <token>"
         try:
             scheme, token = auth_header.split(' ', 1)
             if scheme.lower() == 'bearer':
                 return token
         except ValueError:
-            pass # Formato inválido
+            pass #formato inválido
 
         return None
     
     def _validar_jwt(self):
-        """Valida o token e retorna o payload. Envia 401 se falhar."""
+        #valida o token e retorna o payload. Envia 401 se falhar.
         auth_header = self.headers.get('Authorization')
         if not auth_header or not auth_header.startswith('Bearer '):
             self._set_api_headers(401)
@@ -940,21 +850,18 @@ class MeuManipulador(SimpleHTTPRequestHandler):
             return None
         
         try:
-            # Tenta decodificar o token
+            # tenta decodificar o token
             payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
             
-            # 1. Checa a EXPIRAÇÃO (já é feita pelo jwt.decode)
+            # checa a expiração
             
-            # 2. Checa a ROLE (papel do usuário)
+            # checa o papel do usuário
             user_role = payload.get('role')
             if user_role != role_necessaria:
                 print(f"DEBUG: _validar_jwt_e_role falhou: Role '{user_role}' não é a necessária '{role_necessaria}'.")
-                # 403 Forbidden é mais apropriado quando a autenticação funciona, mas a autorização falha
                 self._set_api_headers(403) 
                 self.wfile.write(json.dumps({"status": "erro", "mensagem": "Acesso não autorizado. Permissão insuficiente."}).encode('utf-8'))
                 return None
-            
-            # Token é válido e a role está correta
             return payload
 
         except jwt.exceptions.ExpiredSignatureError:
@@ -969,10 +876,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
             return None
     
     def validar_autenticacao(self):
-        """
-        Verifica o cabeçalho Authorization e valida o JWT.
-        Retorna o payload (dict com user_id e role) ou None se falhar.
-        """
         auth_header = self.headers.get('Authorization', '')
         
         if not auth_header or not auth_header.startswith('Bearer '):
@@ -980,13 +883,13 @@ class MeuManipulador(SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps({"status": "erro", "mensagem": "Token de autenticação ausente."}).encode('utf-8'))
             return None
 
-        # Extrai o token removendo 'Bearer '
+        # extrai o token removendo 'Bearer '
         token = auth_header[7:] 
         
         payload = decodificar_jwt(token)
         
         if 'error' in payload:
-            self._set_api_headers(401) # 401 Unauthorized
+            self._set_api_headers(401)
             self.wfile.write(json.dumps({"status": "erro", "mensagem": payload['error']}).encode('utf-8'))
             return None
             
@@ -1000,7 +903,7 @@ class MeuManipulador(SimpleHTTPRequestHandler):
         if path == '/admin/solicitacoes':
             payload = self._validar_jwt_e_role('admin')
             if not payload:
-                return # Erro 403 já enviado
+                return 
 
             conn = get_db_connection()
             if not conn:
@@ -1011,7 +914,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
             try:
                 solicitacoes = _listar_solicitacoes_pendentes(conn)
                 self._set_api_headers(200)
-                # Precisamos de um encoder customizado para 'datetime' se houver
                 self.wfile.write(json.dumps(solicitacoes, default=str).encode('utf-8'))
             except Exception as e:
                 self._set_api_headers(500)
@@ -1048,8 +950,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
             cursor = None
             try:
                 cursor = meu_banco.cursor(dictionary=True)
-
-                # 🧱 SQL base
                 sql_query = """
                     SELECT 
                         f.id, 
@@ -1079,7 +979,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 filtros = []
                 valores = []
 
-                # 🧠 Filtros opcionais
                 if filtro_titulo:
                     filtros.append("AND f.titulo LIKE %s")
                     valores.append(f"%{filtro_titulo}%")
@@ -1122,7 +1021,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 self.wfile.write(json.dumps({"erro": "Falha na conexão com o banco de dados."}, ensure_ascii=False).encode("utf-8"))
                 return
 
-            # 🔍 Coleta de parâmetros da query string
             params = parse_qs(parsed_path.query)
             filtro_titulo = params.get("titulo", [""])[0].strip()
             filtro_ano = params.get("ano", [""])[0].strip()
@@ -1134,7 +1032,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
             try:
                 cursor = meu_banco.cursor(dictionary=True)
 
-                # 🧱 SQL base (sem a parte WHERE e GROUP BY)
                 sql_query = """
                     SELECT 
                         f.id, 
@@ -1204,7 +1101,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 if meu_banco:
                     meu_banco.close()
 
-        # Rota de "Continue assistindo" (Geral)
         elif path == "/api/continue-assistindo":
             dados_progresso = listar_progresso_simulado()
             self._set_api_headers(200)
@@ -1216,7 +1112,7 @@ class MeuManipulador(SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps(dados_progresso, ensure_ascii=False).encode("utf-8"))
         
         elif path.startswith("/filme/detalhes/"):
-            # Tenta extrair o ID da URL (ex: /filme/detalhes/123 -> 123)
+            # tenta extrair o id da url
             try:
                 filme_id = int(path.split("/")[-1])
             except ValueError:
@@ -1228,7 +1124,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
             
             if detalhes:
                 self._set_api_headers(200)
-                # O set_api_headers já lida com o CORS
                 self.wfile.write(json.dumps(detalhes, ensure_ascii=False, indent=4).encode("utf-8"))
             else:
                 self._set_api_headers(404)
@@ -1259,21 +1154,14 @@ class MeuManipulador(SimpleHTTPRequestHandler):
             return
         
         elif path == '/admin/solicitacoes':
-            # 1. AUTENTICAÇÃO E PERMISSÃO
             auth_header = self.headers.get('Authorization')
             user_info = self.validar_autenticacao(auth_header) 
-            
-            # Se a autenticação falhar, validar_autenticacao já enviou o 401
             if not user_info:
                 return
-            
-            # 2. Verifica se o papel do usuário é 'admin'
             if user_info.get('role') != 'admin':
-                self._set_api_headers(403) # Forbidden
+                self._set_api_headers(403) 
                 self.wfile.write(json.dumps({"status": "erro", "mensagem": "Acesso negado. Apenas administradores."}).encode('utf-8'))
                 return
-                
-            # 3. BUSCA OS DADOS REAIS NO DB
             try:
                 solicitacoes = listar_solicitacoes_pendentes() 
                 
@@ -1326,16 +1214,15 @@ class MeuManipulador(SimpleHTTPRequestHandler):
   
         else:
             try:
-                # Arquivos dentro da pasta /assets são servidos diretamente
                 if path.startswith("/assets/"):
-                    filepath = "." + path  # ex: ./assets/imagensFilmes/avatarPoster.png
+                    filepath = "." + path
 
                     if os.path.isfile(filepath):
                         ctype, _ = mimetypes.guess_type(filepath)
                         self.send_response(200)
                         self.send_header("Content-Type", ctype or "application/octet-stream")
                         self.send_header("Access-Control-Allow-Origin", "*")
-                        self.send_header("Cache-Control", "public, max-age=86400")  # 1 dia de cache
+                        self.send_header("Cache-Control", "public, max-age=86400") 
                         self.end_headers()
 
                         with open(filepath, "rb") as f:
@@ -1344,8 +1231,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                     else:
                         self.send_error(404, "Arquivo não encontrado")
                         return
-
-                # FALLBACK SEGURO (para outros arquivos do projeto)
                 filepath = "." + path
 
                 if os.path.isdir(filepath):
@@ -1364,7 +1249,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                         self.wfile.write(f.read())
                     return
 
-                # Se chegou aqui: não existe
                 self.send_error(404, "File not found")
 
             except Exception as e:
@@ -1376,70 +1260,55 @@ class MeuManipulador(SimpleHTTPRequestHandler):
     def do_POST(self):
         parsed_path = urlparse(self.path)
         path = parsed_path.path
-
-        # --- Conexão com o Banco ---
-        # A conexão é obtida AQUI, ANTES do try,
-        # para que o 'finally' possa fechá-la
         conn = get_db_connection()
         if not conn:
             self._set_api_headers(500)
             self.wfile.write(json.dumps({"status": "erro", "mensagem": "Erro de conexão com o banco."}).encode('utf-8'))
             return
-        
-        # --- Bloco TRY/EXCEPT/FINALLY ---
-        # Garante que a conexão seja fechada e erros sejam tratados
+
         try:
-            # Rota de Login (sem autenticação)
             if path == '/login':
-                # Lê o corpo aqui
                 form_data = json.loads(self._get_request_body())
                 login = form_data.get('email', "").strip()
                 senha = form_data.get('senha', "").strip()
-                
-                # Assume que sua função 'autenticar_usuario' existe
                 resposta_json = autenticar_usuario(login, senha) 
                 
                 self._set_api_headers(200) 
                 self.wfile.write(resposta_json.encode('utf-8'))
-                return # O 'finally' fechará a conexão
+                return 
 
-            # Rota de Registro (sem autenticação)
             elif path == '/registro':
-                # Lê o corpo aqui
                 form_data = json.loads(self._get_request_body())
                 nome = form_data.get('nome', "").strip()
                 sobrenome = form_data.get('sobrenome', "").strip()
                 email = form_data.get('email', "").strip()
                 senha = form_data.get('senha', "").strip()
-                
-                # Assume que sua função 'registrar_usuario' (ou 'inserir_usuario') existe
+
                 resposta_json = inserir_usuario(nome, sobrenome, email, senha)
 
                 self._set_api_headers(200)
                 self.wfile.write(resposta_json.encode('utf-8'))
-                return # O 'finally' fechará a conexão
+                return 
 
-            # --- [ALTERADO] Rota 'Adicionar Filme' (Agora é inteligente) ---
             elif path == '/filme/adicionar':
-                payload = self._validar_jwt() # REQUER AUTENTICAÇÃO
+                payload = self._validar_jwt() #autenticação
                 if not payload:
-                    return # O 'finally' fechará a conexão
+                    return
 
                 try:
                     dados_filme = json.loads(self._get_request_body())
                     
                     if payload['role'] == 'admin':
-                        # Admin: Executa diretamente
                         print("DEBUG: Admin adicionando filme diretamente.")
                         resultado = _executar_adicao_filme(dados_filme, conn)
                         if resultado['status'] == 'sucesso':
-                            self._set_api_headers(201) # 201 Created
+                            self._set_api_headers(201) 
                             self.wfile.write(json.dumps({"status": "sucesso", "mensagem": "Filme adicionado com sucesso."}).encode('utf-8'))
                         else:
                             raise Exception(resultado['mensagem'])
                     
                     else:
-                        # Usuário Comum: Cria uma solicitação
+                        # usuário comum, cria uma solicitação
                         print(f"DEBUG: Usuário {payload['user_id']} solicitando adição.")
                         resultado = _criar_solicitacao(
                             usuario_id=payload['user_id'],
@@ -1449,7 +1318,7 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                             conn=conn
                         )
                         if resultado['status'] == 'sucesso':
-                            self._set_api_headers(202) # 202 Accepted
+                            self._set_api_headers(202)
                             self.wfile.write(json.dumps({"status": "sucesso", "mensagem": "Solicitação de adição enviada para aprovação."}).encode('utf-8'))
                         else:
                             raise Exception(resultado['mensagem'])
@@ -1457,20 +1326,18 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 except Exception as e:
                     self._set_api_headers(500)
                     self.wfile.write(json.dumps({"status": "erro", "mensagem": f"Falha no servidor: {e}"}).encode('utf-8'))
-                return # O 'finally' fechará a conexão
-
-            # --- [NOVO] Rota 'Editar Filme' (Agora é inteligente) ---
+                return 
             elif path.startswith('/filme/editar/'):
-                payload = self._validar_jwt() # REQUER AUTENTICAÇÃO
+                payload = self._validar_jwt() #autenticação
                 if not payload:
-                    return # O 'finally' fechará a conexão
+                    return 
                 
                 try:
                     filme_id = int(path.split('/')[-1])
                     dados_filme = json.loads(self._get_request_body())
 
                     if payload['role'] == 'admin':
-                        # Admin: Executa diretamente
+                        # admin, executa diretamente
                         print(f"DEBUG: Admin editando filme {filme_id} diretamente.")
                         resultado = _executar_edicao_filme(filme_id, dados_filme, conn)
                         if resultado['status'] == 'sucesso':
@@ -1480,7 +1347,7 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                             raise Exception(resultado['mensagem'])
                     
                     else:
-                        # Usuário Comum: Cria uma solicitação
+                        # usuário comum, cria uma solicitação
                         print(f"DEBUG: Usuário {payload['user_id']} solicitando edição do filme {filme_id}.")
                         resultado = _criar_solicitacao(
                             usuario_id=payload['user_id'],
@@ -1490,7 +1357,7 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                             conn=conn
                         )
                         if resultado['status'] == 'sucesso':
-                            self._set_api_headers(202) # 202 Accepted
+                            self._set_api_headers(202)
                             self.wfile.write(json.dumps({"status": "sucesso", "mensagem": "Solicitação de edição enviada para aprovação."}).encode('utf-8'))
                         else:
                             raise Exception(resultado['mensagem'])
@@ -1498,19 +1365,17 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 except Exception as e:
                     self._set_api_headers(500)
                     self.wfile.write(json.dumps({"status": "erro", "mensagem": f"Falha no servidor: {e}"}).encode('utf-8'))
-                return # O 'finally' fechará a conexão
+                return 
 
-            # --- [NOVO] Rota Admin 'Aprovar Solicitação' ---
             elif path.startswith('/admin/solicitacao/aprovar/'):
                 payload = self._validar_jwt_e_role('admin')
                 if not payload:
-                    return # O 'finally' fechará a conexão
+                    return 
 
                 try:
                     solicitacao_id = int(path.split('/')[-1])
                     print(f"DEBUG: Admin {payload['user_id']} tentando aprovar sol_id {solicitacao_id}.")
-                    
-                    # Esta função faz TUDO (executa e commita)
+
                     resultado = _processar_aprovacao(solicitacao_id, conn) 
                     
                     if resultado['status'] == 'sucesso':
@@ -1522,19 +1387,18 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 except Exception as e:
                     self._set_api_headers(500)
                     self.wfile.write(json.dumps({"status": "erro", "mensagem": f"Falha ao aprovar: {e}"}).encode('utf-8'))
-                return # O 'finally' fechará a conexão
+                return 
 
-            # --- [NOVO] Rota Admin 'Rejeitar Solicitação' ---
             elif path.startswith('/admin/solicitacao/rejeitar/'):
                 payload = self._validar_jwt_e_role('admin')
                 if not payload:
-                    return # O 'finally' fechará a conexão
+                    return
                 
                 try:
                     solicitacao_id = int(path.split('/')[-1])
                     print(f"DEBUG: Admin {payload['user_id']} rejeitando sol_id {solicitacao_id}.")
                     
-                    # Apenas atualiza o status e commita
+                    # apenas atualiza o status e commita
                     resultado = _atualizar_status_solicitacao(solicitacao_id, 'REJEITADA', conn)
                     
                     if resultado:
@@ -1548,20 +1412,16 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                     conn.rollback()
                     self._set_api_headers(500)
                     self.wfile.write(json.dumps({"status": "erro", "mensagem": f"Falha ao rejeitar: {e}"}).encode('utf-8'))
-                return # O 'finally' fechará a conexão
-            
-            # --- Rota POST não encontrada ---
+                return 
+
             else:
                 self._set_api_headers(404)
                 self.wfile.write(json.dumps({"status": "erro", "mensagem": "Rota POST não encontrada."}).encode('utf-8'))
 
         except Exception as e:
-            # Tratamento de erro GERAL para o do_POST
             import traceback
             print(f"ERRO CRÍTICO NÃO TRATADO NO DO_POST (path: {path}): {e}")
             traceback.print_exc()
-            
-            # Tenta reverter qualquer transação pendente
             try:
                 conn.rollback()
             except Exception as rb_e:
@@ -1571,10 +1431,8 @@ class MeuManipulador(SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps({"status": "erro", "mensagem": f"Falha interna grave no servidor: {e}"}).encode('utf-8'))
         
         finally:
-            # GARANTE que a conexão seja sempre fechada
             if conn:
                 conn.close()
-                # print(f"DEBUG: Conexão com o banco fechada (path: {path}).")
 
 
 
@@ -1583,17 +1441,15 @@ class MeuManipulador(SimpleHTTPRequestHandler):
         path = parsed_path.path
 
         if path.startswith('/filme/editar/'):
-            # --- 1. AUTENTICAÇÃO E PERMISSÃO DE ADMIN ---
             user_info = self.validar_autenticacao()
             if not user_info:
-                return # Resposta de erro 401 já enviada
+                return 
 
             if user_info['role'] != 'admin':
-                self._set_api_headers(403) # 403 Forbidden
+                self._set_api_headers(403)
                 self.wfile.write(json.dumps({"status": "erro", "mensagem": "Acesso negado. Apenas administradores podem editar filmes."}).encode('utf-8'))
                 return
             
-            # --- 2. Leitura SEGURA dos dados (Substitui self._read_json_body()) ---
             content_length = int(self.headers.get('Content-Length', 0))
             body = self.rfile.read(content_length).decode('utf-8') if content_length > 0 else ''
 
@@ -1610,7 +1466,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 return
             
             try:
-                # Extrai o ID do filme da URL (ex: /filme/editar/15)
                 filme_id = int(path.split('/')[-1])
             except ValueError:
                 self._set_api_headers(400)
@@ -1618,7 +1473,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 return
 
             try:
-                # --- 3. Extração e Tratamento dos dados (Mantido do seu código) ---
                 titulo = str(form_data.get('titulo', '')).strip()
                 sinopse = str(form_data.get('sinopse', '')).strip()
                 tempo_duracao_str = str(form_data.get('tempo_duracao', '')).strip()
@@ -1626,16 +1480,13 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 url_poster = str(form_data.get('url_poster', '')).strip()
                 url_banner = str(form_data.get('url_banner', '')).strip()
                 codigo_trailer = str(form_data.get('codigo_trailer', '')).strip()
-                # Atores deve vir como lista de nomes (strings)
                 atores_nomes = form_data.get('atores', []) 
                 
-                # As listas de IDs de relacionamentos
                 generos_ids = form_data.get('generos', []) 
                 diretores_ids = form_data.get('diretores', [])
                 produtoras_ids = form_data.get('produtoras', [])
 
 
-                # Conversões
                 try:
                     tempo_duracao = int(tempo_duracao_str.replace('min', '').strip()) if tempo_duracao_str else 0
                 except:
@@ -1646,18 +1497,16 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 except:
                     ano = 0
 
-                # --- 4. Conexão com banco ---
                 conn = get_db_connection()
                 if not conn:
                     self._set_api_headers(500)
                     self.wfile.write(json.dumps({"status": "erro", "mensagem": "Erro na conexão com o banco."}).encode('utf-8'))
                     return
 
-                # --- 5. Lógica de atualização no BD (Seu código) ---
                 try:
                     cursor = conn.cursor()
 
-                    # Atualiza os dados básicos do filme
+                    # atualiza os dados do filme
                     sql_update_filme = """
                     UPDATE filme SET titulo=%s, sinopse=%s, tempo_duracao=%s, ano=%s, poster=%s, background=%s, trailer=%s
                     WHERE id=%s
@@ -1666,20 +1515,18 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                         titulo, sinopse, tempo_duracao, ano, url_poster, url_banner, codigo_trailer, filme_id
                     ))
 
-                    # Atualiza relacionamentos (Gêneros, Produtoras, Diretores, Atores)
+                    # atualiza relacionamentos (gêneros, produtoras, diretores, atores)
                     
-                    # Generos
                     cursor.execute("DELETE FROM filme_genero WHERE filme_id=%s", (filme_id,))
                     if isinstance(generos_ids, list):
                         for genero_id in generos_ids:
-                            # Tenta garantir que o ID é um inteiro antes de inserir
+                            #tenta garantir que o ID é um inteiro antes de inserir
                             try:
                                 if int(genero_id) > 0:
                                     cursor.execute("INSERT INTO filme_genero (filme_id, genero_id) VALUES (%s, %s)", (filme_id, int(genero_id)))
                             except:
-                                pass # Ignora IDs inválidos
+                                pass #ignora IDs inválidos
                     
-                    # Produtoras
                     cursor.execute("DELETE FROM filme_produtora WHERE filme_id=%s", (filme_id,))
                     if isinstance(produtoras_ids, list):
                         for produtora_id in produtoras_ids:
@@ -1689,7 +1536,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                             except:
                                 pass
                     
-                    # Diretores
                     cursor.execute("DELETE FROM filme_diretor WHERE filme_id=%s", (filme_id,))
                     if isinstance(diretores_ids, list):
                         for diretor_id in diretores_ids:
@@ -1699,12 +1545,10 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                             except:
                                 pass
                         
-                    # Atores (Requer get_or_create_actor_id definido no db.py, mas a lógica de chamada está correta aqui)
                     cursor.execute("DELETE FROM filme_ator WHERE filme_id=%s", (filme_id,))
                     if isinstance(atores_nomes, list):
                         for ator_nome in atores_nomes:
                             if isinstance(ator_nome, str) and ator_nome.strip():
-                                # NOTE: get_or_create_actor_id deve estar definido em db.py e deve receber o cursor.
                                 ator_id = get_or_create_actor_id(cursor, ator_nome.strip()) 
                                 if ator_id:
                                     cursor.execute("INSERT INTO filme_ator (filme_id, ator_id) VALUES (%s, %s)", (filme_id, ator_id))
@@ -1732,23 +1576,19 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 self.wfile.write(json.dumps({"status": "erro", "mensagem": "Erro interno no servidor."}).encode('utf-8'))
                 return
         
-        # Rota PUT não encontrada
         else:
             self._set_api_headers(404)
             self.wfile.write(json.dumps({"status": "erro", "mensagem": "Rota PUT não encontrada"}).encode('utf-8'))
 
-    # --- INÍCIO DO NOVO DO_DELETE (Exclusivo para Admin) ---
     def do_DELETE(self):
         parsed_path = urlparse(self.path)
         path = parsed_path.path
 
         if path.startswith('/filme/deletar/'):
-            # --- 1. AUTENTICAÇÃO E PERMISSÃO DE ADMIN ---
+            # autenticação e permissão para o adm
             user_payload = self._validar_jwt_e_role('admin') 
             if not user_payload:
                 return
-            
-            # --- 2. Extração do ID ---
             try:
                 filme_id = int(path.split('/')[-1])
             except ValueError:
@@ -1757,11 +1597,9 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 return
 
             try:
-                # --- 3. Chama função de deleção (deletar_filme deve implementar a lógica do DB) ---
                 filme_id = int(path.split('/')[-1])
                 resposta_json = deletar_filme(filme_id)
 
-                # --- 4. Retorno para o frontend ---
                 self._set_api_headers(200)
                 self.wfile.write(resposta_json.encode('utf-8'))
                 return
@@ -1773,8 +1611,6 @@ class MeuManipulador(SimpleHTTPRequestHandler):
                 self._set_api_headers(500)
                 self.wfile.write(json.dumps({"status": "erro", "mensagem": "Falha no servidor ao deletar o filme."}).encode('utf-8'))
                 return
-
-        # Rota DELETE não encontrada
         else:
             self._set_api_headers(404)
             self.wfile.write(json.dumps({"status": "erro", "mensagem": "Rota DELETE não encontrada."}).encode('utf-8'))

@@ -15,7 +15,6 @@ const FavoritesHero = () => {
                     Adicione, organize e reviva seus momentos favoritos do cinema. Continue de onde parou ou descubra algo novo na sua lista.
                 </p>
                 
-                {/* Botão de Ação */}
                 <Link to="/catalogo">
                 <button className="add-to-list-button">
                     Adicionar mais à minha lista 

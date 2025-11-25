@@ -1,7 +1,5 @@
 import React from 'react';
 import './HeroSectionKids.css';
-
-// 🌟 Importe os assets das imagens (Substitua pelos seus caminhos reais)
 import BackgroundImage from '../../assets/cinefyKids/backgroundCinefy.png';
 import CardMoana from '../../assets/cinefyKids/Moana.png';
 import CardMcQueen from '../../assets/cinefyKids/Carros.png';
@@ -10,7 +8,6 @@ import CardDory from '../../assets/cinefyKids/Dory.png';
 import CardHome from '../../assets/cinefyKids/Home.png';
 import CameraIcone from "../../assets/icones/iconeCameraKids.svg"
 
-// Dados dos cartões
 const cards = [
   { id: 1, title: 'Oh Home', image: CardHome, positionClass: 'card-home' },
   { id: 2, title: 'McQueen', image: CardMcQueen, positionClass: 'card-mcqueen' },
@@ -38,7 +35,6 @@ function HeroSectionKids() {
           </p>
         </div>
 
-        {/* Container dos Cartões Flutuantes */}
         <div className="heroKidsCardsWrapper">
           {cards.map((card) => (
             <div key={card.id} className={`heroKidsCard ${card.positionClass}`}>

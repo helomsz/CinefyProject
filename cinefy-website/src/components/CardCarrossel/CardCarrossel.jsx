@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom'; // 1. IMPORTAR ISSO
+import ReactDOM from 'react-dom';
 import { Play } from 'lucide-react';
 import { FaTimes } from 'react-icons/fa';
 import './CardCarrossel.css';
@@ -23,7 +23,6 @@ function CardCarrossel({ filme, className, onCardClick, trailer }) {
         setIsModalOpen(false);
     };
 
-    // Lógica do Modal separada para facilitar leitura
     const modalContent = (
         <div className="modalOverlayCarrossel" onClick={handleCloseModal}>
             <div className="modalContentCarrossel" onClick={(e) => e.stopPropagation()}>
@@ -65,10 +64,9 @@ function CardCarrossel({ filme, className, onCardClick, trailer }) {
                 </div>
             </div>
 
-            {/* 2. USO DO PORTAL AQUI */}
             {isModalOpen && youtubeEmbedUrl && ReactDOM.createPortal(
                 modalContent,
-                document.body // Renderiza o modal direto no <body>
+                document.body 
             )}
         </>
     );

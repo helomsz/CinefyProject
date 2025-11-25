@@ -1,8 +1,7 @@
-/* src/components/User/UserProfileDropdown.css */
 
 .profileDropdownContainer {
     position: absolute;
-    top: 100%; /* Posiciona abaixo do widget principal */
+    top: 100%;
     right: 0;
     width: 250px;
     background: rgb(41, 41, 41);
@@ -12,7 +11,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     z-index: 1000;
     padding: 10px 0;
-    margin-top: 10px; /* Pequeno espaçamento do widget */
+    margin-top: 10px;
 }
 
 .dropdownHeader {
@@ -63,12 +62,12 @@
 
 .dropdownIcon {
     margin-right: 12px;
-    color: inherit; /* Usa a cor do item (branco no hover) */
+    color: inherit; 
 }
 
-/* Estilo específico para o botão de Sair */
+
 .logoutItem {
-    color: #fff; /* Vermelho sutil para indicar ação de saída */
+    color: #fff; 
     font-weight: 500;
 }
 

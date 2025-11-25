@@ -53,7 +53,6 @@ function CardCatalogoKids({ titulo, genero, posterCapa, onClick}) {
                     </button>
                 </div>
 
-                {/* Botão Play */}
                 <div className="playButtonContainerTop">
                     <button className="botaoPlayTop">
                         <FaPlay className="iconePlay" fill="white" />

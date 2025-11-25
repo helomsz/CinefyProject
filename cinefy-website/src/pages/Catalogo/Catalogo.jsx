@@ -39,11 +39,7 @@ function Catalogo() {
                 <CarrosselPrincipal />
                 <SecaoContinueAssistindo />
                 <SecaoCardsCatalogo filmes={filmesEmAlta} />
-
-                {/* 🆕 Passamos o setter pro filtro */}
                 <SecaoFiltro onFiltrar={setFilmesFiltrados} />
-
-                {/* 🆕 Passamos o estado pro catálogo */}
                 <SecaoCatalogoFilmes filmesFiltrados={filmesFiltrados} />
 
                 <Footer />

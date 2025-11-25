@@ -1,6 +1,3 @@
-/* ------------------------------------ */
-/* Seção Principal (Hero) */
-/* ------------------------------------ */
 .favorites-hero {
   margin-left: 70px; 
   width: calc(100% - 70px);
@@ -16,8 +13,6 @@
   padding: 100px 50px;
 }
 
-
-/* Gradiente de Fundo */
 .favorites-hero::before {
     content: '';
     position: absolute;
@@ -140,9 +135,7 @@
     color: #005955;
 }
 
-/* ------------------------------------ */
-/* Imagem ÚNICA (Mockup Completo) */
-/* ------------------------------------ */
+
 .hero-image-container {
     width: 100%;
     max-width: 1200px;
@@ -158,13 +151,13 @@
     max-width: 1000px;
     height: auto;
     display: block;
-    margin: 0 auto; /* Centraliza a imagem no container */
+    margin: 0 auto; 
     transform: translateY(-30px);
     transform: translateX(-110px);
     z-index: 5;
 }
 
-/* Efeito de desvanecimento na parte inferior */
+
 .favorites-hero::after {
     content: '';
     position: absolute;

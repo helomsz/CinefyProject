@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------- */
-/* CONTAINER PRINCIPAL E IMAGEM */
+/* CONTAINER PRINCIPAL
 /* ------------------------------------------------------------------- */
 .cardProgressoWrapper {
     width: 324px; 
@@ -25,7 +25,7 @@
 }
 
 /* ------------------------------------------------------------------- */
-/* RODAPÉ (Efeito Vidro Sólido/Semi-Transparente) */
+/* RODAPÉ
 /* ------------------------------------------------------------------- */
 .cardProgressoRodape {
     position: absolute;
@@ -50,8 +50,6 @@
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
 }
-
-
 
 .cardProgressoBarraFundo {
     position: absolute;
@@ -93,7 +91,7 @@
     margin-right: 12px;
 }
 
-/* Divisor Vertical */
+
 .cardProgressoDivisor {
     width: 1px;
     height: 25px;
@@ -121,10 +119,9 @@
 }
 
 /* ------------------------------------------------------------------- */
-/* BOTÃO PLAY (Verde-água Sólido) */
+/* BOTÃO PLAY 
 /* ------------------------------------------------------------------- */
 .cardProgressoBotaoPlay {
-    /* Fundo do botão Play é verde-água sólido/opaco */
     background: linear-gradient(to right, #006761, #01B1A9);; 
     border: none;
     border-radius: 50%;
@@ -137,9 +134,8 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     transition: transform 0.2s, box-shadow 0.2s;
     flex-shrink: 0; 
-    
     position: absolute;
-    right: 40px; /* Ajuste fino */
+    right: 40px;
     z-index: 7;
 }
 
@@ -155,24 +151,19 @@
 }
 
 /* ---------------------------------------------------- */
-/* 6. ESTILOS DO MODAL (CORREÇÃO DE POSICIONAMENTO)      */
+/* ESTILOS DO MODAL   */
 /* ---------------------------------------------------- */
 
 .modalOverlay {
-    /* *** CORREÇÃO CHAVE *** */
-    position: fixed; /* Essencial para ignorar o pai */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    /* Z-INDEX EXTREMAMENTE ALTO para garantir que fique no topo da página */
     z-index: 9999; 
-    /* CENTRALIZAÇÃO */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* FIM DA CORREÇÃO CHAVE */
-    
     background: rgba(0, 0, 0, 0.9); 
     backdrop-filter: blur(5px);
 }
@@ -182,13 +173,12 @@
     padding: 0; 
     border-radius: 12px;
     max-width: 90%;
-    width: 800px; /* Largura máxima do modal */
-    position: relative; /* Precisa ser relative para o close button, mas não interfere na correção */
+    width: 800px;
+    position: relative; 
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     overflow: hidden; 
 }
 
-/* NOVO: Estilização do cabeçalho (tarja verde/azul-petróleo) */
 .modalHeader {
     background: linear-gradient(to right, #025550, #318A84);
     padding: 15px 20px;
@@ -219,7 +209,6 @@
 }
 
 
-/* Estilização do botão de fechar (Ajustado para o novo header) */
 .modalCloseButton {
     position: static;
     background: none;
@@ -236,11 +225,10 @@
     color: #f2f2f2; 
 }
 
-/* Contêiner do Iframe */
 .iframeContainer {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* Relação de aspecto 16:9 */
+    padding-top: 56.25%;
     background-color: #2c2c2c; 
     padding-bottom: 0px; 
 }

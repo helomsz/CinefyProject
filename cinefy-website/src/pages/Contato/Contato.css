@@ -266,7 +266,7 @@ body {
 }
 
 /* =============================
-   FORMULÁRIO — CORREÇÃO IMPORTANTE
+   FORMULÁRIO 
    ============================= */
 
    .contact-form-section {
@@ -320,42 +320,36 @@ body {
         inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Textarea */
 .contact-form .form-input-contato.textarea {
     resize: none;
     min-height: 270px;
 }
 
-/* --- Botão de Envio (Gradiente e Sombra) --- */
+
 .submit-button {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 1.2rem 1.5rem; /* Aumentado um pouco o padding vertical */
-    border-radius: 1rem; /* Mais arredondado, como no input */
+    padding: 1.2rem 1.5rem; 
+    border-radius: 1rem;
     font-weight: 700;
     font-size: 1.125rem;
-    
-    /* Gradiente Cinza Claro (Replicando o protótipo) */
     background: linear-gradient(to bottom, #F8F9FA, #E9ECEF); 
     
-    color: var(--color-dark-bg); /* Cor escura do texto */
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Borda muito sutil */
+    color: var(--color-dark-bg);
+    border: 1px solid rgba(0, 0, 0, 0.1); 
     cursor: pointer;
     transition: background-color 0.3s, opacity 0.3s, transform 0.2s;
-    
-    /* Sombra Externa (Mais intensa para destacar) */
     box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5); 
 }
 
 .submit-button:hover:not(:disabled) {
-    background: linear-gradient(to bottom, #FFF, #F1F3F5); /* Gradiente mais claro no hover */
+    background: linear-gradient(to bottom, #FFF, #F1F3F5);
     transform: translateY(-2px);
     box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.6);
 }
 
-/* Manter estilos de loading e status */
 .loading-icon {
     animation: spin 1s linear infinite;
     margin-right: 0.5rem;
@@ -365,7 +359,6 @@ body {
     to { transform: rotate(360deg); }
 }
 
-/* --- Efeitos de Fundo (Blur) --- */
 .bg-blur-effect {
     position: fixed;
     width: 400px;
@@ -433,7 +426,6 @@ body {
     text-decoration: none;
 }
 
-/* --- Mensagens de Status --- */
 .status-message {
     max-width: 460px;
     padding: 1rem;

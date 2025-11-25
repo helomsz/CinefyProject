@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Play, Star, Plus, Volume2, Pencil, Trash2, ArrowLeft } from 'lucide-react';
 import { useUserSession } from '../../components/useUserSession';
-import { FaTimes } from 'react-icons/fa'; // IMPORTAÇÃO ADICIONAL
+import { FaTimes } from 'react-icons/fa'; 
 
-// Assumindo que você tem os seguintes componentes e estilos
 import NavbarCentralizada from '../../components/NavbarCentralizada/NavbarCentralizada.jsx';
 import MenuLateral from '../../components/MenuLateral/MenuLateral.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import PageTransitionLoader from '../../components/PageTransitionLoader/PageTransitionLoader.jsx';
-import './DetalhesFilme.css'; // Estilos necessários
+import './DetalhesFilme.css'; 
 
 const API_BASE_URL = 'http://localhost:8000';
 
@@ -25,7 +24,6 @@ const DetalhesFilme = () => {
 
     const isAdmin = !isLoadingSession && user?.role === 'admin';
 
-    // --- INÍCIO: ESTADO PARA MODAL ---
     const [isTrailerModalOpen, setIsTrailerModalOpen] = useState(false);
 
     const handleOpenTrailerModal = () => {
@@ -39,7 +37,6 @@ const DetalhesFilme = () => {
     const handleCloseTrailerModal = () => {
         setIsTrailerModalOpen(false);
     };
-    // --- FIM: ESTADO PARA MODAL ---
 
     useEffect(() => {
         const controller = new AbortController();
@@ -149,7 +146,6 @@ const DetalhesFilme = () => {
         return <div className="detalhes__erro">Detalhes do filme indisponíveis.</div>;
     }
 
-    // --- Preparação de dados (Seu código original) ---
     const diretores = filme.diretores ? filme.diretores.split(',') : [];
     const produtoras = filme.produtoras ? filme.produtoras.split(',') : [];
     const generos = filme.generos ? filme.generos.split(' | ') : [];
@@ -158,7 +154,6 @@ const DetalhesFilme = () => {
         backgroundImage: `url(${filme.background || '/caminho/para/imagem/default.jpg'})`,
     };
 
-    // --- Renderização do Detalhe ---
     return (
         <div className="detalhes-page-container">
             <MenuLateral />
@@ -171,7 +166,7 @@ const DetalhesFilme = () => {
                         <button
                             className="btn-voltar-hero"
                             onClick={() => {
-                                setFilme(null); // Resetando o estado ao voltar
+                                setFilme(null); 
                                 navigate(-1);
                             }}
                             title="Voltar"
@@ -211,7 +206,6 @@ const DetalhesFilme = () => {
 
                         <div className="detalhes__overlay"></div>
                         <div className="detalhes__content-wrapper">
-                            {/* 1. POSTER */}
                             {filme.poster && (
                                 <img
                                     src={filme.poster}
@@ -281,7 +275,6 @@ const DetalhesFilme = () => {
                     </div>
                 </main>
 
-                {/* --- MODAL DO TRAILER --- */}
                 {isTrailerModalOpen && filme?.trailer && (
                     <div className="modalOverlay" onClick={handleCloseTrailerModal}>
                         <div className="modalContent" onClick={e => e.stopPropagation()}>

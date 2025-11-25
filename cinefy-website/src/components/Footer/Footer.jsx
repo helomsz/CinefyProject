@@ -2,18 +2,15 @@ import React from 'react';
 import './Footer.css';
 import Logo from '../../assets/icones/LOGO.svg';
 
-// Importe os ícones das redes sociais (usando placeholders genéricos por enquanto)
 import { Instagram, Youtube, Facebook, Twitter } from 'lucide-react'; 
 
 function Footer() {
     return (
         <footer className="mainFooter">
             <div className="footerContainer">
-                
-                {/* 1. Coluna de Informações e Logo */}
+
                 <div className="footerColuna infoColuna">
                     <div className="logoFooter">
-                        {/* Se você tiver um componente SVG ou PNG da CINEFY, coloque aqui */}
                         <img 
                             src={Logo}
                             alt="CINEFY Logo" 
@@ -28,7 +25,6 @@ function Footer() {
                     </p>
                 </div>
 
-                {/* 2. Coluna Explore (Navegação) */}
                 <div className="footerColuna">
                     <h4 className="tituloColuna">Explore</h4>
                     <ul className="listaLinks">
@@ -38,7 +34,6 @@ function Footer() {
                     </ul>
                 </div>
 
-                {/* 3. Coluna Suporte */}
                 <div className="footerColuna">
                     <h4 className="tituloColuna">Suporte</h4>
                     <ul className="listaLinks">
@@ -50,7 +45,6 @@ function Footer() {
 
             </div>
 
-            {/* Linha de Rodapé Inferior */}
             <div className="footerBottom">
                 <p className="designInfo">
                     Design by Heloisa Militão de Souza

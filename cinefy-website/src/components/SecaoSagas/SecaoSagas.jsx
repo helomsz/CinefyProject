@@ -1,13 +1,13 @@
 import React from 'react';
 import './SecaoSagas.css';
-import { Link } from "react-router-dom"; // <-- import Link do react-router-dom
+import { Link } from "react-router-dom"; 
 import ImagemJogosVorazes from '../../assets/sagas/jogosVorazesHome.png'; 
 import ImagemStarWars from '../../assets/sagas/starWarsHome.png'; 
 import ImagemMazeRunner from '../../assets/sagas/mazeRunnerHome.png';
 
 
 const CardSaga = ({ titulo, imagemUrl, tag, subtitulo }) => (
-    <div className="cardSaga"> {/* <-- trocar <a> por <div> */}
+    <div className="cardSaga"> 
         <img 
             src={imagemUrl} 
             alt={`Ver detalhes da Saga: ${titulo}`} 

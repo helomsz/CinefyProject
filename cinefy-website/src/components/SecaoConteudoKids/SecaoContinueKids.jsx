@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// CORREÇÃO: Tentativa de resolver o problema de resolução do caminho. 
-// Assumindo que CardContinue.jsx está diretamente sob SecaoContinueKids/CardContinue.
 import CardContinue from './CardContinue/CardContinue.jsx'
 import './SecaoContinueKids.css';
-
-// 🚨 CORREÇÃO PRINCIPAL: Mudamos a URL para a nova rota que listará os filmes infantis.
 const API_PROGRESSO_URL = 'http://localhost:8000/api/listar_filmes_infantis'; 
 
 function SecaoContinueKids() { 
@@ -44,11 +40,9 @@ function SecaoContinueKids() {
     }
     
     if (listaProgresso.length === 0) {
-        // Seção vazia
         return null;
     }
 
-    // 5. RENDERIZAÇÃO
     return (
         <section className="secaoConteudo">
             <header className="secaoHeader">

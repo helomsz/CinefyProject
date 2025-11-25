@@ -1,6 +1,3 @@
-/* ------------------------------------------------------------- */
-/* WRAPPER GERAL E TÍTULO */
-/* ------------------------------------------------------------- */
 
 .secaoFiltroWrapper {
     margin: 40px auto;
@@ -35,12 +32,12 @@
     font-weight: 500;
     margin: 0;
     margin-left: 2px;
-    color: #fff; /* O texto parece branco no protótipo */
+    color: #fff; 
     color: #fff; 
 }
 
 /* ------------------------------------------------------------- */
-/* BARRA DE BUSCA PRINCIPAL (Filtros e Botão Buscar) */
+/* BARRA DE BUSCA PRINCIPAL
 /* ------------------------------------------------------------- */
 .barraBuscaFundo {
     display: flex;
@@ -77,16 +74,12 @@
     border: none !important;
 }
 
-/* Container do input e do ícone */
 .inputComIconeFiltro {
     position: relative !important;
     width: 100% !important;
     border: none !important;
 }
 
-/* SOLUÇÃO NUCLEAR DE ESPECIFICIDADE 
-   Estamos combinando 3 classes + 1 tag + 1 atributo para vencer o global
-*/
 .secaoFiltroWrapper .inputComIconeFiltro input.inputFiltro[type="text"] {
     display: block;
     width: 100%;
@@ -102,19 +95,18 @@
     outline: none !important;
     font-family: 'Montserrat', sans-serif !important;
     transition: border-color 0.2s, background-color 0.2s;
-    box-shadow: none !important; /* Remove sombras indesejadas do global */
+    box-shadow: none !important;
 }
 
-/* Focus - Também ultra específico */
 .secaoFiltroWrapper .inputComIconeFiltro input.inputFiltro[type="text"]:focus {
     border-color: #00e0c0 !important;
     background: rgba(0, 191, 166, 0.08) !important;
 }
 
-/* Placeholder */
+
 .secaoFiltroWrapper .inputComIconeFiltro input.inputFiltro[type="text"]::placeholder {
     color: rgba(255, 255, 255, 0.5) !important;
-    opacity: 1; /* Firefox as vezes diminui a opacidade */
+    opacity: 1;
 }
 .inputFiltro:focus {
     border-color: #00e0c0 !important;
@@ -163,7 +155,7 @@
     transform: translateY(-2px);
 }
 
-/* Cor do ícone dentro do botão */
+
 .iconeBuscarBotao {
     color: #000;
 }
@@ -176,14 +168,14 @@
     display: flex;
     align-items: center;
     justify-content: center; 
-    gap: 13px; /* Reduzi o gap */
+    gap: 13px;
     margin-top: 30px;
     width: 100%;
     box-sizing: border-box;
 }
 
 .carrosselSeta {
-    background-color: rgba(0, 191, 166, 0.1); /* Fundo mais suave */
+    background-color: rgba(0, 191, 166, 0.1); 
     border: 1.5px solid #00bfa6; 
     color: #00bfa6;
     width: 42px;
@@ -205,10 +197,10 @@
 .generoBotoesContainer {
     display: flex;
     overflow-x: auto;
-    gap: 12px; /* Reduzi o gap entre os botões */
+    gap: 12px;
     flex-grow: 1;
     padding: 6px 0;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
 }
 
 
@@ -218,10 +210,10 @@
 
 .botaoGenero {
     background: rgba(0, 191, 166, 0.1);
-    border: 2px solid rgba(0, 191, 166, 0.6); /* Borda mais grossa */
+    border: 2px solid rgba(0, 191, 166, 0.6); 
     color: rgba(216, 219, 219, 0.9);
-    padding: 10px 23px; /* Padding ajustado */
-    border-radius: 50px; /* Bem arredondado */
+    padding: 10px 23px;
+    border-radius: 50px;
     font-size: 1rem;
     white-space: nowrap;
     cursor: pointer;
@@ -241,13 +233,10 @@
 .botaoGenero.ativo {
     background: linear-gradient(to right, #00B9AE, #005955);
     color: #e5e5e5;
-    box-shadow: 0 0 10px rgba(60, 60, 60, 0.2); /* Sombra na ativa */
+    box-shadow: 0 0 10px rgba(60, 60, 60, 0.2);
     border: transparent;
 }
 
-/* ------------------------------------------------------------- */
-/* RESPONSIVIDADE (Ajustes para telas menores) */
-/* ------------------------------------------------------------- */
 
 @media (max-width: 1024px) {
     .barraBuscaFundo {
@@ -256,13 +245,13 @@
         justify-content: flex-start;
     }
     .inputFiltroWrapperContainer {
-        min-width: 45%; /* Garante que 2 caibam por linha */
+        min-width: 45%; 
     }
     .botaoBuscar {
-        margin-top: 10px; /* Ajusta a margem superior para a próxima linha */
-        width: 100%; /* Ocupa a largura total abaixo dos inputs */
+        margin-top: 10px; 
+        width: 100%;
         height: 50px;
-        order: 99; /* Garante que vá para o final em telas menores */
+        order: 99;
     }
 }
 
@@ -275,7 +264,7 @@
         gap: 10px;
     }
     .inputFiltroWrapper {
-        min-width: 100%; /* 1 por linha em mobile */
+        min-width: 100%;
     }
     .filtroTitulo {
         margin-left: 10px;

@@ -1,4 +1,3 @@
-// CardFilmeVertical.jsx
 import React, { useEffect, useState } from "react";
 import { FaHeart, FaPlay } from 'react-icons/fa';
 import './CardFilmeVertical.css';
@@ -18,7 +17,7 @@ function CardFilmeVertical({ titulo, genero, status, posterCapa, onClick }) {
 
       setFavoritado(validos.some((f) => f.titulo === titulo));
 
-      // salva de volta os válidos (corrige o localStorage)
+      // salva de volta os válidos
       localStorage.setItem("favoritos", JSON.stringify(validos));
     } catch (e) {
       console.error("Erro ao ler favoritos:", e);
@@ -27,7 +26,7 @@ function CardFilmeVertical({ titulo, genero, status, posterCapa, onClick }) {
   }, [titulo]);
 
   const toggleFavorito = (e) => {
-    e.stopPropagation(); // Evita que o clique no favorito propague para o card e dispare a navegação
+    e.stopPropagation(); 
     const favs = JSON.parse(localStorage.getItem("favoritos") || "[]");
 
     if (favoritado) {

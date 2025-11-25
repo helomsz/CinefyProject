@@ -62,7 +62,7 @@ body, html {
 }
 
 .detalhes__content-wrapper {
-    position: relative; /* dentro do fluxo */
+    position: relative; 
     z-index: 2;
     display: flex;
     gap: 40px;
@@ -152,7 +152,7 @@ body, html {
     color: #ffffff;
 }
 
-/* --- Ações (Botões) --- */
+
 .detalhes__acoes {
     display: flex;
     gap: 15px;
@@ -192,7 +192,6 @@ body, html {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* --- Sinopse e Metadados --- */
 .detalhes__sinopse {
     font-size: 1.1rem;
     line-height: 1.6;
@@ -257,7 +256,7 @@ body, html {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-/* --- Elenco --- */
+
 .detalhes__elenco h2 {
     font-size: 1.5rem;
     margin-top: 0;
@@ -281,7 +280,7 @@ body, html {
 }
 
 .ator__imagem {
-    width: 190px; /* Reduzido para um tamanho mais próximo do protótipo */
+    width: 190px; 
     height: 190px; 
     border-radius: 50%;
     object-fit: cover;
@@ -297,7 +296,7 @@ body, html {
 }
 
 .footerDetalhesWrapper {
-    width: calc(100% - 120px); /* 60px padding lateral de cada lado */
+    width: calc(100% - 120px); 
     margin-left: 60px;
     margin-right: 20px;
     margin-top: 30px;
@@ -326,7 +325,7 @@ body, html {
 }
 
 /* ---------------------------------------------------- */
-/* 6. ESTILOS DO MODAL (ESTILIZAÇÃO DO PROTÓTIPO)        */
+/* ESTILOS DO MODAL      */
 /* ---------------------------------------------------- */
 
 .modalOverlay {

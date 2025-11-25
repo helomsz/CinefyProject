@@ -14,7 +14,7 @@
 }
 
 /* ----------------------------------------------------
-   Estrutura Geral e Layout (Replicando o Container)
+   Estrutura 
    ---------------------------------------------------- */
 .add-movie-page {
     min-height: 100vh;
@@ -77,14 +77,12 @@
     overflow: hidden; 
 }
 
-/* NOVO: Estilo para a imagem de pré-visualização */
 .preview-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Garante que a imagem cubra todo o container mantendo a proporção */
+    object-fit: cover;
 }
 
-/* Opcional: Estilo para o texto placeholder */
 .poster-preview p, .banner-preview p {
     margin: 0;
     text-align: center;
@@ -123,7 +121,7 @@ header {
 }
 
 /* ----------------------------------------------------
-   Estrutura de Formulário e Grid (CHAVE para o layout)
+   Estrutura de Formulário 
    ---------------------------------------------------- */
 form {
     display: flex;
@@ -210,7 +208,7 @@ textarea {
     min-height: 80px; 
     resize: vertical; 
 }
-/* Estilo para SELECT (Diretor/Produtora) - Ajustando para o look de "Input Card" */
+
 .card-select {
     background-color: var(--input-bg);
     border-radius: var(--border-radius-md);
@@ -248,8 +246,6 @@ select {
     -moz-appearance: none;
     appearance: none;
     padding-right: 30px; 
-    
-    /* Icone customizado (seta para baixo) */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23a0a8b3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 5px center;
@@ -257,7 +253,7 @@ select {
 }
 
 select option {
-    background-color: #1a1a20; /* Fundo mais escuro para opções */
+    background-color: #1a1a20;
     color: var(--text-primary);
 }
 
@@ -277,7 +273,6 @@ select option {
     gap: 6px;
 }
 
-/* Cor dos ícones nas labels */
 .label-with-icon-add svg {
     color: var(--text-muted);
 }
@@ -304,7 +299,6 @@ select option {
 }
 
 .category-tag {
-    /* Estilo padrão (Não selecionado) */
     background: linear-gradient(to right, #626262, #515050);
     color: var(--text-muted);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -338,7 +332,7 @@ select option {
 
 
 /* ----------------------------------------------------
-   Seção de Atores (Cards Separados)
+   Seção de Atores 
    ---------------------------------------------------- */
 
 .actors-section {
@@ -352,7 +346,6 @@ select option {
 }
 
 .actor-item {
-    /* Cada ator é um input-card, mas com layout especial */
     background: linear-gradient(to right, #626262, #515050);
     border-radius: var(--border-radius-md);
     padding: 12px 18px 8px;
@@ -366,7 +359,7 @@ select option {
 }
 
 .actor-item.selected-actor {
-    background: #333941 !important; /* Cor de fundo das tags de ator */
+    background: #333941 !important;
     border-radius: var(--border-radius-md) !important;
     padding: 8px 12px !important;
     font-size: 0.95rem;
@@ -508,7 +501,7 @@ select option {
 }
 
 /* ----------------------------------------------------
-   Responsividade (para telas menores)
+   Responsividade 
    ---------------------------------------------------- */
 @media (max-width: 1024px) {
     .main-content {
@@ -535,16 +528,16 @@ select option {
     }
 
     .form-grid {
-        grid-template-columns: 1fr; /* Coluna única em mobile */
+        grid-template-columns: 1fr; 
         gap: 15px;
     }
 }
 
-/* Estilo para a mensagem de erro nos formulários */
+
 .form-group.error-message {
-    background-color: #fef2f2; /* Fundo vermelho claro */
-    color: #991b1b; /* Texto vermelho escuro */
-    border: 1px solid #fecaca; /* Borda vermelha */
+    background-color: #fef2f2;
+    color: #991b1b; 
+    border: 1px solid #fecaca;
     border-radius: 8px;
     padding: 1rem;
     font-size: 0.9rem;
@@ -555,23 +548,20 @@ select option {
 }
 
 .centered-message-container {
-    position: absolute; /* ou fixed, se o fundo for rolável */
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     flex-grow: 1; 
     display: flex;
-    justify-content: center; /* Centraliza Horizontalmente */
-    align-items: center; /* Centraliza Verticalmente */
+    justify-content: center; 
+    align-items: center; 
     box-sizing: border-box;
 }
 
-/* Correção para o estilo do Access Denied Card */
+
 .access-denied-card {
-    /* REMOVA ou COMENTE: background: #fff; */ 
-    /* Use o fundo de card escuro do seu tema */
-    background: var(--card-bg); /* Ou var(--input-card-bg) para ser mais escuro */
-    
+    background: var(--card-bg);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px; 
@@ -612,7 +602,7 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-color);
 padding: 15px 25px; 
 border: none;
  border-radius: var(--border-radius-lg);
-  background: var(--accent-color); /* Cor verde-água */
+  background: var(--accent-color);
 color: var(--text-primary);
  font-size: 1.1rem;
 font-weight: 600;
@@ -626,7 +616,7 @@ transition: background 0.2s ease, transform 0.1s;
 }
 
 .centered-message-container .access-denied-card {
-    background: var(--card-bg) !important; /* Temporário, apenas para teste */
+    background: var(--card-bg) !important;
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px; 

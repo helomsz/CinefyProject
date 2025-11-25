@@ -2,12 +2,11 @@
     --larguraMenuLateralFechado: 0px;
     --corPrimaria: #1abc9c;
     --corTextoClaro: #e8e8e8;
-    --alturaNavbar: 80px; /* Altura aproximada da sua Navbar */
+    --alturaNavbar: 80px; 
     --corGradienteInicio: #008574;
     --corGradienteFim: #016059;
 }
 
-/* ==== LAYOUT PRINCIPAL ==== */
 .hero-section-container {
   position: relative;
   width: 100vw;
@@ -30,19 +29,16 @@
   z-index: 1;
 }
 
-/* Fundo antigo visível apenas durante a transição */
 .fundo-anterior {
   opacity: 1;
   z-index: 1;
 }
 
-/* Fundo atual */
 .fundo-atual {
   opacity: 1;
   z-index: 2;
 }
 
-/* Ativa o fade-in */
 .fade-in {
   animation: fadeInFundo 1.5s ease-in-out;
 }
@@ -53,7 +49,6 @@
 }
 
 
-/* === CONTEÚDO EM DUAS COLUNAS === */
 .hero-inner {
   position: relative;
   z-index: 5;
@@ -66,7 +61,7 @@
   margin-top: 60px;
 }
 
-/* === COLUNA ESQUERDA === */
+
 .hero-left {
   flex: 1;
   max-width: 600px;
@@ -139,25 +134,21 @@
   background: linear-gradient(to right, #0e7662, #0a9f84);
 }
 
-/* === COLUNA DIREITA === */
 .hero-right {
   flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center; /* ALINHA TUDO (CARDS E INDICADORES) NO CENTRO HORIZONTAL */
+    align-items: center; 
     justify-content: flex-start;
     margin-top: 40px;
 }
 
-/* Lista de cards */
 .card-list {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
-    margin-bottom: 30px; /* Mais espaço para os indicadores */
-    margin-right: -100px; /* Ajuste este valor (ex: -100px) conforme o desejado */
- 
-    /* Adicione um pequeno ajuste de perspectiva para o efeito 3D sutil da referência */
+    margin-bottom: 30px; 
+    margin-right: -100px; 
     transform: perspective(1000px);
 }
 
@@ -176,7 +167,6 @@
 
 .hero-card.selected {
   transform: scale(1.1); 
-    /* Aumenta a opacidade da sombra para destaque */
     box-shadow: 0 15px 40px rgba(var(--corPrimaria), 0.7);
 }
 
@@ -185,26 +175,25 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Garante que a imagem preencha o espaço sem deformar */
     display: block;
 
 }
 
-/* Bloco de Informações */
+
 .card-info {
     position: absolute;
-    bottom: 10px; /* Alinha na parte de baixo */
+    bottom: 10px;
     left: 0;
-    padding: 20px; /* Espaçamento interno */
-    z-index: 20; /* Fica acima do gradiente */
+    padding: 20px;
+    z-index: 20;
     width: 100%;
     color: #fff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Melhora a legibilidade */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 
 .card-category {
-    display: block; /* Garante que 'categoria' fique em sua própria linha */
+    display: block;
     font-size: 0.9em;
     font-weight: 400;
     opacity: 0.8;
@@ -214,17 +203,16 @@
 .card-title-home {
     font-size: 1.5em;
     font-weight: 700;
-    margin: 0; /* Remove margens padrão */
+    margin: 0;
     line-height: 1.2;
 }
 
-/* Estrelas */
 .card-rating-hero {
-    color: #fff; /* Cor dourada para as estrelas */
+    color: #fff;
     font-size: 1.1em;
     margin-top: 2px;
 }
-/* Bookmark no Canto Superior Direito */
+
 .card-bookmark {
     position: absolute;
     top: 15px;
@@ -239,7 +227,7 @@
     cursor: pointer;
 }
 
-/* Indicadores */
+
 .carousel-indicators {
   display: flex;
   justify-content: center;

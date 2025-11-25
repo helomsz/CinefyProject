@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, Clock, X } from 'lucide-react'; // X (ícone de fechar) é usado
+import { Play, Clock, X } from 'lucide-react'; 
 import './CardContinue.css';
 import Relogio from '../../../assets/icones/MeuRelogio.svg'
 
@@ -42,7 +42,6 @@ function CardContinue({ filme, onPlayClick }) {
                 className="cardProgressoCapa" 
             />
             
-            {/* Barra de Progresso */}
             <div className="cardProgressoBarraFundo">
                 <div 
                     className="cardProgressoBarraPreenchimento" 
@@ -68,8 +67,7 @@ function CardContinue({ filme, onPlayClick }) {
                     <Play size={20} fill="#fff" /> 
                 </button>
             </div>
-            
-            {/* --- MODAL DO TRAILER --- */}
+
             {isModalOpen && youtubeEmbedUrl && (
                 <div className="modalOverlay" onClick={handleCloseModal}>
                     <div className="modalContent" onClick={e => e.stopPropagation()}> 

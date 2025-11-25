@@ -1,25 +1,18 @@
-/* --- ESTADO BASE (Escondido) --- */
 .scroll-reveal {
-    /* CRÍTICO: Usa inline-block para que o elemento fique ao lado dos irmãos */
+
     display: inline-block; 
-    
-    /* Define a duração padrão da animação */
     transition: opacity 0.9s cubic-bezier(0.17, 0.55, 0.55, 1), 
                 transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1);
     opacity: 0;
-    transform: translateY(20px); /* Posição inicial: 20px abaixo do destino final */
+    transform: translateY(20px);
 }
 
-/* --- ESTADO VISÍVEL (Animação Completa) --- */
 .scroll-reveal.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
 
-/* --- Variações de Animação (Opcional) --- */
-
-/* 1. FADE IN Simples (Apenas aparece) */
 .scroll-reveal.fade-in {
     transform: none;
 }
@@ -27,17 +20,14 @@
     opacity: 1;
 }
 
-/* 2. FADE UP (Surgir de baixo) - É o padrão */
 .scroll-reveal.fade-up {
     transform: translateY(30px);
 }
 
-/* 3. SLIDE IN LEFT (Surgir da esquerda) */
 .scroll-reveal.slide-left {
     transform: translateX(-50px);
 }
 
-/* 4. SLIDE IN RIGHT (Surgir da direita) */
 .scroll-reveal.slide-right {
     transform: translateX(50px);
 }

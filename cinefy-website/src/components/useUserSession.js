@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-
-// Função auxiliar para ler o usuário persistido (nome, status, etc.)
 const getStoredUser = () => {
     try {
         const storedData = localStorage.getItem('user_session');
@@ -13,7 +11,7 @@ const getStoredUser = () => {
     return null;
 };
 
-// [NOVO] Funções para ler token e role do localStorage
+//  ler token e role do localStorage
 const getStoredToken = () => {
     return localStorage.getItem('token');
 };
@@ -21,9 +19,7 @@ const getStoredToken = () => {
 const getStoredRole = () => {
     return localStorage.getItem('role');
 };
-/**
- * Hook que gerencia o estado e persistência da sessão do usuário.
- */
+
 export const useUserSession = () => {
     const [user, setUser] = useState(getStoredUser());
     const [token, setToken] = useState(getStoredToken());
@@ -31,7 +27,7 @@ export const useUserSession = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Inicialização rápida: assume que se o localStorage foi lido, está pronto.
+        //assume que se o localStorage foi lido
         setUser(getStoredUser());
         setToken(getStoredToken());
         setRole(getStoredRole());
@@ -39,8 +35,7 @@ export const useUserSession = () => {
     }, []);
 
     /**
-     * Chamado pelo componente de Login após o sucesso do POST /login.
-     * @param {object} userDataFromApi - Dados retornados do back-end (deve conter user_name e user_type).
+     * @param {object} userDataFromApi
      */
     const loginUser = (userDataFromApi) => {
         const fullUserObject = {
@@ -55,35 +50,34 @@ export const useUserSession = () => {
         setToken(userDataFromApi.token);
         setRole(userDataFromApi.user_type);
 
-        // 1. Salva a sessão para a UI (como já fazia)
         localStorage.setItem('user_session', JSON.stringify(fullUserObject));
         localStorage.setItem('role', userDataFromApi.user_type);
         localStorage.setItem('token', userDataFromApi.token);
     };
 
     /**
-     * Limpa o estado e o localStorage para deslogar.
+     * limpa o estado e o localStorage para deslogar.
      */
     const logoutUser = () => {
-        // [ADICIONADO] Limpa os estados de token e role
+        //limpa os estados de token e role
         setUser(null);
         setToken(null);
         setRole(null);
 
-        // Limpa o localStorage (seu código para isso já estava correto)
+        // limpa o localStorage 
         localStorage.removeItem('user_session');
         localStorage.removeItem('token');
         localStorage.removeItem('role');
     };
-  const isLoggedIn = !!user && !!token; // Precisa de AMBOS para estar logado
+  const isLoggedIn = !!user && !!token; // precisa dos dois para estar logado
   const isAdmin = isLoggedIn && role === 'admin';
 
     return { 
         user, 
-        token,       // <-- Faltava isso
-        role,        // <-- Faltava isso
-        isLoggedIn,  // <-- Lógica corrigida
-        isAdmin,     // <-- Faltava isso
+        token,       
+        role,       
+        isLoggedIn,
+        isAdmin,   
         isLoading, 
         loginUser, 
         logoutUser  

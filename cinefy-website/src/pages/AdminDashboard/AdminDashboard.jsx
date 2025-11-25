@@ -187,8 +187,6 @@ const AdminDashboard = () => {
   return (
     <div className="dashboardContainer">
       <MenuLateral />
-
-      {/* NOVA ÁREA PRINCIPAL EM COLUNA */}
       <div className="dashboardAreaPrincipal">
         <NavbarCentralizada />
 

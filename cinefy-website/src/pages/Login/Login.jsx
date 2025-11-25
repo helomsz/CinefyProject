@@ -33,10 +33,9 @@ function LoginPage() {
     setIsSubmitting(true);
     setErrorMessage(null);
 
-    // Mapeando dados para o formato que o Backend (Python) espera
     const loginDataParaBackend = {
-      email: dadosLogin.email, // Backend espera 'username'
-      senha: dadosLogin.senha, // Backend espera 'password'
+      email: dadosLogin.email, 
+      senha: dadosLogin.senha,
     };
 
     try {
@@ -55,13 +54,9 @@ function LoginPage() {
             const { token, role } = result;
 
             if (token) {
-                // 🚨 CORREÇÃO CRÍTICA: SALVANDO O TOKEN PARA USO EM REQUISIÇÕES
-                // O EditarFilme.jsx buscará esta chave
                 localStorage.setItem('token', token);
-                // Opcional, mas útil: Salvar o papel para checagens de permissão
-                localStorage.setItem('role', role);
 
-                // Chama a função de contexto para atualizar o estado da sessão (user_session)
+                localStorage.setItem('role', role);
                 loginUser(result); 
                 
                 navigate("/");

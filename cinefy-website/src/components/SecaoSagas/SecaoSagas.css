@@ -29,7 +29,7 @@
     text-decoration: none; 
 }
 
-/* Imagem (A Base) */
+
 .imagemSaga {
     width: 100%;
     height: 100%;
@@ -46,7 +46,7 @@
     width: 100%;
     padding: 15px 20px;
     color: #ffffff;
-    z-index: 10; /* Fica visível EM CIMA */
+    z-index: 10;
 
 }
 

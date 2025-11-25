@@ -1,4 +1,3 @@
-/* SecaoContinueAssistindo.css */
 
 .secaoConteudoCatalogo {
     width: 100%;
@@ -7,7 +6,7 @@
 }
 
 /* ---------------------------------------------------- */
-/* CABEÇALHO (Header) */
+/* CABEÇALHO 
 /* ---------------------------------------------------- */
 
 .secaoHeadercatalogo {
@@ -25,21 +24,17 @@
 }
 
 /* ---------------------------------------------------- */
-/* LISTA DE CARDS (Layout Horizontal) */
+/* LISTA DE CARDS 
 /* ---------------------------------------------------- */
 
 .listaConteudoCatalogo {
     display: flex;
     gap: 35px;
-    
-    /* Adiciona padding horizontal para alinhar o primeiro card com o título e dar espaço para o menu lateral */
     padding: 0 40px 0 80px; 
-    
-    /* Rolagem e esconder barra mantidos */
     overflow-x: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    padding-bottom: 20px; /* Garante que o scrollbar não esconda o conteúdo */
+    padding-bottom: 20px; 
 }
 
 .listaConteudo::-webkit-scrollbar {

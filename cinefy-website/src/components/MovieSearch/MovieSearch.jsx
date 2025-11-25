@@ -4,7 +4,6 @@ import './MovieSearch.css';
 
 const API_URL = "http://localhost:8000"; 
 
-// HOOK de debounce
 const useDebounce = (value, delay) => {
     const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -27,11 +26,10 @@ function MovieSearch() {
     const [isOpen, setIsOpen] = useState(false);
 
     const searchRef = useRef(null);
-    const abortRef = useRef(null); // ← controlador para abortar buscas antigas
+    const abortRef = useRef(null); 
 
     const debouncedSearchTerm = useDebounce(termoPesquisa, 300);
 
-    // Fecha o dropdown quando clicar fora
     useEffect(() => {
         function handleClickOutside(event) {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -44,7 +42,6 @@ function MovieSearch() {
 
     }, []);
 
-    // Faz a busca quando o termo debounced mudar
     useEffect(() => {
         if (debouncedSearchTerm.length > 1) {
             fetchMovies(debouncedSearchTerm);
@@ -57,7 +54,6 @@ function MovieSearch() {
             setIsOpen(true);
         }
 
-        // 🔥 Cancela requisição se o termo mudar ou se o componente desmontar
         return () => {
             if (abortRef.current) {
                 abortRef.current.abort();
@@ -66,10 +62,8 @@ function MovieSearch() {
 
     }, [debouncedSearchTerm]);
 
-    // 🔥 Função corrigida de fetch com AbortController
     const fetchMovies = async (query) => {
 
-        // Se já existir uma requisição anterior → cancela
         if (abortRef.current) {
             abortRef.current.abort();
         }
@@ -94,7 +88,6 @@ function MovieSearch() {
 
         } catch (error) {
             if (error.name === "AbortError") {
-                // Cancelamento normal — não é erro
                 return;
             }
 

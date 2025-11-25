@@ -11,14 +11,11 @@ function FilmeCardCatalogo({ titulo, genero, posterCapa, onClick}) {
     try {
       const favs = JSON.parse(localStorage.getItem("favoritos") || "[]");
 
-      // filtra apenas objetos válidos que tenham título
       const validos = Array.isArray(favs)
         ? favs.filter((f) => f && typeof f === "object" && f.titulo)
         : [];
 
       setFavoritado(validos.some((f) => f.titulo === titulo));
-
-      // salva de volta os válidos (corrige o localStorage)
       localStorage.setItem("favoritos", JSON.stringify(validos));
     } catch (e) {
       console.error("Erro ao ler favoritos:", e);
@@ -58,7 +55,6 @@ function FilmeCardCatalogo({ titulo, genero, posterCapa, onClick}) {
             />
           </button>
         </div>
-        {/* Container para o Botão de Play */}
         <div className="playButtonContainerTop">
           <button className="botaoPlayTop">
             <FaPlay className="iconePlay" fill="white" />

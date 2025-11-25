@@ -40,7 +40,6 @@
     color: #ffffff; 
 }
 .aut-item:hover {
-    /* 3. Ajuste o hover para um tom escuro que contraste */
     background: #4f6b8a; 
 }
 
@@ -54,7 +53,6 @@
 .aut-add-new {
     padding: 12px;
     cursor: pointer;
-    /* 4. Ajuste a cor do botão 'Criar Novo' */
     background: #3c546b; 
     color: #ffffff;
     border-bottom: 1px solid #4f6b8a;

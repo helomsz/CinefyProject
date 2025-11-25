@@ -40,9 +40,6 @@ const SecaoCarrosselRecomendacoes = ({ filmes = [], tituloSecao = "Baseado no qu
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-
-    // NOVO: Adiciona um pequeno atraso para garantir que as imagens carreguem
-    // e o browser calcule corretamente o 'scrollWidth' total.
     const delayId = setTimeout(() => {
         updateScrollButtons();
     }, 100); 
@@ -50,16 +47,15 @@ const SecaoCarrosselRecomendacoes = ({ filmes = [], tituloSecao = "Baseado no qu
     container.addEventListener('scroll', updateScrollButtons);
     window.addEventListener('resize', updateScrollButtons);
 
-    // O setTimeout original pode ser mantido
     const timeoutId = setTimeout(updateScrollButtons, 0);
 
     return () => {
-      clearTimeout(delayId); // Limpa o novo timeout
+      clearTimeout(delayId); 
       clearTimeout(timeoutId);
       container.removeEventListener('scroll', updateScrollButtons);
       window.removeEventListener('resize', updateScrollButtons);
     };
-  }, [filmesExibidos]); // Depende dos filmes exibidos
+  }, [filmesExibidos]);
 
   return (
     <section className="secao-carrossel-favoritos-wrapper">
@@ -71,7 +67,7 @@ const SecaoCarrosselRecomendacoes = ({ filmes = [], tituloSecao = "Baseado no qu
             className={`carrossel-seta esquerda ${canScrollLeft ? 'ativo' : 'inativo'}`}
             aria-label="Rolar para a esquerda"
             onClick={() => scroll('left')}
-            disabled={!canScrollLeft} // Desativa o botão se não puder rolar
+            disabled={!canScrollLeft} 
           >
             <ChevronLeft size={20} />
           </button>
@@ -79,7 +75,7 @@ const SecaoCarrosselRecomendacoes = ({ filmes = [], tituloSecao = "Baseado no qu
             className={`carrossel-seta direita ${canScrollRight ? 'ativo' : 'inativo'}`}
             aria-label="Rolar para a direita"
             onClick={() => scroll('right')}
-            disabled={!canScrollRight} // Desativa o botão se não puder rolar
+            disabled={!canScrollRight} 
           >
             <ChevronRight size={20} />
           </button>

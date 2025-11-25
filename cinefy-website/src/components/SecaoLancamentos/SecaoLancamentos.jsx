@@ -1,4 +1,4 @@
-// SecaoLancamentos.jsx
+
 import React from "react";
 import CardFilmeVertical from "../CardFilmeVertical/CardFilmeVertical.jsx";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +31,7 @@ function SecaoLancamentos({
             posterCapa={filme.poster}
             toggleFavorito={toggleFavorito}
             favoritos={favoritos}
-            onClick={() => navigate(`/detalhes/${filme.id}`)} // Passa a função de navegação
+            onClick={() => navigate(`/detalhes/${filme.id}`)} 
           />
         ))}
       </div>

@@ -11,14 +11,12 @@ function CardCatalogo({ filme }) {
                 '--poster-capa': `url(${poster_capa})`,
             }}
         >
-            {/* Selo de Popularidade */}
             {popular && (
                 <div className="cardCatalogoSelo">
                     POPULAR
                 </div>
             )}
 
-            {/* Conteúdo */}
             <div className="cardCatalogoConteudo">
                 <h2 className="cardCatalogoTitulo">{titulo}</h2>
                 <p className="cardCatalogoSubtitulo">{subtitulo}</p>

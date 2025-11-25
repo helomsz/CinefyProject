@@ -14,21 +14,21 @@
 
 .footerContainer {
     display: flex;
-    justify-content: space-between; /* Espaçamento entre as colunas */
+    justify-content: space-between; 
     align-items: flex-start;
     padding-bottom: 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória sutil */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Estilo das Colunas */
+
 .footerColuna {
-    flex-grow: 1; /* Permite que as colunas cresçam */
+    flex-grow: 1; 
     max-width: 300px; 
 }
 
-/* Coluna da Logo e Descrição */
+
 .infoColuna {
-    flex-grow: 2; /* Faz a primeira coluna ser mais larga */
+    flex-grow: 2; 
     max-width: 400px;
 }
 
@@ -45,11 +45,9 @@
 }
 
 .logoIcon {
-    width: 30px; /* Ajuste o tamanho do ícone da logo se usar uma imagem */
+    width: 30px; 
     height: 30px;
     margin-right: 8px;
-    /* Exemplo: Se o ícone tiver a cor verde */
-    /* filter: drop-shadow(0 0 5px #00a896); */ 
 }
 
 .descricaoFooter {
@@ -58,7 +56,7 @@
     line-height: 1.6;
 }
 
-/* Títulos das Colunas (Explore e Suporte) */
+
 .tituloColuna {
     font-size: 1.2rem;
     font-weight: bold;
@@ -66,7 +64,7 @@
     color: #ffffff;
 }
 
-/* Lista de Links */
+
 .listaLinks {
     list-style: none;
     padding: 0;
@@ -85,10 +83,9 @@
 }
 
 .listaLinks a:hover {
-    color: #00B9AE; /* Cor de destaque (magenta) ao passar o mouse */
+    color: #00B9AE; 
 }
 
-/* Linha de Rodapé Inferior (Design Info e Mídias Sociais) */
 .footerBottom {
     display: flex;
     justify-content: space-between;
@@ -125,5 +122,5 @@
 }
 
 .socialIcons a:hover {
-    color: #00B9AE; /* Cor de destaque ao passar o mouse */
+    color: #00B9AE;
 }

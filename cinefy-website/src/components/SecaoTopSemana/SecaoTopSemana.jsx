@@ -3,15 +3,12 @@ import CardTopSemana from '../CardTopSemana/CardTopSemana';
 import { useNavigate } from "react-router-dom";
 import './SecaoTopSemana.css'; 
 /**
- * Componente dedicado à seção de Lançamentos, utilizando o layout de cards verticais.
- * Esta seção é ideal para exibir N cards em um grid fixo de 6 colunas.
- * * @param {string} tituloSecao - O título da seção (ex: "Lançamentos").
- * @param {array} listaFilmes - Lista dos objetos de filmes a serem exibidos.
+ * * @param {string} tituloSecao 
+ * @param {array} listaFilmes 
  */
 function SecaoTopSemana({ tituloSecao, listaFilmes = [], favoritos, toggleFavorito }) { 
  
     const navigate = useNavigate();
-    // Se a lista de filmes for vazia, não renderiza a seção
     if (listaFilmes.length === 0) {
         return null;
     }

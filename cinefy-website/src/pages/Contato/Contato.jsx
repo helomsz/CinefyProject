@@ -100,8 +100,6 @@ const Contato = () => {
         </header>
 
         <main className="contact-main">
-
-          {/* Coluna 1: Informações de Contato */}
           <section className="contact-info-section">
             <div className="info-header-content"> 
                 <span className="info-contact-tag">
@@ -139,8 +137,6 @@ const Contato = () => {
                 ))}
             </div>
           </section>
-
-          {/* Coluna 2: Formulário de Contato */}
           <section className="contact-form-section">
             <form onSubmit={handleSubmit} className="contact-form">
               
@@ -183,10 +179,8 @@ const Contato = () => {
                 ></textarea>
               </div>
 
-              {/* Mensagens de Status */}
               {getStatusMessage()}
 
-              {/* Botão de Envio */}
               <button
                 type="submit"
                 disabled={status === 'loading'}
@@ -207,8 +201,6 @@ const Contato = () => {
             </form>
           </section>
         </main>
-        
-        {/* Elementos para o efeito de fundo (bolhas de cor) */}
         <div className="bg-blur-effect top-left"></div>
         <div className="bg-blur-effect bottom-right"></div>
       </div>

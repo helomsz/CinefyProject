@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";  // Importar o useNavigate corretamente
+import { useNavigate } from "react-router-dom";
 import CardFilme from '../CardFilme/CardFilme.jsx'; 
 import CardFilmeVertical from '../CardFilmeVertical/CardFilmeVertical.jsx'; 
 import './SecaoFilmes.css'; 
@@ -7,9 +7,7 @@ import { FaChevronRight } from 'react-icons/fa';
 import ScrollRevealContainer from '../ScrollRevealContainer/ScrollRevealContainer.jsx';
 
 function SecaoFilmes({ tituloSecao, listaFilmes = [] }) {
-    const navigate = useNavigate(); // Chame o useNavigate dentro do componente
-
-    // Verifique se a lista de filmes está vazia
+    const navigate = useNavigate(); 
     if (listaFilmes.length === 0) {
         return null;
     }
@@ -27,7 +25,7 @@ function SecaoFilmes({ tituloSecao, listaFilmes = [] }) {
             <div className="containerCards">
                 {listaFilmes.map((filme) => (
                     <CardFilme
-                        key={filme.id} // Adiciona a chave única para cada card
+                        key={filme.id} 
                         titulo={filme.titulo}
                         genero={filme.generos || 'Gênero Desconhecido'} 
                         nota={filme.avaliacao_media || 0.0} 

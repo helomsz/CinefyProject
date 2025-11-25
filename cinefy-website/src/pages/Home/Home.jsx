@@ -92,12 +92,10 @@ function HomePage() {
       <HeroSection />
 
       <div className="HomePageContent">
-        {/* Em Alta */}
         {filmesEmAlta.length > 0 && (
           <SecaoFilmes tituloSecao="Em Alta" listaFilmes={filmesEmAlta} />
         )}
 
-        {/* Recomendados */}
         {filmesRecomendados.length > 0 && (
           <SecaoFilmes
             tituloSecao="Recomendados"
@@ -105,7 +103,6 @@ function HomePage() {
           />
         )}
 
-        {/* Lançamentos */}
         {Lancamentos.length > 0 && (
           <SecaoLancamentos
             tituloSecao="Lançamentos"
@@ -113,16 +110,13 @@ function HomePage() {
           />
         )}
 
-        {/* Seções fixas */}
         <SecaoPlanos />
         <SecaoSagas />
 
-        {/* Top da Semana */}
         {TopSemana.length > 0 && (
           <SecaoTopSemana tituloSecao="Top da Semana" listaFilmes={TopSemana} />
         )}
 
-        {/* Fallback quando não há filmes */}
         {filmes.length === 0 && !carregando && (
           <p className="p-10 text-gray-400">
             Nenhum filme encontrado no banco de dados.

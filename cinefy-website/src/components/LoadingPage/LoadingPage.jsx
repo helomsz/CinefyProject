@@ -7,7 +7,6 @@ function LoadingPage() {
   const [fadeIn, setFadeIn] = useState(false);
 
   useEffect(() => {
-    // Ativa o fade-in logo após montar o componente
     const timer = setTimeout(() => setFadeIn(true), 100);
     return () => clearTimeout(timer);
   }, []);
@@ -15,13 +14,11 @@ function LoadingPage() {
   return (
     <div className={`loadingPageContainer ${fadeIn ? 'fadeIn' : ''}`}>
       <div className="loadingContent">
-        {/* 🔹 Logo do site */}
         <img src={logoCinefy} alt="Logo Cinefy" className="loadingLogoImg" />
 
         <h1 className="loadingLogo">CINE<i>FY</i></h1>
         <p className="loadingMessage">Carregando a experiência do cinema...</p>
 
-        {/* Spinner Animado */}
         <div className="loadingSpinnerWrapper">
           <FaSpinner className="loadingSpinner" />
         </div>

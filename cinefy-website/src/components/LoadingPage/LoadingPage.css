@@ -1,12 +1,12 @@
 /* ---------------------------------- */
-/* Container Principal (Tela Cheia) */
+/* Container Principal   */
 /* ---------------------------------- */
 .loadingPageContainer {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #0f111a; /* tom mais profundo e cinematográfico */
+  background-color: #0f111a;
   z-index: 99999;
 
   display: flex;
@@ -15,16 +15,14 @@
   color: #e8e8e8;
   text-align: center;
   opacity: 0;
-  transition: opacity 1.2s ease-in-out; /* fade-in suave */
+  transition: opacity 1.2s ease-in-out; 
 }
 
 .loadingPageContainer.fadeIn {
   opacity: 1;
 }
 
-/* ---------------------------------- */
-/* Conteúdo */
-/* ---------------------------------- */
+
 .loadingContent {
   display: flex;
   flex-direction: column;
@@ -44,9 +42,6 @@
   }
 }
 
-/* ---------------------------------- */
-/* Logo (Imagem e Texto) */
-/* ---------------------------------- */
 .loadingLogoImg {
   width: 90px;
   height: 90px;
@@ -73,9 +68,7 @@
     font-weight: 500;
 }
 
-/* ---------------------------------- */
-/* Texto secundário */
-/* ---------------------------------- */
+
 .loadingMessage {
   font-size: 1.6em;
   color: #a0a0a0;

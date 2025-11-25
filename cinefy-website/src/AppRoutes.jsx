@@ -1,8 +1,7 @@
-// src/AppRoutes.jsx (Novo arquivo)
+
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
-// Importe todos os seus componentes de página
 import RegistroPage from './pages/Registro/RegistroPage';
 import Login from './pages/Login/Login';
 import HomePage from './pages/Home/Home';

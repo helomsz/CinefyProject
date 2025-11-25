@@ -10,7 +10,6 @@
     --espacoEntreNavEUser: 25px;
 }
 
-/* O container que ocupa a área principal, à direita do menu lateral */
 .navbarContainer {
     position: fixed;
     top: 20px; 
@@ -32,8 +31,6 @@
     transform: translateX(100px);
 }
 
-
-/* NAV BAR CENTRAL */
 .navbarCentral {
     background-color: var(--corNavFundo);
     border-radius: var(--bordaRaioPill);
@@ -48,33 +45,29 @@
 }
 
 .navbarCentral.pesquisaAberta {
-    /* ESTADO ABERTO: Estica para o máximo permitido */
     max-width: 800px; 
     width: 100%; 
     padding: 5px 5px; 
 }
-/* --- NOVO: Espaçamento Reservado (Spacer) --- */
 .profile-spacer {
     width: var(--larguraWidgetPerfil); 
-    height: 1px; /* Apenas para ser visível no Flexbox */
+    height: 1px;
     flex-shrink: 0;
 }
 
 .profile-spacer-empty {
-    /* Se o widget não aparecer, o spacer é zero, permitindo a Nav ir para a esquerda */
     width: 0;
 }
 
-/* --- WIDGET DE PERFIL (Para garantir a largura) --- */
-/* Certifique-se de que o UserProfileWidget.css ou as regras de perfil definam a largura: */
+
 .user-profile-widget {
     width: var(--larguraWidgetPerfil); 
-    display: flex; /* Garante que o sino e o cartão de perfil se alinhem */
-    justify-content: flex-end; /* Alinha o conteúdo (sino e perfil) à direita */
+    display: flex;
+    justify-content: flex-end; 
     flex-shrink: 0;
 }
 
-/* --- 1. Links de Navegação --- */
+
 .listaLinksNav {
     list-style: none;
     padding: 0;
@@ -115,17 +108,12 @@
 
 .linkNav.ativo {
     opacity: 1;
-    color: #fff; /* texto branco */
-    font-weight: 600; /* mais forte */
+    color: #fff;
+    font-weight: 600;
     position: relative;
     transition: color 0.3s ease, font-weight 0.3s ease;
 }
 
-
-
-
-
-/* --- 2. Área de Pesquisa e Botão --- */
 .areaPesquisa {
     display: flex;
     align-items: center;
@@ -136,12 +124,11 @@
 }
 
 .areaPesquisa.aberta {
-    /* ESTADO ABERTO: Ocupa todo o espaço restante */
     flex-grow: 1; 
     width: auto; 
 }
 
-/* Campo de input */
+
 .inputPesquisa {
     border: none;
     background: transparent;
@@ -152,14 +139,13 @@
     width: 100%; 
     outline: none;
     opacity: 0;
-    transition: opacity 0.1s linear 0.2s; /* Atrasa a transição de opacidade para aparecer depois que a barra começa a abrir */
+    transition: opacity 0.1s linear 0.2s;
 }
-/* Quando o input está aberto, ele se torna visível */
 .areaPesquisa.aberta .inputPesquisa {
     opacity: 1;
 }
 
-/* Botão de Pesquisa (Lupa) */
+
 .botaoPesquisa {
     background: linear-gradient(to bottom right, var(--corGradienteInicio), var(--corGradienteFim));
     border: none;
@@ -186,14 +172,10 @@
 }
 
 .botao-login-nav {
-    /* Garante que o botão fique na mesma linha que o restante do header */
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    /* Use as dimensões que se encaixam no layout */
     height: 48px; 
-    /* Adicione estilos para remover a decoração do link <a> */
     text-decoration: none;
 }
 
@@ -213,10 +195,9 @@
 }
 
 .navbar-admin-button:hover {
-  background-color: rgba(255, 255, 255, 0.15); /* Destaque leve ao passar o mouse */
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Ajuste para o 'botao-login-nav' (se necessário) */
 .botao-login-nav {
   text-decoration: none;
 }

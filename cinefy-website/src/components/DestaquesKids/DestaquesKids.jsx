@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Star, ChevronLeft, ChevronRight, X } from 'lucide-react'; // Importamos 'X' para o botão de fechar
+import { Play, Star, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import './DestaquesKids.css'; 
 
 import ElementosImage from '../../assets/cinefyKids/elementoPoster.png'; 
@@ -8,8 +8,6 @@ import KungFu from '../../assets/cinefyKids/kungfuPoster.png';
 import Elementosbg from '../../assets/cinefyKids/elementosbg.png'; 
 import Zootopiabg from '../../assets/cinefyKids/zootopiabg.png'; 
 import KungFubg from '../../assets/cinefyKids/kunfubg.png'; 
-// Importe as imagens conforme definido pelo usuário
-// 🔑 Adicionei a URL do trailer, que deve vir do seu backend
 const filmesDestaque = [
     { 
         id: 1, 
@@ -46,7 +44,6 @@ const filmesDestaque = [
     }
 ];
 
-// Componente para renderizar as estrelas de avaliação
 const RatingStars = ({ count }) => {
     return (
         <div className="rating-stars">
@@ -62,7 +59,6 @@ const RatingStars = ({ count }) => {
     );
 }
 
-// 🍿 NOVO COMPONENTE: Modal para exibir o Trailer (Usando classes CSS para estilo)
 const TrailerModal = ({ isOpen, trailerUrl, onClose, title, year }) => {
     if (!isOpen || !trailerUrl) return null;
 
@@ -70,9 +66,8 @@ const TrailerModal = ({ isOpen, trailerUrl, onClose, title, year }) => {
         <div className="trailer-modal-overlay" onClick={onClose}>
             <div 
                 className="trailer-modal-content"
-                onClick={e => e.stopPropagation()} // Impede que o clique no modal feche ele
+                onClick={e => e.stopPropagation()}
             >
-                {/* Cabeçalho do Modal no estilo da imagem */}
                 <div className="trailer-modal-header">
                     <h4 className="trailer-modal-title">Trailer | {title} | {year}</h4>
                     <button 
@@ -84,7 +79,6 @@ const TrailerModal = ({ isOpen, trailerUrl, onClose, title, year }) => {
                     </button>
                 </div>
 
-                {/* Container do Vídeo */}
                 <div className="trailer-modal-iframe-container">
                     <iframe 
                         src={`${trailerUrl}?autoplay=1`}
@@ -101,14 +95,12 @@ const TrailerModal = ({ isOpen, trailerUrl, onClose, title, year }) => {
 
 const DestaquesKids = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [fadeBg, setFadeBg] = useState(false); // controla o fade do fundo
-    // 🔑 NOVOS ESTADOS: Gerencia o modal e a URL do trailer
+    const [fadeBg, setFadeBg] = useState(false);
     const [showTrailerModal, setShowTrailerModal] = useState(false);
-    const [currentTrailer, setCurrentTrailer] = useState(null); // Armazena o objeto filme para obter title/year/trailer
+    const [currentTrailer, setCurrentTrailer] = useState(null); 
 
     const currentFilme = filmesDestaque[currentIndex];
 
-    // 🔑 NOVA FUNÇÃO: Abre o modal e define o trailer a ser exibido
     const handleTrailerClick = (filme) => {
         if (filme.trailer) {
             setCurrentTrailer(filme);
@@ -119,13 +111,11 @@ const DestaquesKids = () => {
     };
     
     const changeMovie = (newIndex) => {
-        // ativa fade-out
         setFadeBg(true);
-        // espera o fade terminar, troca o filme e aplica fade-in
         setTimeout(() => {
             setCurrentIndex(newIndex);
             setFadeBg(false);
-        }, 400); // duração da transição
+        }, 400); 
     };
 
     const nextMovie = () => {
@@ -143,13 +133,11 @@ const DestaquesKids = () => {
             <div className="destaques-list-container">
                 <div className="destaque-card-wrapper">
                     
-                    {/* Imagem de fundo com transição suave */}
                     <div 
                         className={`card-background-art ${fadeBg ? 'fade' : ''}`} 
                         style={{ backgroundImage: `url(${currentFilme.bgImage})` }}
                     ></div>
 
-                    {/* Conteúdo fixo */}
                     <div className="destaque-card-content">
                         <div className="card-poster-container">
                             <img 
@@ -165,7 +153,6 @@ const DestaquesKids = () => {
                             <p className="card-runtime">{currentFilme.duration} - {currentFilme.year}</p>
                             <RatingStars count={currentFilme.rating} />
                             
-                            {/* 🔑 NOVO: Chama a função com o objeto filme atual */}
                             <button 
                                 className="trailer-button"
                                 onClick={() => handleTrailerClick(currentFilme)}
@@ -176,7 +163,6 @@ const DestaquesKids = () => {
                         </div>
                     </div>
 
-                    {/* Setas */}
                     <div className="slider-arrows">
                         <button className="arrow-button left" onClick={prevMovie}>
                             <ChevronLeft size={30} />
@@ -187,8 +173,7 @@ const DestaquesKids = () => {
                     </div>
                 </div>
             </div>
-            
-            {/* 🍿 NOVO: Componente do Modal do Trailer */}
+
             <TrailerModal 
                 isOpen={showTrailerModal} 
                 trailerUrl={currentTrailer?.trailer} 

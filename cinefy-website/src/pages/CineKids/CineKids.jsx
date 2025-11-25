@@ -18,7 +18,6 @@ const CineKids = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // ⭐ REFERÊNCIA PARA SCROLL ATÉ O CATÁLOGO
   const catalogoRef = useRef(null);
 
   useEffect(() => {
@@ -51,7 +50,6 @@ const CineKids = () => {
     fetchFilmes();
   }, []);
 
-  // ⭐ FILTRO + SCROLL SUAVE
   const handleFilterByProducer = (producer) => {
 
     if (producer === filtroAtivo) {
@@ -67,7 +65,6 @@ const CineKids = () => {
       setFilmesExibidos(filmesFiltrados);
     }
 
-    // ⭐ DESCE A TELA ATÉ O CATÁLOGO
     setTimeout(() => {
       if (catalogoRef.current) {
         catalogoRef.current.scrollIntoView({
@@ -98,7 +95,6 @@ const CineKids = () => {
           <SecaoFiltroInfantil onFiltrar={setFilmesExibidos} />
         </div>
 
-        {/* ⭐ CATÁLOGO COM REF REAL */}
         {!isLoading && !error && (
           <SecaoCatalogoKids 
             filmesFiltrados={filmesExibidos}

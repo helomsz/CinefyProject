@@ -29,7 +29,7 @@
 }
 
 .unread-badge {
-    background-color: var(--corGradienteFim, #107c6f); /* Use sua cor ciano/verde */
+    background-color: var(--corGradienteFim, #107c6f); 
     color: #ffffff;
     padding: 3px 8px;
     border-radius: 15px;

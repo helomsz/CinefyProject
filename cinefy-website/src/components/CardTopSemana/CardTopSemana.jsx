@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./CardTopSemana.css";
 import { FaRegHeart, FaHeart, FaPlay } from "react-icons/fa";
 
-function CardTopSemana({ titulo, genero, posterCapa, onClick }) { // <-- adicionado onClick
+function CardTopSemana({ titulo, genero, posterCapa, onClick }) { 
   const imagemCaminho = posterCapa || "assets/images/placeholder.png";
   const urlImagem = `http://localhost:8000/${imagemCaminho}`;
 
@@ -19,7 +19,7 @@ function CardTopSemana({ titulo, genero, posterCapa, onClick }) { // <-- adicion
 
       setFavoritado(validos.some((f) => f.titulo === titulo));
 
-      // salva de volta os válidos (corrige o localStorage)
+      // salva de volta os válidos
       localStorage.setItem("favoritos", JSON.stringify(validos));
     } catch (e) {
       console.error("Erro ao ler favoritos:", e);
@@ -27,9 +27,8 @@ function CardTopSemana({ titulo, genero, posterCapa, onClick }) { // <-- adicion
     }
   }, [titulo]);
 
-  // ❤️ Alterna favorito + salva/remover do localStorage
   const toggleFavorito = (e) => {
-    e.stopPropagation(); // <-- impede clique do card
+    e.stopPropagation(); 
     const favs = JSON.parse(localStorage.getItem("favoritos") || "[]");
 
     if (favoritado) {
@@ -46,10 +45,7 @@ function CardTopSemana({ titulo, genero, posterCapa, onClick }) { // <-- adicion
   };
 
   const handleCardClick = (e) => {
-    // 1. Log para verificar se o clique chegou no <article>
     console.log(`[CLICK DEBUG] Card Clicado: ${titulo}`);
-
-    // 2. Chame a função de navegação, se ela existir
     if (typeof onClick === 'function') {
       onClick(e);
     } else {
@@ -72,12 +68,9 @@ function CardTopSemana({ titulo, genero, posterCapa, onClick }) { // <-- adicion
             />
           </button>
         </div>
-
-        {/* Container para o Botão de Play */}
         <div className="playButtonContainerTop">
           <button
             className="botaoPlayTop"
-            // CORREÇÃO CRÍTICA NO BOTÃO DE PLAY
             onClick={(e) => {
               e.stopPropagation();
               console.log(`[CLICK DEBUG] Clicou no Play de ${titulo}.`);

@@ -1,4 +1,4 @@
-/* VARIÁVEIS DE COR E TEMA */
+
 :root {
     --cor-fundo-escuro: #12161F;
     --cor-fundo-claro: #181c26;
@@ -140,12 +140,12 @@
     margin-left: 15px;
 }
 
-/* REGRA 1: Estiliza APENAS os inputs simples (Nome e CPF) */
+
 .grupo-formulario-pagamento input {
     width: 100%;
     padding: 12px 15px;
     background-color: #242a38;
-    border: 1px solid var(--cor-borda-input); /* A borda será aplicada aqui */
+    border: 1px solid var(--cor-borda-input); 
     border-radius: 8px;
     color: var(--cor-texto-claro);
     font-size: 1em;

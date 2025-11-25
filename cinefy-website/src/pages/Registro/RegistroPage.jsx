@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-// 1. IMPORTAR useNavigate
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import './RegistroPage.css'; 
 import BotaoPrimario from '../../components/BotaoPrimario/BotaoPrimario.jsx'; 
 import ImagemCadastro from '../../assets/backgroundLogin/imagemLoginCadastro.png'; 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
-// URL do seu backend Python
+
 const URL_API_REGISTRO = 'http://localhost:8000/registro';
 
 function RegistroPage() {
     const navigate = useNavigate(); 
-    const [searchParams] = useSearchParams(); // Hook para ler parâmetros da URL
+    const [searchParams] = useSearchParams();
     
     const [dadosRegistro, setDadosRegistro] = useState({
         nome: '',
@@ -33,10 +32,9 @@ function RegistroPage() {
                 ...prevDados, 
                 email: emailFromUrl 
             }));
-            // Opcional: Limpar a mensagem de status se o email for pré-preenchido
             setMensagemStatus({ tipo: '', texto: '' });
         }
-    }, [searchParams]); // Depende do searchParams para atualizar se a URL mudar
+    }, [searchParams]); 
 
 
     const handleChange = (event) => {
@@ -79,10 +77,9 @@ function RegistroPage() {
             const resultado = await response.json();
 
             if (response.ok && resultado.status === 'sucesso') {
-                // 3. LOGICA DE REDIRECIONAMENTO
                 setMensagemStatus({ tipo: 'sucesso', texto: 'Cadastro realizado com sucesso! Redirecionando para o Login...' });
                 
-                // Redireciona para a página de login após 2 segundos
+                // redireciona para a página de login após 2 segundos
                 setTimeout(() => {
                     navigate('/login'); 
                 }, 2000); 
@@ -95,7 +92,6 @@ function RegistroPage() {
             console.error('Erro de rede/servidor:', error);
             setMensagemStatus({ tipo: 'erro', texto: 'Falha na comunicação com o servidor. Verifique o console ou se o backend está ativo.' });
         } finally {
-            // O loading só deve ser desativado se não houver sucesso (porque em caso de sucesso ele vai redirecionar)
             if (mensagemStatus.tipo !== 'sucesso') {
                 setIsLoading(false);
             }
@@ -112,7 +108,6 @@ function RegistroPage() {
             <div className="containerRegistro">
                 <div 
                     className="asideGradiente"
-                    // Adicionando evento de clique no "Voltar ao site"
                     onClick={() => navigate('/')} 
                 >
                     <div className="botaoVoltar">
@@ -132,8 +127,6 @@ function RegistroPage() {
                             Já possui uma conta? <a href="/login">Login</a>
                         </p>
                     </div>
-
-                    {/* Exibição da mensagem de Status usando classes de estilo originais */}
                     {mensagemStatus.texto && (
                         <div className={`mensagem-status ${mensagemStatus.tipo}`}>
                             {mensagemStatus.texto}
@@ -141,7 +134,6 @@ function RegistroPage() {
                     )}
 
                     <div className="grupoInputMetade">
-                        {/* NOME */}
                         <label htmlFor="nome" className="label">
                             <span className="title">Nome</span>
                             <input
@@ -156,7 +148,6 @@ function RegistroPage() {
                             />
                         </label>
 
-                        {/* SOBRENOME */}
                         <label htmlFor="sobrenome" className="label">
                             <span className="title">Sobrenome</span>
                             <input
@@ -172,7 +163,7 @@ function RegistroPage() {
                         </label>
                     </div>
 
-                    {/* E-MAIL */}
+
                     <label htmlFor="email" className="label">
                         <span className="title">E-mail</span>
                         <input
@@ -187,7 +178,7 @@ function RegistroPage() {
                         />
                     </label>
 
-                    {/* SENHA */}
+
                     <label htmlFor="senha" className="label">
                         <span className="title">Crie uma senha</span>
                         <div className="inputComIconeCadastro">
@@ -217,7 +208,7 @@ function RegistroPage() {
                         </div>
                     </label>
 
-                    {/* CONFIRMAR SENHA */}
+
                     <label htmlFor="confirmarSenha" className="label">
                         <span className="title">Confirme a senha</span>
                         <div className="inputComIconeCadastro">

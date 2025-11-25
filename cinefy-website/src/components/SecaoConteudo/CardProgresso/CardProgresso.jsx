@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, Clock, X } from 'lucide-react'; // X (ícone de fechar) é usado
+import { Play, Clock, X } from 'lucide-react'; 
 import './CardProgresso.css';
 import Relogio from '../../../assets/icones/MeuRelogio.svg'
 
@@ -17,9 +17,7 @@ function CardProgresso({ filme, onPlayClick }) {
         ? `https://www.youtube.com/embed/${trailer}?autoplay=1&rel=0`
         : null;
 
-    // Função de abertura do modal com a CORREÇÃO:
     const handleOpenModal = (e) => {
-        // CORREÇÃO CRÍTICA: Impede que o clique no botão de Play suba para o wrapper do card
         e.stopPropagation(); 
         
         if (youtubeEmbedUrl) {
@@ -36,15 +34,14 @@ function CardProgresso({ filme, onPlayClick }) {
     return (
         <div 
             className="cardProgressoWrapper" 
-            onClick={() => onPlayClick(filme)} // Clique no card vai para a página do filme
+            onClick={() => onPlayClick(filme)}
         >
             <img 
                 src={urlImagem} 
                 alt={`Capa de ${titulo}`} 
                 className="cardProgressoCapa" 
             />
-            
-            {/* Barra de Progresso */}
+
             <div className="cardProgressoBarraFundo">
                 <div 
                     className="cardProgressoBarraPreenchimento" 
@@ -63,8 +60,7 @@ function CardProgresso({ filme, onPlayClick }) {
                         <span className="cardProgressoTempo">{tempoDisplay}</span>
                     </span>
                 </div>
-                
-                {/* Botão Play: Chama a função que abre o modal sem propagar */}
+
                 <button 
                     className="cardProgressoBotaoPlay" 
                     onClick={handleOpenModal}
@@ -73,7 +69,6 @@ function CardProgresso({ filme, onPlayClick }) {
                 </button>
             </div>
             
-            {/* --- MODAL DO TRAILER --- */}
             {isModalOpen && youtubeEmbedUrl && (
                 <div className="modalOverlay" onClick={handleCloseModal}>
                     <div className="modalContent" onClick={e => e.stopPropagation()}> 

@@ -7,14 +7,14 @@
 
 
 .cinekids-main-content > footer {
-    width: 95%; /* Reduz a largura para que caiba no contêiner */
-    max-width: 1300px; /* Opcional: define uma largura máxima razoável */
-    margin: 30px auto; /* Centraliza horizontalmente e adiciona margem vertical */
-    padding: 30px; /* Adiciona algum padding lateral interno */
+    width: 95%;
+    max-width: 1300px; 
+    margin: 30px auto; 
+    padding: 30px;
     box-sizing: border-box; 
 }
 .cinekids-page .secao-filtro {
-  max-width: 95%;  /* ajuste o valor conforme necessário */
-  margin: 0 auto;  /* centraliza horizontalmente */
-  transform: scale(0.9); /* opcional: reduz o tamanho geral */
+  max-width: 95%;
+  margin: 0 auto;
+  transform: scale(0.9);
 }

@@ -1,9 +1,7 @@
 .searchComponent {
-    /* Mantenha position: relative. Isso ANCORA o dropdown (absolute) */
     position: relative;
-    display: flex; /* Garante que a lupa e o input fiquem lado a lado */
+    display: flex; 
     align-items: center;
-    /* Define uma largura máxima, se preferir que ele não seja muito largo */
     max-width: 300px; 
 }
 
@@ -11,14 +9,14 @@
 .areaPesquisa {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.1); /* Fundo sutil */
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     padding: 0;
     border: 1px solid transparent; 
     transition: background-color 0.2s, border-color 0.2s;
 }
 
-/* 2. Estilo do Input */
+
 .areaPesquisa input {
     flex-grow: 1;
     border: none;
@@ -30,7 +28,7 @@
 }
 
 .areaPesquisa.fechada input {
-    width: 0; /* Largura zero */
+    width: 0;
     padding: 0;
     margin: 0;
     visibility: hidden;
@@ -45,7 +43,7 @@
     transition: width 0.3s ease, visibility 0.3s ease;
 }
 
-/* Estilo do Botão Lupa */
+
 .botaoPesquisa {
     background:linear-gradient(to top , #16736E, #174745);
     border: none;
@@ -54,7 +52,7 @@
     display: flex;
 }
 
-/* --- ESTILO DO DROPDOWN/MODAL (FLUTUANTE) --- */
+
 .dropdownResultados {
     position: absolute;
     top: 115%; 
@@ -68,7 +66,7 @@
     max-height: 300px;
     overflow-y: auto;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
-    padding: 3px 0; /* Espaçamento interno menor */
+    padding: 3px 0;
 }
 .listaFilmesResultados {
     list-style: none;
@@ -95,7 +93,7 @@
 }
 
 .capaMini {
-    width: 37px; /* Capa menor (ajuste conforme o seu design) */
+    width: 37px;
     height: 47px;
     object-fit: cover;
     margin-right: 10px;
@@ -110,15 +108,14 @@
 }
 
 .infoResultado {
-    display: flex; /* Para manter o título e o ano lado a lado */
-    flex-direction: column; /* Faz com que o ano fique embaixo do titulo */
-    /* OU display: flex; align-items: baseline; se quiser na mesma linha. */
+    display: flex; 
+    flex-direction: column;
 }
 
 .tituloResultado {
     font-weight: bold;
     font-size: 1em;
-    color: white; /* Ou sua cor de texto principal */
+    color: white;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -127,6 +124,6 @@
 
 .anoResultado {
     font-size: 0.8em;
-    color: #999; /* Cor mais suave para o ano */
+    color: #999;
     margin-top: 2px;
 }

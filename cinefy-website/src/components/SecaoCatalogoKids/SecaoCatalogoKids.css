@@ -11,17 +11,15 @@
 }
 
 /* ---------------------------------- */
-/* Layout Grid (Grade) */
+/* Layout Grid 
 /* ---------------------------------- */
 .filmesGrid {
     display: grid;
-    /* Colunas responsivas: mín. 200px para o card */
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 30px; /* Espaço entre os cards */
+    gap: 30px;
     padding-top: 20px;
 }
 
-/* Responsividade */
 @media (min-width: 1024px) {
     .filmesGrid {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -35,9 +33,6 @@
     }
 }
 
-/* ---------------------------------- */
-/* Estados de Carregamento e Debug */
-/* ---------------------------------- */
 .loadingState {
     display: flex;
     flex-direction: column;
@@ -55,9 +50,9 @@
     word-break: break-all;
 }
 
-/* Loader Simples */
+
 .loader {
-  border: 4px solid rgba(0, 191, 166, 0.3); /* Cor verde-água (seu tema) */
+  border: 4px solid rgba(0, 191, 166, 0.3); 
   border-radius: 50%;
   border-top: 4px solid #00bfa6; 
   width: 40px;

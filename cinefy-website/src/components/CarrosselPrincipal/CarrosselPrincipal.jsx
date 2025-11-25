@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react'; // Ícones para navegação
-import CardCarrossel from '../CardCarrossel/CardCarrossel'; // O card individual
+import { ChevronLeft, ChevronRight } from 'lucide-react'; 
+import CardCarrossel from '../CardCarrossel/CardCarrossel'; 
 import './CarrosselPrincipal.css';
 import JogosVorazes from '../../assets/carrosselCatalogo/jogosVorazesCarrossel.png'
 import PanteraNegra from '../../assets/carrosselCatalogo/panteraNegraCarrossel.png'
@@ -48,7 +48,7 @@ const mockFilmesCarrossel = [
 
 
 function CarrosselPrincipal() {
-    const [indiceAtivo, setIndiceAtivo] = useState(0); // Começa no segundo filme (índice 1) para ter 2 de cada lado
+    const [indiceAtivo, setIndiceAtivo] = useState(0);
 
     const proximoSlide = () => {
         setIndiceAtivo((prevIndice) => 
@@ -65,8 +65,6 @@ function CarrosselPrincipal() {
     return (
         <div className="carrosselPrincipalContainer">
 
-
-            {/* A área onde os cards serão exibidos */}
             <div className="carrosselAreaCards">
                 {mockFilmesCarrossel.map((filme, index) => {
                     let className = 'cardCarrosselItem';
@@ -74,15 +72,15 @@ function CarrosselPrincipal() {
                     
                     if (index === indiceAtivo) {
                         className += ' ativo';
-                    } else if (diff === 1 || diff === 1 - mockFilmesCarrossel.length) { // Próximo (à direita)
+                    } else if (diff === 1 || diff === 1 - mockFilmesCarrossel.length) {
                         className += ' proximo';
-                    } else if (diff === mockFilmesCarrossel.length - 1 || diff === -1) { // Anterior (à esquerda)
+                    } else if (diff === mockFilmesCarrossel.length - 1 || diff === -1) { 
                         className += ' anterior';
-                    } else if (diff === 2 || diff === 2 - mockFilmesCarrossel.length) { // Segundo à direita
+                    } else if (diff === 2 || diff === 2 - mockFilmesCarrossel.length) { 
                         className += ' proximo-distante';
-                    } else if (diff === mockFilmesCarrossel.length - 2 || diff === -2) { // Segundo à esquerda
+                    } else if (diff === mockFilmesCarrossel.length - 2 || diff === -2) { 
                         className += ' anterior-distante';
-                    } else { // Outros cards
+                    } else {
                         className += ' escondido';
                     }
 
@@ -97,8 +95,6 @@ function CarrosselPrincipal() {
                     );
                 })}
             </div>
-
-            {/* Indicadores de slide (os pontinhos) */}
             <div className="carrosselIndicadores">
                 {mockFilmesCarrossel.map((_, index) => (
                     <span 
