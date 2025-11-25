@@ -503,10 +503,6 @@ GENERO_ID_MAP = {
 DEFAULT_ACTOR_PHOTO_URL = 'https://placehold.co/200x300/222/fff?text=?'
 
 def _get_or_create_ator_ids(nomes_atores, cursor):
-    """
-    Recebe uma lista de NOMES de atores (ex: ["Tom Hanks", "Novo Ator"]).
-    Verifica se existem, cria se não existirem, e retorna uma lista de IDs.
-    """
     ator_ids = []
     if not nomes_atores:
         return []
@@ -530,10 +526,6 @@ def _get_or_create_ator_ids(nomes_atores, cursor):
     return ator_ids
 
 def _executar_adicao_filme(dados_filme, conn):
-    """
-    Função interna transacional para ADICIONAR um filme.
-    "dados_filme" vem do AdicionarFilme.jsx.
-    """
     cursor = conn.cursor()
     try:
         nomes_generos = dados_filme.get('categorias', [])

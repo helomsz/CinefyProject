@@ -1,0 +1,80 @@
+.card-adicao-filme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, #12595A, #103E40, #0F2C2E);
+    border-radius: 46px;
+    padding: 30px 50px;
+    width: 100%;
+    max-width: 1270px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: visible;
+    margin-left: 50px;
+    margin-top: 90px;
+}
+
+.card-adicao-content {
+    flex: 1;
+    color: #fff;
+}
+
+.card-adicao-content h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 2px;
+    background: linear-gradient(to left, #000000, white); 
+    -webkit-background-clip: text; 
+    background-clip: text;
+    color: transparent; 
+    -webkit-text-fill-color: transparent; 
+}
+
+.card-adicao-content p {
+    font-size: 22px;
+    opacity: 0.9;
+    margin-bottom: 24px;
+}
+
+.add-movie-btn {
+    padding: 12px 26px;
+    background: linear-gradient(to right, #015551, #073132, #0D0F13);
+    box-shadow:
+        10px 10px 20px rgba(0, 0, 0, 0.1),
+        inset 5px 5px 15px rgba(0, 0, 0, 0.2);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.add-movie-btn:hover {
+    background: linear-gradient(to right, #017771, #0e5c5e, #222832);
+}
+
+.seta {
+    font-size: 18px;
+    margin-left: 6px;
+}
+
+.card-adicao-image {
+    position: absolute;
+    top: -100px;
+    right: 40px;
+    pointer-events: none;
+}
+
+.card-adicao-image img {
+    width: 450px;
+    height: auto;
+
+    transform: scale(1.1);
+    z-index: 5;
+}

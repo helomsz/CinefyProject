@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {Film,Link,Tag,Users,Check,Plus,Trash2,Send,Zap} from "lucide-react";
+import { Film, Link, Tag, Users, Check, Plus, Trash2, Send, Zap } from "lucide-react";
 import NavbarCentralizada from "../../components/NavbarCentralizada/NavbarCentralizada";
 import MenuLateral from "../../components/MenuLateral/MenuLateral";
 import Footer from "../../components/Footer/Footer";
 import { useUserSession } from "../../components/useUserSession";
 import PageTransitionLoader from "../../components/PageTransitionLoader/PageTransitionLoader";
 import AccessDeniedCard from "../../components/AccessDeniedCard/AccessDeniedCard";
+import './AdicionarFilme.css'
 
 const ACTOR_LIMIT = 3;
 const API_BASE_URL = "http://localhost:8000";
@@ -186,7 +187,7 @@ const AdicionarFilme = () => {
         <MenuLateral />
         <NavbarCentralizada />
         <AccessDeniedCard />
-        
+
       </div>
     );
   }
@@ -363,9 +364,8 @@ const AdicionarFilme = () => {
                         <button
                           key={category}
                           type="button"
-                          className={`category-tag ${
-                            isSelected ? "selected" : ""
-                          }`}
+                          className={`category-tag ${isSelected ? "selected" : ""
+                            }`}
                           onClick={() => handleCategoryToggle(category)}
                           disabled={isDisabled}
                         >
@@ -437,7 +437,7 @@ const AdicionarFilme = () => {
                     <div className="autocomplete-container">
                       <div className="form-group card-select input-actor-search">
                         <label htmlFor="buscaAtor">
-                          Buscar ou Adicionar Ator
+                          Buscar Ator
                         </label>
                         <input
                           type="text"
@@ -450,7 +450,7 @@ const AdicionarFilme = () => {
 
                       {novoAtor.length > 0 && (
                         <ul className="suggestions-list">
-                          {sugestoesAtores.length > 0 ? (
+                          {sugestoesAtores.length > 0 &&
                             sugestoesAtores.map((actor) => (
                               <li
                                 key={actor.id}
@@ -458,19 +458,7 @@ const AdicionarFilme = () => {
                               >
                                 {actor.nome} <Check size={14} />
                               </li>
-                            ))
-                          ) : (
-                            <li
-                              className="create-new-option"
-                              onClick={() => {
-                                alert(`Criar ator: ${novoAtor}`);
-                                setNovoAtor("");
-                              }}
-                            >
-                              <Plus size={16} /> Criar Novo Ator:{" "}
-                              <b>{novoAtor}</b>
-                            </li>
-                          )}
+                            ))}
                         </ul>
                       )}
                     </div>
@@ -501,14 +489,13 @@ const AdicionarFilme = () => {
                 <div className="form-group full-width submit-area">
                   <button
                     type="submit"
-                    className="submit-button"
+                    className="submit-button-add"
                     disabled={loading}
                   >
                     {loading ? (
                       "Enviando..."
                     ) : (
-                      <>
-                        <Send size={24} /> {buttonText}
+                      <>{buttonText}
                       </>
                     )}
                   </button>

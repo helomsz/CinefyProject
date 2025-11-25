@@ -33,7 +33,6 @@ body {
 }
 
 
-
 .fullPageImage {
     position: absolute;
     top: 0;
@@ -92,7 +91,6 @@ body {
     margin-top: 1rem;
     line-height: 1.2;
 }
-
 
 
 .contact-main {
@@ -191,7 +189,7 @@ body {
     align-items: center;
     padding: 0.9rem 1.5rem; 
     border-radius: 2rem; 
-    background: rgba(147, 147, 147, 0.07);
+    background: rgba(79, 78, 78, 0.07);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1); 
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
@@ -291,40 +289,49 @@ body {
     width: 100%; 
 }
 
-.contact-form .form-input-contato {
-    width: 100%;
-    padding: 1.4rem 1.2rem;
-    border-radius: 1.5rem;
-    background: rgba(255, 255, 255, 0.09);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--color-text-primary);
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-    min-height: 50px;
+.contact-form .form-group-contato input[type="text"],
+.contact-form .form-group-contato input[type="email"],
+.contact-form .form-group-contato textarea {
+    width: 100% !important;
+    padding: 1.4rem 1.2rem !important;
+    border-radius: 1.5rem !important;
+    background: rgba(255, 255, 255, 0.09) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: var(--color-text-primary) !important;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2) !important;
+    outline: none !important;
+    transition: border-color 0.3s, box-shadow 0.3s !important;
+    box-sizing: border-box !important;
+    font-family: 'Montserrat', sans-serif !important;
 }
 
 
-.contact-form .form-input-contato::placeholder {
-    color: #D4D5D6;
-    opacity: .8;
+.contact-form .form-group-contato input[type="text"],
+.contact-form .form-group-contato input[type="email"] {
+    min-height: 50px !important;
 }
 
-.contact-form .form-input-contato:focus {
-    border-color: var(--color-teal);
-    box-shadow: 
-        0 0 0 1px var(--color-teal),
-        inset 0 2px 4px rgba(0, 0, 0, 0.3);
+.contact-form .form-group-contato textarea {
+    resize: none !important;
+    min-height: 270px !important;
 }
 
-.contact-form .form-input-contato.textarea {
-    resize: none;
-    min-height: 270px;
+.contact-form .form-group-contato input[type="text"]::placeholder,
+.contact-form .form-group-contato input[type="email"]::placeholder,
+.contact-form .form-group-contato textarea::placeholder {
+    color: #D4D5D6 !important;
+    opacity: .8 !important;
 }
 
+.contact-form .form-group-contato input[type="text"]:focus,
+.contact-form .form-group-contato input[type="email"]:focus,
+.contact-form .form-group-contato textarea:focus {
+    border-color: var(--color-teal) !important;
+    box-shadow:
+        0 0 0 1px var(--color-teal) !important;
+        inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
 
 .submit-button {
     display: flex;
@@ -392,7 +399,7 @@ body {
 
 .footer-wrapper > * {
     width: 100%;
-    max-width: var(--content-max-width);
+    max-width: 1250px;
     box-shadow: 
         inset 0 0 10px rgba(255, 255, 255, 0.3),
         0 8px 32px 0 rgba(0, 0, 0, 0.37);

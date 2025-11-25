@@ -27,7 +27,7 @@ function MenuLateral() {
   const location = useLocation();
 
   useEffect(() => {
-    const itemAtual = [...itensMenu, ...itensRodape].find(
+    const itemAtual = [...itensMenu].find(
       (item) => item.link === location.pathname
     );
     if (itemAtual) setItemAtivo(itemAtual.nome);
@@ -90,9 +90,6 @@ function MenuLateral() {
 
       <ul className="listaMenuPrincipal">{itensMenu.map(renderizarItem)}</ul>
 
-      <hr className="separador" />
-
-      <ul className="listaMenuRodape">{itensRodape.map(renderizarItem)}</ul>
 
 
     </div>

@@ -352,7 +352,7 @@ const EditarFilme = () => {
                             {formData.atores.map((actor, i) => (
                                 <div key={i} className="actor-item">
                                     <input
-                                        value={actor}
+                                        value={actor.nome}
                                         onChange={(e) => {
                                             const list = [...formData.atores];
                                             list[i] = e.target.value;
@@ -365,16 +365,6 @@ const EditarFilme = () => {
                                 </div>
                             ))}
 
-                            <div className="actor-item add-new">
-                                <input
-                                    value={newActor}
-                                    onChange={(e) => setNewActor(e.target.value)}
-                                    placeholder="Adicionar novo ator"
-                                />
-                                <button type="button" onClick={handleAddActor}>
-                                    <Plus size={16} /> Adicionar
-                                </button>
-                            </div>
                         </div>
 
                         <div className="form-group full-width submit-area">

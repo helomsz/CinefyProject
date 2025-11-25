@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import './RegistroPage.css'; 
-import BotaoPrimario from '../../components/BotaoPrimario/BotaoPrimario.jsx'; 
-import ImagemCadastro from '../../assets/backgroundLogin/imagemLoginCadastro.png'; 
-import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import './RegistroPage.css';
+import BotaoPrimario from '../../components/BotaoPrimario/BotaoPrimario.jsx';
+import ImagemCadastro from '../../assets/backgroundLogin/imagemLoginCadastro.png';
+import { EyeIcon, EyeOffIcon, Check, AlertCircle } from 'lucide-react';
 
 
 const URL_API_REGISTRO = 'http://localhost:8000/registro';
 
 function RegistroPage() {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    
+
     const [dadosRegistro, setDadosRegistro] = useState({
         nome: '',
         sobrenome: '',
@@ -21,20 +21,20 @@ function RegistroPage() {
     });
     const [mostrarSenha, setMostrarSenha] = useState(false);
     const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
-    const [mensagemStatus, setMensagemStatus] = useState({ tipo: '', texto: '' }); 
+    const [mensagemStatus, setMensagemStatus] = useState({ tipo: '', texto: '' });
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const emailFromUrl = searchParams.get('email');
-        
+
         if (emailFromUrl) {
-            setDadosRegistro(prevDados => ({ 
-                ...prevDados, 
-                email: emailFromUrl 
+            setDadosRegistro(prevDados => ({
+                ...prevDados,
+                email: emailFromUrl
             }));
             setMensagemStatus({ tipo: '', texto: '' });
         }
-    }, [searchParams]); 
+    }, [searchParams]);
 
 
     const handleChange = (event) => {
@@ -53,8 +53,8 @@ function RegistroPage() {
         }
 
         if (dadosRegistro.senha.length < 6) {
-             setMensagemStatus({ tipo: 'erro', texto: 'A senha deve ter no mínimo 6 caracteres.' });
-             setIsLoading(false);
+            setMensagemStatus({ tipo: 'erro', texto: 'A senha deve ter no mínimo 6 caracteres.' });
+            setIsLoading(false);
             return;
         }
 
@@ -78,12 +78,12 @@ function RegistroPage() {
 
             if (response.ok && resultado.status === 'sucesso') {
                 setMensagemStatus({ tipo: 'sucesso', texto: 'Cadastro realizado com sucesso! Redirecionando para o Login...' });
-                
+
                 // redireciona para a página de login após 2 segundos
                 setTimeout(() => {
-                    navigate('/login'); 
-                }, 2000); 
-                
+                    navigate('/login');
+                }, 2000);
+
             } else {
                 const mensagemErro = resultado.mensagem || 'Ocorreu um erro ao tentar cadastrar. Tente novamente.';
                 setMensagemStatus({ tipo: 'erro', texto: `Falha no cadastro: ${mensagemErro}` });
@@ -106,18 +106,18 @@ function RegistroPage() {
     return (
         <div className="paginaWrapper">
             <div className="containerRegistro">
-                <div 
+                <div
                     className="asideGradiente"
-                    onClick={() => navigate('/')} 
+                    onClick={() => navigate('/')}
                 >
                     <div className="botaoVoltar">
                         Voltar ao site →
                     </div>
-                    <img 
-                        src={ImagemCadastro} 
-                        alt="Menino com balde de pipoca e claquete" 
-                        className="imagemCadastro" 
-                    /> 
+                    <img
+                        src={ImagemCadastro}
+                        alt="Menino com balde de pipoca e claquete"
+                        className="imagemCadastro"
+                    />
                 </div>
 
                 <form className="formulario" onSubmit={handleSubmit}>
@@ -129,7 +129,10 @@ function RegistroPage() {
                     </div>
                     {mensagemStatus.texto && (
                         <div className={`mensagem-status ${mensagemStatus.tipo}`}>
-                            {mensagemStatus.texto}
+                            {mensagemStatus.tipo === 'sucesso' && <Check size={20} />}
+                            {mensagemStatus.tipo === 'erro' && <AlertCircle size={20} />}
+
+                            <span>{mensagemStatus.texto}</span>
                         </div>
                     )}
 
@@ -238,8 +241,8 @@ function RegistroPage() {
                         </div>
                     </label>
 
-                    <BotaoPrimario 
-                        texto={isLoading ? "Criando conta..." : "Criar conta"} 
+                    <BotaoPrimario
+                        texto={isLoading ? "Criando conta..." : "Criar conta"}
                         tipo="submit"
                         disabled={isLoading}
                     />

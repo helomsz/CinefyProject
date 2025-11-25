@@ -3,6 +3,8 @@ import { CreditCard, Lock, ArrowLeft } from 'lucide-react';
 import NavbarCentralizada from '../../components/NavbarCentralizada/NavbarCentralizada.jsx';
 import MenuLateral from '../../components/MenuLateral/MenuLateral.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
+import { useNavigate } from 'react-router-dom';
+
 import './PaymentScreen.css';
 
 const SuccessMessage = ({ message, visible, onClose }) => {
@@ -23,11 +25,16 @@ const PLANO_PADRAO = {
     precoMensal: 'R$ 49,90',
 };
 
+
+
 const FormularioPagamento = ({
     planoAtual = PLANO_PADRAO,
     onVoltar = () => console.log('Voltar'),
     onPagamentoSucesso = () => {},
 }) => {
+
+    const navigate = useNavigate();
+    const handleVoltar = () => navigate('/');
 
     const [dadosCartao, setDadosCartao] = useState({
         numeroCartao: '',
@@ -57,7 +64,7 @@ const FormularioPagamento = ({
 
     const renderFormularioPagamento = () => (
         <div className="formulario__wrapper">
-            <button className="formulario__voltar-button" onClick={onVoltar} title="Voltar">
+            <button className="formulario__voltar-button" onClick={handleVoltar} title="Voltar">
                 <ArrowLeft size={29} />
             </button>
 

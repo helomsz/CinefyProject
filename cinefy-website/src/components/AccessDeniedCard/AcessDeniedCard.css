@@ -54,7 +54,7 @@
     width: 100%;
     padding: 15px 35px; 
     border: none;
-    border-radius: 30px;
+    border-radius: 40px;
     background: linear-gradient(to right, #328B85, #00BFB6);
     color: var(--text-primary);
     font-size: 1.1rem;
