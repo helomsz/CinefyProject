@@ -107,6 +107,11 @@ npm install
 npm run dev
 ```
 
+### 🔐 Login de administrador
+```bash
+e-mail: admin@filmes.com
+senha: admin123
+```
 ---
 
 # 🎯 Funcionalidades
