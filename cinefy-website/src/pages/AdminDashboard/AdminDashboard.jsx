@@ -250,34 +250,6 @@ const AdminDashboard = () => {
                 </div>
               </div>
             </div>
-
-            <div className="ultimosFilmesContainer">
-              <div className="ultimosFilmesWrapper">
-                <h2 className="ultimosFilmesTitulo">
-                  <Film size={20} className="ultimosFilmesIcone" />
-                  Últimos Filmes Adicionados
-                </h2>
-
-                <ul className="ultimosFilmesLista">
-                  <RecentMovieItem
-                    title="Blade Runner 2049"
-                    time="Adicionado hoje"
-                  />
-
-                  <RecentMovieItem
-                    title="Duna: Parte 2"
-                    time="Adicionado 1 dia atrás"
-                  />
-                </ul>
-
-                <button
-                className="botaoVerCatalogo"
-                onClick={() => window.location.href = '/catalogo'}
-                >
-                Ver Catálogo Completo
-                </button>
-              </div>
-            </div>
           </section>
         </main>
 

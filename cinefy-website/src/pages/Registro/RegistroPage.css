@@ -39,7 +39,9 @@ html, body {
   display: flex;
   width: 100%;
   max-width: 1050px;
-  height: 600px;
+  min-height: 600px;
+  height: auto;
+  align-items: flex-start;
   background: var(--fundo-glass-escuro);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -239,7 +241,8 @@ html, body {
   padding: 12px 20px;
   margin-bottom: 20px;
   border-radius: 12px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   transition: all 0.3s ease;
   animation: fadeInStatus 0.5s ease-out;
 }
