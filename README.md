@@ -166,14 +166,14 @@ senha: admin123
 # 🚀 Melhorias Futuras
 
 * Avaliações e notas
-* Dark/Light mode
+* Light mode
 * Sugestões inteligentes
 * Histórico do usuário
 * Bloquear funcionalidade de ver trailer quando não estiver logado
 * Melhorar a performance do site
 
 ---
-**_ps: tenha muita paciência e recarregue a página a quantidade de vezes necessária, tente explorar todas as funcionalidades de uma página antes de mudar para outra_** 🥲
+**_ps: tenha muita paciência e recarregue a página a quantidade de vezes necessária, tente explorar todas as funcionalidades de uma página antes de mudar para outra, s vezes demora um pouco para fazer a requisição_** 🥲
 
 > Feito com muita dedicação por **Heloisa Militão de Souza** 💚
 
