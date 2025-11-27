@@ -58,13 +58,25 @@ Este repositório inclui o **Front-end (React + Vite)** e o **Back-end (Python +
 
 # ⚙️ Como Rodar o Projeto
 
-## 🔧 1. Back-end (Python)
+## 📑 1. Clone o repositório do projeto
+```bash
+git clone https://github.com/helomsz/CinefyProject.git
+
+```
+
+## 🔧 2. Back-end (Python)
+
+### ➤ Criar o ambiente virtual
+
+```bash
+python -m venv .venv
+
+```
 
 ### ➤ Ativar o ambiente virtual
 
 ```bash
-# Windows
-venv\Scripts\activate
+.venv\Scripts\activate
 
 ```
 
@@ -80,7 +92,7 @@ pip install -r requirements.txt
 DB_CONFIG = {
     'host': "localhost",
     'user': "root",
-    'password': "senai",
+    'password': "senai", ⭢ insira os dados do seu banco nesse local
     'database': "SERVIDORFILMES"
 }
 ```
@@ -93,7 +105,7 @@ py server_api.py
 
 ---
 
-## 🎨 2. Front-end (React + Vite)
+## 🎨 3. Front-end (React + Vite)
 
 ### ➤ Instalar dependências
 
@@ -157,8 +169,11 @@ senha: admin123
 * Dark/Light mode
 * Sugestões inteligentes
 * Histórico do usuário
+* Bloquear funcionalidade de ver trailer quando não estiver logado
+* Melhorar a performace do site
 
 ---
+**_ps: tenha muita paciência e recarregue a página a quantidade de vezes necessária, tente explorar todas as funcionalidades de uma página antes de mudar para outra_** 🥲
 
 > Feito com muita dedicação por **Heloisa Militão de Souza** 💚
 
