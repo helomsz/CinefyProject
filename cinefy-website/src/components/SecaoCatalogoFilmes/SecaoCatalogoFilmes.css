@@ -8,9 +8,9 @@
     min-height: 400px;
 }
 
-/* ---------------------------------- */
-/* Layout 
-/* ---------------------------------- */
+/* ----------------------------------------------------
+  estrutura do grid do catalogo
+   ---------------------------------------------------- */
 .filmesGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -18,7 +18,9 @@
     padding-top: 20px;
 }
 
-/* Responsividade */
+/* ----------------------------------------------------
+  tentativa de responsividade
+   ---------------------------------------------------- */
 @media (min-width: 1024px) {
     .filmesGrid {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -32,9 +34,9 @@
     }
 }
 
-/* ---------------------------------- */
-/* Estados de Carregamento */
-/* ---------------------------------- */
+/* ----------------------------------------------------
+  estado de carregamento
+   ---------------------------------------------------- */
 .loadingState {
     display: flex;
     flex-direction: column;

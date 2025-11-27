@@ -1,3 +1,6 @@
+/* ----------------------------------------------------
+  dropdown de notificões 
+   ---------------------------------------------------- */
 .notification-dropdown {
     position: absolute;
     top: 55px;
@@ -27,7 +30,9 @@
     font-size: 1.1em;
     font-weight: 600;
 }
-
+/* ----------------------------------------------------
+  notificações que não foram lidas
+   ---------------------------------------------------- */
 .unread-badge {
     background-color: var(--corGradienteFim, #107c6f); 
     color: #ffffff;
@@ -36,6 +41,10 @@
     font-size: 0.75em;
     font-weight: bold;
 }
+
+/* ----------------------------------------------------
+  lista de notificações
+ ------------------------------------------------------ */
 
 .notification-list {
     list-style: none;
@@ -60,7 +69,9 @@
     background-color: rgba(255, 255, 255, 0.05);
 }
 
-
+/* ----------------------------------------------------
+  mensagens não lidas
+   ---------------------------------------------------- */
 .notification-item.unread {
     background-color: rgba(26, 188, 156, 0.1);
     border-left: 4px solid #00B9AE;
@@ -84,6 +95,10 @@
     padding: 10px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+/* ----------------------------------------------------
+  marcar como lidas
+  ----------------------------------------------------- */
 
 .mark-as-read-button {
     width: 100%;

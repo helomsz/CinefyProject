@@ -1,3 +1,7 @@
+/* ----------------------------------------------------
+   estrutura da página
+   ---------------------------------------------------- */
+
 .paginaCatalogo {
     background-color: #1a1e27;
     min-height: 100vh;
@@ -11,6 +15,10 @@
     position: relative;
     z-index: 1;
 }
+
+/* ----------------------------------------------------
+   arrumando o footer
+   ---------------------------------------------------- */
 
 .conteudoPrincipalCatalogo > footer {
     width: 87%;

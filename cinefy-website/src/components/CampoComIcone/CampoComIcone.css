@@ -4,7 +4,9 @@
     --texto-muted: #A0A0A0;
     --cor-acento-clara: #00FFC6;
 }
-
+/* ----------------------------------------------------
+   estrutura do input da tela de login/registro
+   ---------------------------------------------------- */
 
 .campoInputContainer {
     margin-bottom: 15px; 
@@ -46,6 +48,9 @@
     outline: 2px solid var(--cor-acento-clara);
 }
 
+/* ----------------------------------------------------
+   olhinho abrindo e fechando
+   ---------------------------------------------------- */
 
 .iconeVisibilidade {
     padding: 0 15px;

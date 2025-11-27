@@ -1,13 +1,15 @@
-/* ------------------------------------ */
-/* Página de Favoritos
-/* ------------------------------------ */
+/* ----------------------------------------------------
+   variações de cor
+   ---------------------------------------------------- */
 
 :root {
   --kids-color-teal: #00bfa6;
   --kids-color-bg-dark: #12161F;
   --sidebar-width: 80px;
 }
-
+/* ----------------------------------------------------
+   estrutura da tela
+   ---------------------------------------------------- */
 
 .favorites-page-container {
     display: flex;
@@ -32,6 +34,9 @@
     padding-left: var(--sidebar-width, 80px);
 }
 
+/* ----------------------------------------------------
+   cards adicionados
+   ---------------------------------------------------- */
 .favorites-main {
     flex-grow: 1;
     width: 100%;
@@ -62,7 +67,9 @@
   font-size: 1em;
 }
 
-/* Responsividade */
+/* ----------------------------------------------------
+   tentativa de responsividade
+   ---------------------------------------------------- */
 @media (max-width: 900px) {
   .containerFavoritos {
     padding: 30px 20px;

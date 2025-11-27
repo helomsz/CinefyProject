@@ -1,3 +1,7 @@
+/* ----------------------------------------------------
+  filtro de busca rápida da nav
+   ---------------------------------------------------- */
+
 .searchComponent {
     position: relative;
     display: flex; 
@@ -5,6 +9,9 @@
     max-width: 300px; 
 }
 
+/* ----------------------------------------------------
+  input de pesquisa
+   ---------------------------------------------------- */
 
 .areaPesquisa {
     display: flex;
@@ -27,6 +34,9 @@
     min-width: 150px; 
 }
 
+/* ----------------------------------------------------
+  pesquisa fechada e pesquisa aberta
+   ---------------------------------------------------- */
 .areaPesquisa.fechada input {
     width: 0;
     padding: 0;
@@ -52,7 +62,9 @@
     display: flex;
 }
 
-
+/* ----------------------------------------------------
+  dropdown com os resultados
+   ---------------------------------------------------- */
 .dropdownResultados {
     position: absolute;
     top: 115%; 

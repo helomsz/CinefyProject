@@ -1,3 +1,6 @@
+/* ----------------------------------------------------
+   variaveis de cor
+   ---------------------------------------------------- */
 :root {
     --larguraMenuLateralFechado: 0px;
     --corPrimaria: #1abc9c;
@@ -6,6 +9,10 @@
     --corGradienteInicio: #008574;
     --corGradienteFim: #016059;
 }
+
+/* ----------------------------------------------------
+   estrutura da hero
+   ---------------------------------------------------- */
 
 .hero-section-container {
   position: relative;
@@ -19,6 +26,9 @@
   color: #fff;
 }
 
+/* ----------------------------------------------------
+   fundo principal
+   ---------------------------------------------------- */
 .hero-background {
   position: absolute;
   inset: 0;
@@ -61,6 +71,9 @@
   margin-top: 60px;
 }
 
+/* ----------------------------------------------------
+   informações do lado esquerdo
+   ---------------------------------------------------- */
 
 .hero-left {
   flex: 1;
@@ -97,6 +110,9 @@
   max-width: 450px;
 }
 
+/* ----------------------------------------------------
+   cadastro
+   ---------------------------------------------------- */
 .cta-input {
   flex: 1;
   padding: 14px 20px;
@@ -134,6 +150,10 @@
   background: linear-gradient(to right, #0e7662, #0a9f84);
 }
 
+/* ----------------------------------------------------
+   parte do carrossel
+   ---------------------------------------------------- */
+
 .hero-right {
   flex: 1;
     display: flex;
@@ -152,6 +172,9 @@
     transform: perspective(1000px);
 }
 
+/* ----------------------------------------------------
+   cards dos filmes
+   ---------------------------------------------------- */
 .hero-card {
     width: 230px; 
     height: 310px; 
@@ -159,8 +182,6 @@
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    
-    
     transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out; 
     transform: scale(0.9); 
 }
@@ -227,6 +248,9 @@
     cursor: pointer;
 }
 
+/* ----------------------------------------------------
+   bolinhas indicadoras
+   ---------------------------------------------------- */
 
 .carousel-indicators {
   display: flex;

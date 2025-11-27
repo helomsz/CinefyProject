@@ -1,4 +1,6 @@
-
+/* ----------------------------------------------------
+   algumar variáveis de cor
+   ---------------------------------------------------- */
 :root {
     --color-dark-bg: #0C131D; 
     --color-card-bg: #1A212E; 
@@ -12,12 +14,19 @@
     --content-max-width: 1100px;
 }
 
+/* ----------------------------------------------------
+   geralzão
+   ---------------------------------------------------- */
+
 body {
     background-color: var(--color-dark-bg);
     margin: 0;
     padding: 0;
 }
 
+/* ----------------------------------------------------
+   estrutura da tela
+   ---------------------------------------------------- */
 .contact-page-container {
     color: var(--color-text-primary);
     min-height: 100vh;
@@ -32,6 +41,9 @@ body {
     height: 1px; 
 }
 
+/* ----------------------------------------------------
+   background
+   ---------------------------------------------------- */
 
 .fullPageImage {
     position: absolute;
@@ -44,6 +56,9 @@ body {
     opacity: 0.6; 
 }
 
+/* ----------------------------------------------------
+   seção dos contatos
+   ---------------------------------------------------- */
 
 .contact-content {
     position: relative;
@@ -263,9 +278,9 @@ body {
     transform: rotate(-45deg) scale(1.1); 
 }
 
-/* =============================
-   FORMULÁRIO 
-   ============================= */
+/* ----------------------------------------------------
+   seção do formulário de mensagens
+   ---------------------------------------------------- */
 
    .contact-form-section {
     margin-top: 100px;
@@ -333,6 +348,10 @@ body {
         inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
 }
 
+/* ----------------------------------------------------
+   botão
+   ---------------------------------------------------- */
+
 .submit-button {
     display: flex;
     align-items: center;
@@ -388,6 +407,9 @@ body {
     right: -200px;
 }
 
+/* ----------------------------------------------------
+   arrumando o footer
+   ---------------------------------------------------- */
 .footer-wrapper {
     width: 100%;
     padding-left: var(--menu-lateral-width);
@@ -433,6 +455,10 @@ body {
     text-decoration: none;
 }
 
+/* ----------------------------------------------------
+   mensagem de sucesso
+   ---------------------------------------------------- */
+
 .status-message {
     max-width: 460px;
     padding: 1rem;
@@ -473,6 +499,9 @@ body {
     margin: 0;
 }
 
+/* ----------------------------------------------------
+   mensagem de erro
+   ---------------------------------------------------- */
 .status-message.error {
     background-color: #422020;
     border: 1px solid #fca5a5;

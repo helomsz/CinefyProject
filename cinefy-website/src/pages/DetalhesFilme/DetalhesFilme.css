@@ -1,4 +1,6 @@
-
+/* ----------------------------------------------------
+   estrutura da tela
+   ---------------------------------------------------- */
 .detalhes-main,
 .detalhes__hero {
     margin: 0 !important;
@@ -34,6 +36,9 @@ body, html {
     position: relative;
 }
 
+/* ----------------------------------------------------
+   hero section da tela de detalhes
+   ---------------------------------------------------- */
 
 .detalhes__hero {
     position: relative;
@@ -82,6 +87,9 @@ body, html {
     max-width: 780px;
 }
 
+/* ----------------------------------------------------
+   botão de edição
+   ---------------------------------------------------- */
 .btn-edit-hero {
     position: absolute;
     top: 190px; 
@@ -102,6 +110,10 @@ body, html {
     background-color: rgba(255, 255, 255, 0.2);
 
 }
+
+/* ----------------------------------------------------
+   botão de deletar
+   ---------------------------------------------------- */
 
 .btn-delete-hero {
     position: absolute;
@@ -124,7 +136,9 @@ body, html {
     background-color: rgba(197, 13, 13, 0.2);
 }
 
-
+/* ----------------------------------------------------
+   infos do filme
+   ---------------------------------------------------- */
 
 .detalhes__titulo {
     font-size: 3.5rem;
@@ -158,6 +172,10 @@ body, html {
     gap: 15px;
     margin-bottom: 30px;
 }
+
+/* ----------------------------------------------------
+   botões de assistir o trailer
+   ---------------------------------------------------- */
 
 .btn-primary, .btn-secondary {
     display: flex;
@@ -225,6 +243,10 @@ body, html {
     margin-right: 8px;
 }
 
+/* ----------------------------------------------------
+   tagzinha de gêneros
+   ---------------------------------------------------- */
+
 .badge-nome, .badge-genero {
     display: inline-block;
     padding: 6px 15px;
@@ -251,7 +273,9 @@ body, html {
     margin-top: 20px;
 }
 
-/* --- Elenco --- */
+/* ----------------------------------------------------
+   elenco
+   ---------------------------------------------------- */
 .detalhes__elenco {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -302,7 +326,9 @@ body, html {
     margin-top: 30px;
     margin-bottom: 30px;
 }
-
+/* ----------------------------------------------------
+   botão de voltar pra tela anteriror
+   ---------------------------------------------------- */
 .btn-voltar-hero {
     position: absolute;
     top: 140px;

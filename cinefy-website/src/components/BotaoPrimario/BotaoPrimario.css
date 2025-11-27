@@ -3,6 +3,9 @@
     --gradiente-botao:linear-gradient(to right, #008574, #016059);;
 }
 
+/* ----------------------------------------------------
+   botão da tela de login/registro
+   ---------------------------------------------------- */
 .botaoPrimario {
     width: 100%;
     padding: 15px;

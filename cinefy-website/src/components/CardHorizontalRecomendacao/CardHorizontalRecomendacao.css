@@ -3,9 +3,9 @@
     --cor-texto-claro: #E0E0E0;
 }
 
-/* ------------------------------------------------------------- */
-/* SEÇÃO PRINCIPAL 
-/* ------------------------------------------------------------- */
+/* ----------------------------------------------------
+   seção principal
+   ---------------------------------------------------- */
 
 .secao-carrossel-favoritos-wrapper {
     padding: 20px 50px 50px 60px;
@@ -54,14 +54,18 @@
     gap: 10px;
 }
 
+/* ----------------------------------------------------
+   carrossel de filmes recomendados
+   ---------------------------------------------------- */
+
 .carrossel-seta {
     transform: translateX(0);
-    background-color: transparent;
+    background: rgba(127, 127, 127, 0.2);
     color: rgba(255, 255, 255, 0.6);
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid #00B8AD;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,6 +73,10 @@
     transition: all 0.2s ease-in-out;
     flex-shrink: 0;
 }
+
+/* ----------------------------------------------------
+   setas
+   ---------------------------------------------------- */
 
 .carrossel-seta.esquerda {
     transform: translateX(-65px); 
@@ -83,8 +91,8 @@
 }
 
 .carrossel-seta.ativo:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
+    background:rgba(0, 191, 166, 0.3);
+    border-color: #026e67;
 }
 
 .carrossel-seta.inativo {

@@ -1,3 +1,6 @@
+/* ----------------------------------------------------
+   variações de cor
+   ---------------------------------------------------- */
 :root {
     --fundo-glass-escuro: rgba(30, 30, 30, 0.5);
     --fundo-principal: #16161c; 
@@ -17,6 +20,9 @@
     padding: 0;
   }
   
+  /* ----------------------------------------------------
+   estrutura
+   ---------------------------------------------------- */
   .paginaWrapper {
     position: fixed;
     top: 0;
@@ -33,6 +39,7 @@
     align-items: center;
   }
   
+
   .containerRegistro {
     position: relative;
     z-index: 10;
@@ -91,7 +98,10 @@
     border-bottom: 2px solid #82FFF8;
     cursor: pointer;
   }
-  
+
+  /* ----------------------------------------------------
+   botão de voltar para o site
+   ---------------------------------------------------- */
   .botaoVoltar {
     position: absolute;
     top: 30px;
@@ -235,7 +245,10 @@
   .formulario .split label {
     width: 130px;
   }
-/* ===== CHECKBOX E LINK ESQUECI SENHA ===== */
+
+  /* ----------------------------------------------------
+   checkbox esqueci a senha
+   ---------------------------------------------------- */
 .linhaLembreSenha {
     display: flex;
     justify-content: space-between;

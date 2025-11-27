@@ -3,6 +3,10 @@
     --gradiente-botao:linear-gradient(to right, #008574, #016059);;
 }
 
+/* ----------------------------------------------------
+   botão de login da home
+   ---------------------------------------------------- */
+
 .botaoLogin {
     text-align: center;
     width: 100px;

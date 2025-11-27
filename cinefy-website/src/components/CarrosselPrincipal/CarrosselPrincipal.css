@@ -1,3 +1,6 @@
+/* ----------------------------------------------------
+   estrutura do carrossel da tela de catalogo
+   ---------------------------------------------------- */
 .carrosselPrincipalContainer {
     position: relative;
     max-width: 1400px;
@@ -20,7 +23,9 @@
     align-items: center;
 }
 
-
+/* ----------------------------------------------------
+   bolinhas indicadoras
+   ---------------------------------------------------- */
 .carrosselIndicadores {
     position: absolute;
     bottom: 20px;

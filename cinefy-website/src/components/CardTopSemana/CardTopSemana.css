@@ -1,6 +1,6 @@
-/* ---------------------------------- */
-/* 1. Estrutura do Card Vertical      */
-/* ---------------------------------- */
+/* ----------------------------------------------------
+   estrutura de cards
+   ---------------------------------------------------- */
 .cardFilmeTop {
     width: 200px; 
     height: 280px; 
@@ -29,25 +29,22 @@
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* CHAVE: Usa a variável CSS definida no React */
     background-image: var(--background-url); 
     background-size: cover;
     background-position: center;
     
     transition: filter 0.3s ease, transform 0.3s ease;
-    z-index: 1; /* Deve estar abaixo dos botões e do rodapé (z-index: 10) */
+    z-index: 1; 
 }
 
-/* NOVO: Efeito de Blur e Escurecimento no hover, aplicado APENAS ao pseudo-elemento */
 .cardFilmeTop:hover .imagemCapa::before {
     filter: brightness(0.5) blur(5px); 
     transform: scale(1.02); 
 }
 
-/* ---------------------------------- */
-/* 2. Botão de Favorito (Coração)     */
-/* ---------------------------------- */
+/* ----------------------------------------------------
+   botão de favoritos
+   ---------------------------------------------------- */
 .favoriteButtonContainer {
     position: absolute;
     top: 10px; 
@@ -81,12 +78,12 @@
 }
 
 .heartIcon.ativo {
-  color: #da1711; /* vermelho estilo Netflix */
+  color: #da1711; 
 }
 
-/* ---------------------------------- */
-/* 3. Botão de Play (NOVO)            */
-/* ---------------------------------- */
+/* ----------------------------------------------------
+   botão de play
+   ---------------------------------------------------- */
 .playButtonContainerTop{
     position: absolute;
     top: 0;
@@ -128,9 +125,9 @@
     transform: translateX(2px); 
 }
 
-/* ---------------------------------- */
-/* 4. Estilização do Rodapé/Overlay   */
-/* ---------------------------------- */
+/* ----------------------------------------------------
+   informações do filme
+   ---------------------------------------------------- */
 .informacoesRodapeTop {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.0) 100%);
     position: absolute;
@@ -147,14 +144,14 @@
     z-index: 5;
 }
 
-/* Oculta as informações do rodapé no hover (opcional) */
+
 .cardFilmeVerticalTop:hover .informacoesRodapeTop {
     opacity: 0;
 }
 
-/* ---------------------------------- */
-/* 5. Detalhes (Título e Gênero)      */
-/* ---------------------------------- */
+/* ----------------------------------------------------
+   detalhe dos filmes
+   ---------------------------------------------------- */
 
 
 .detalhesFilmeVerticalTop {

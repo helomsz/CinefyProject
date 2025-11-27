@@ -1,4 +1,6 @@
-
+/* ----------------------------------------------------
+  seção dos cards top da semana
+   ---------------------------------------------------- */
 .secaoTop {
     padding: 0px; 
     color: white;
@@ -17,6 +19,10 @@
 .card-lancamento {
     box-sizing: border-box;
 }
+
+/* ----------------------------------------------------
+  arrumando o grid da seção
+   ---------------------------------------------------- */
 
 .containerCardsTop {
     display: grid;

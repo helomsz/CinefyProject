@@ -1,8 +1,16 @@
+/* ----------------------------------------------------
+  secao de cards do catalogo
+   ---------------------------------------------------- */
+
 .secaoConteudoWrapper {
     margin-top: 10px; 
     width: 100%;
     padding: 20px 0; 
 }
+
+/* ----------------------------------------------------
+  estilização do conteúdo do card
+   ---------------------------------------------------- */
 
 .secaoConteudoTitulo {
     font-size: 1.8em;

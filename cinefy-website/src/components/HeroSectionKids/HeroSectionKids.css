@@ -1,4 +1,6 @@
-
+/* ----------------------------------------------------
+   hero section da tela kids
+   ---------------------------------------------------- */
 .heroKidsContainer {
     height: 100vh; 
     background-image: url('../../assets/cinefyKids/backgroundCinefy.png'); 
@@ -40,6 +42,9 @@
     color: white;
 }
 
+/* ----------------------------------------------------
+   tagzinha acima do titulo
+   ---------------------------------------------------- */
 .heroKidsTagline {
     display: inline-flex;
     align-items: center;
@@ -53,6 +58,8 @@
     margin-bottom: 1rem;
     transition: all 0.3s;
 }
+
+
 .camera-icon-wrapper{
   width: 36px; 
     height: 36px;
@@ -70,6 +77,10 @@
     color: #fff;
     margin: 0;
 }
+
+/* ----------------------------------------------------
+   conteúdo da section
+   ---------------------------------------------------- */
 .heroKidsTitle {
     font-size: 4em; 
     font-weight: 800;
@@ -91,6 +102,9 @@
     margin: 0 auto 50px auto;
 }
 
+/* ----------------------------------------------------
+   cards personagens
+   ---------------------------------------------------- */
 .heroKidsCardsWrapper {
   position: absolute;
   bottom: 0;
@@ -129,9 +143,9 @@
   z-index: 10;
 }
 
-/* ---------------------------------------------*/
-/* Posições e tamanhos individuais dos cards */
-/* ---------------------------------------------*/
+/* ----------------------------------------------------
+   posições e tamanhos dos cards
+   ---------------------------------------------------- */
 .card-home {
   transform: rotate(-7deg) translateX(-460px);
   bottom: 240px;

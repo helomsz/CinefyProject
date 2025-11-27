@@ -1,3 +1,6 @@
+/* ----------------------------------------------------
+   estilo global da tela e estrtutura também
+   ---------------------------------------------------- */
 *::before,
 *::after {
     box-sizing: border-box;
@@ -10,7 +13,7 @@
     display: flex;
     flex-direction: column;
     background-color: #121318;
-    overflow-x: hidden; /* Mantemos o overflow X escondido na Home */
+    overflow-x: hidden; 
 }
 
 .menu {

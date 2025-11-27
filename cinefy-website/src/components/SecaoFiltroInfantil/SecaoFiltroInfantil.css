@@ -1,4 +1,6 @@
-
+/* ----------------------------------------------------
+  seção dos filtros dos filmes infantis
+   ---------------------------------------------------- */
 .secaoFiltroWrapper {
     margin: 40px auto;
     padding: 0 20px;
@@ -36,9 +38,9 @@
     color: #fff; 
 }
 
-/* ------------------------------------------------------------- */
-/* BARRA DE BUSCA PRINCIPAL
-/* ------------------------------------------------------------- */
+/* ----------------------------------------------------
+  barra de busca principal
+   ---------------------------------------------------- */
 .barraBuscaFundo {
     display: flex;
     align-items: center;
@@ -63,6 +65,10 @@
     margin-bottom: 8px;
     user-select: none;
 }
+
+/* ----------------------------------------------------
+  inputs
+   ---------------------------------------------------- */
 
 .inputFiltroWrapperContainer {
     display: flex !important;
@@ -127,6 +133,10 @@
     pointer-events: none !important;
 }
 
+/* ----------------------------------------------------
+  botao de buscar
+   ---------------------------------------------------- */
+
 .botaoBuscar {
     display: flex;
     align-items: center;
@@ -161,9 +171,10 @@
 }
 
 
-/* ------------------------------------------------------------- */
-/* CARROSSEL DE GÊNEROS */
-/* ------------------------------------------------------------- */
+/* ----------------------------------------------------
+  carrossel com os gêneros dos filmes
+   ---------------------------------------------------- */
+
 .generoCarrosselWrapper {
     display: flex;
     align-items: center;
@@ -237,6 +248,9 @@
     border: transparent;
 }
 
+/* ----------------------------------------------------
+  tentativa de responsividade
+   ---------------------------------------------------- */
 
 @media (max-width: 1024px) {
     .barraBuscaFundo {

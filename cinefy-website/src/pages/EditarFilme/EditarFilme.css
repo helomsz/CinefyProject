@@ -14,7 +14,7 @@
 }
 
 /* ----------------------------------------------------
-   Estrutura Geral e Layout
+   estrutura geral da tela
    ---------------------------------------------------- */
 .add-movie-page {
     min-height: 100vh;
@@ -23,7 +23,6 @@
     padding: 0;
     margin: 0;
     color: var(--text-primary);
-    /* ATENÇÃO: Verifique se o caminho da imagem está correto para a pasta onde este arquivo está */
     background-image: url('../../assets/adicionarfilme/backgroundADD.png'); 
     background-size: cover; 
     background-position: center center;
@@ -38,9 +37,11 @@
     padding: 40px;
     margin-top: 100px;
     gap: 40px;
-    box-sizing: border-box; /* Importante para não estourar */
+    box-sizing: border-box;
 }
-
+/* ----------------------------------------------------
+   pré-visualização
+   ---------------------------------------------------- */
 .preview-area {
     flex: 0 0 450px;
     display: flex;
@@ -90,11 +91,11 @@
     flex-direction: column;
     gap: 24px;
     margin-top: 20px;
-    min-width: 0; /* Impede que flex items estourem o pai */
+    min-width: 0; 
 }
 
 /* ----------------------------------------------------
-   Cabeçalho
+   cabeçalho
    ---------------------------------------------------- */
 header {
     margin-bottom: 10px;
@@ -115,7 +116,7 @@ header {
 }
 
 /* ----------------------------------------------------
-   Formulário e Inputs
+   formulário e inputs
    ---------------------------------------------------- */
 .movie-form-add {
     display: flex;
@@ -150,7 +151,7 @@ header {
 }
 
 .form-group input {
-    width: 100%; /* CORRIGIDO: Estava com lixo de código aqui */
+    width: 100%; 
     padding: 12px;
     background-color: transparent;
     border: none;
@@ -169,7 +170,9 @@ header {
     line-height: 1;
 }
 
-/* Estilização Global de Inputs dentro deste escopo */
+/* ----------------------------------------------------
+   estilização global dos inputs
+   ---------------------------------------------------- */
 input[type="text"],
 input[type="number"],
 textarea,
@@ -200,7 +203,7 @@ textarea {
 }
 
 /* ----------------------------------------------------
-   Selects
+   select
    ---------------------------------------------------- */
 select {
     appearance: none;
@@ -215,8 +218,6 @@ select {
     font-size: 1.05rem;
     font-weight: 400;
     outline: none;
-    
-    /* Icone customizado */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2398A0A6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0px center;
@@ -229,7 +230,7 @@ select option {
 }
 
 /* ----------------------------------------------------
-   Categorias e Atores
+   categorias e atores
    ---------------------------------------------------- */
 .categories-section, .actors-section {
     padding-top: 5px;
@@ -281,7 +282,9 @@ select option {
     cursor: not-allowed;
 }
 
-/* Cards de Atores */
+/* ----------------------------------------------------
+   card de atores
+   ---------------------------------------------------- */
 .actors-list {
     display: flex;
     flex-wrap: wrap;
@@ -326,7 +329,7 @@ select option {
 }
 
 /* ----------------------------------------------------
-   Botão de Envio
+   botão de envio
    ---------------------------------------------------- */
 .submit-area {
     margin-top: 20px;
@@ -364,7 +367,7 @@ select option {
 }
 
 /* ----------------------------------------------------
-   Responsividade
+   tentativa de responsividade
    ---------------------------------------------------- */
 @media (max-width: 1024px) {
     .main-content {
@@ -385,7 +388,7 @@ select option {
     }
     
     .banner-preview {
-        display: none; /* Geralmente esconde banner em mobile se ficar apertado */
+        display: none; 
     }
 
     .form-grid {

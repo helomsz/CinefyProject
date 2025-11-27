@@ -1,3 +1,6 @@
+/* ----------------------------------------------------
+   estrutura do autocomplete
+   ---------------------------------------------------- */
 .autocomplete-container {
     position: relative;
     z-index: 90;
@@ -17,6 +20,9 @@
     border: 1px solid #ccc;
 }
 
+/* ----------------------------------------------------
+   dropdown
+   ---------------------------------------------------- */
 .aut-dropdown {
     position: absolute;
     top: 100%;

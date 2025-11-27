@@ -1,4 +1,6 @@
-
+/* ----------------------------------------------------
+  seção dos cards de lançamentos
+   ---------------------------------------------------- */
 .secaoLancamentos {
     padding: 0px; 
     color: white;
@@ -18,6 +20,9 @@
     box-sizing: border-box;
 }
 
+/* ----------------------------------------------------
+  arrumando a estrutra do grid
+   ---------------------------------------------------- */
 .containerCardsLancamento {
     display: grid;
     grid-template-columns: repeat(6, 1fr); 
