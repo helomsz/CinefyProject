@@ -4,7 +4,9 @@ import MeninaSentada from '../../assets/favoritos/meninapretinha.png';
 import './CardFavorito.css';
 
 const CardAdicaoFilme = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate();  // hook para navegação
+
+     // função para navegar até a tela de adição de filme
     const irParaTelaDeAdicao  = () => navigate('/adicionar');
 
 
@@ -18,6 +20,7 @@ const CardAdicaoFilme = () => {
                 </button>
             </div>
             <div className="card-adicao-image">
+                {/* imagem ilustrativa do card */}
                 <img src={MeninaSentada}
                     alt="Menina preta sentada vendo tv"  />
             </div>

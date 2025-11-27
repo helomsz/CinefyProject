@@ -8,6 +8,8 @@ import KungFu from '../../assets/cinefyKids/kungfuPoster.png';
 import Elementosbg from '../../assets/cinefyKids/elementosbg.png'; 
 import Zootopiabg from '../../assets/cinefyKids/zootopiabg.png'; 
 import KungFubg from '../../assets/cinefyKids/kunfubg.png'; 
+
+// mock de filmes de destaque para a seção Kids
 const filmesDestaque = [
     { 
         id: 1, 
@@ -15,7 +17,7 @@ const filmesDestaque = [
         info: "Romance | Fantasia", 
         duration: "1h49min", 
         year: 2023, 
-        rating: 5, 
+        rating: 3, 
         image: ElementosImage,
         bgImage: Elementosbg,
         trailer: "https://www.youtube.com/embed/XpZterwuuc4" 
@@ -44,6 +46,7 @@ const filmesDestaque = [
     }
 ];
 
+// componente para renderizar as estrelas de avaliação
 const RatingStars = ({ count }) => {
     return (
         <div className="rating-stars">
@@ -59,6 +62,7 @@ const RatingStars = ({ count }) => {
     );
 }
 
+// modal de trailer, aberto ao clicar em assistir trailer
 const TrailerModal = ({ isOpen, trailerUrl, onClose, title, year }) => {
     if (!isOpen || !trailerUrl) return null;
 
@@ -66,7 +70,7 @@ const TrailerModal = ({ isOpen, trailerUrl, onClose, title, year }) => {
         <div className="trailer-modal-overlay" onClick={onClose}>
             <div 
                 className="trailer-modal-content"
-                onClick={e => e.stopPropagation()}
+                onClick={e => e.stopPropagation()}  // evita fechar o modal ao clicar dentro dele
             >
                 <div className="trailer-modal-header">
                     <h4 className="trailer-modal-title">Trailer | {title} | {year}</h4>
@@ -92,7 +96,7 @@ const TrailerModal = ({ isOpen, trailerUrl, onClose, title, year }) => {
     );
 };
 
-
+// componente principal da seção de destaques Kids
 const DestaquesKids = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [fadeBg, setFadeBg] = useState(false);
@@ -101,6 +105,7 @@ const DestaquesKids = () => {
 
     const currentFilme = filmesDestaque[currentIndex];
 
+    // função chamada ao clicar para assistir o trailer
     const handleTrailerClick = (filme) => {
         if (filme.trailer) {
             setCurrentTrailer(filme);
@@ -110,6 +115,7 @@ const DestaquesKids = () => {
         }
     };
     
+    // função para trocar de filme
     const changeMovie = (newIndex) => {
         setFadeBg(true);
         setTimeout(() => {
@@ -118,11 +124,13 @@ const DestaquesKids = () => {
         }, 400); 
     };
 
+    // função para exibir o próximo filme
     const nextMovie = () => {
         const newIndex = (currentIndex === filmesDestaque.length - 1) ? 0 : currentIndex + 1;
         changeMovie(newIndex);
     };
 
+    // função para exibir o filme anterior
     const prevMovie = () => {
         const newIndex = (currentIndex === 0) ? filmesDestaque.length - 1 : currentIndex - 1;
         changeMovie(newIndex);
@@ -153,6 +161,7 @@ const DestaquesKids = () => {
                             <p className="card-runtime">{currentFilme.duration} - {currentFilme.year}</p>
                             <RatingStars count={currentFilme.rating} />
                             
+                            {/* botão para assistir o trailer */}
                             <button 
                                 className="trailer-button"
                                 onClick={() => handleTrailerClick(currentFilme)}
@@ -163,6 +172,7 @@ const DestaquesKids = () => {
                         </div>
                     </div>
 
+                    {/* botões para navegar entre os filmes */}
                     <div className="slider-arrows">
                         <button className="arrow-button left" onClick={prevMovie}>
                             <ChevronLeft size={30} />
@@ -174,6 +184,7 @@ const DestaquesKids = () => {
                 </div>
             </div>
 
+            {/* modal de trailer */}
             <TrailerModal 
                 isOpen={showTrailerModal} 
                 trailerUrl={currentTrailer?.trailer} 

@@ -8,21 +8,25 @@ function CardCarrossel({ filme, className, onCardClick, trailer }) {
     const { titulo, descricao, capaFundo } = filme;
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    // URL de embed do youtube para o trailer
     const youtubeEmbedUrl = trailer
         ? `https://www.youtube.com/embed/${trailer}?autoplay=1&rel=0`
         : null;
 
+    // função chamada ao clicar no botão de play, abre o modal    
     const handleOpenModal = (e) => {
         e.stopPropagation();
         if (youtubeEmbedUrl) {
-            setIsModalOpen(true);
+            setIsModalOpen(true); // abre o modal
         }
     };
 
+    // função chamada para fechar o modal
     const handleCloseModal = () => {
-        setIsModalOpen(false);
+        setIsModalOpen(false); //fecha o modal
     };
 
+    // conteúdo do modal, que é renderizado fora da árvore do componente principal 
     const modalContent = (
         <div className="modalOverlayCarrossel" onClick={handleCloseModal}>
             <div className="modalContentCarrossel" onClick={(e) => e.stopPropagation()}>
@@ -53,7 +57,7 @@ function CardCarrossel({ filme, className, onCardClick, trailer }) {
             <div 
                 className={`cardCarrossel ${className}`} 
                 style={{ backgroundImage: `url(${capaFundo})` }}
-                onClick={onCardClick} 
+                onClick={onCardClick}  // ação de clique no card
             >
                 <div className="cardConteudo">
                     <h2 className="cardTitulo">{titulo}</h2>
@@ -65,7 +69,7 @@ function CardCarrossel({ filme, className, onCardClick, trailer }) {
             </div>
 
             {isModalOpen && youtubeEmbedUrl && ReactDOM.createPortal(
-                modalContent,
+                modalContent, // conteúdo do modal
                 document.body 
             )}
         </>

@@ -8,6 +8,7 @@ import ImagemdeFundo from '../../assets/contato/contatoFundo.svg';
 import LoadingPage from '../../components/LoadingPage/LoadingPage';
 
 
+// informações de contato, como e-mail, telefone e localização
 const contactInfo = [
   {
     icon: Mail,
@@ -29,18 +30,22 @@ const contactInfo = [
   },
 ];
 
+// estado para armazenar os dados do formulário e status de envio
 const Contato = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('idle'); 
 
+  // função para lidar com a alteração nos campos do formulário
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // função para enviar o formulário
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('loading');
 
+    // envio da mensagem com um timeout de 2 segundos
     setTimeout(() => {
       if (formData.name && formData.email && formData.message) {
         setStatus('success');
@@ -51,6 +56,7 @@ const Contato = () => {
     }, 2000);
   };
 
+  // Função para exibir a mensagem de status (sucesso ou erro)
   const getStatusMessage = () => {
     if (status === 'success') {
       return (
@@ -72,7 +78,7 @@ const Contato = () => {
         </div>
       );
     }
-    return null;
+    return null; // se não houver status, não exibe nada
   };
 
   return (

@@ -16,7 +16,7 @@ import jwt
 DB_CONFIG = {
     'host': "localhost",
     'user': "root",
-    'password':"root",
+    'password':"senai",
     'database': "SERVIDORFILMES"
 }
 

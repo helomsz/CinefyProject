@@ -1,102 +1,109 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import CardFilme from '../CardFilme/CardFilme'; 
+import CardFilme from '../CardFilme/CardFilme';
 import './CardHorizontalRecomendacao.css';
 
-const MAX_FILMES = 8; 
+const MAX_FILMES = 8; // número máximo de filmes a serem exibidos no carrossel
 
 const SecaoCarrosselRecomendacoes = ({ filmes = [], tituloSecao = "Baseado no que você assistiu" }) => {
-  const navigate = useNavigate();
-  const containerRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
+  const navigate = useNavigate(); // hook para navegação
+  const containerRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false); // controle de botão de rolagem
+  const [canScrollRight, setCanScrollRight] = useState(false); // controle de botão de rolagem
 
+
+  // limita a quantidade de filmes a serem exibidos
   const filmesExibidos = filmes.slice(0, MAX_FILMES);
 
-  const updateScrollButtons = () => {
-    if (!containerRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
+  // função que verifica se é possível rolar para a esquerda ou direita
+  const updateScrollButtons = () => {
+    if (!containerRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
+    const scrollEnd = scrollWidth - clientWidth;
 
-    const scrollEnd = scrollWidth - clientWidth;
+    // verifica se há espaço para rolar
+    const canScroll = scrollWidth > clientWidth;
+    setCanScrollLeft(canScroll && scrollLeft > 1);
+    setCanScrollRight(canScroll && scrollLeft < scrollEnd - 1);
+  };
 
-    const canScroll = scrollWidth > clientWidth;
+  // função que faz o scroll de acordo com a direção
+  const scroll = (direction) => {
+    if (!containerRef.current) return;
 
-    setCanScrollLeft(canScroll && scrollLeft > 1);
-    setCanScrollRight(canScroll && scrollLeft < scrollEnd - 1);
-  };
+    const scrollAmount = containerRef.current.clientWidth * 0.8;
 
-  const scroll = (direction) => {
-    if (!containerRef.current) return;
+    containerRef.current.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  };
 
-    const scrollAmount = containerRef.current.clientWidth * 0.8; 
-
-    containerRef.current.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth'
-    });
-  };
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+  // efeito que atualiza os botões de navegação com base no scroll
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
     const delayId = setTimeout(() => {
-        updateScrollButtons();
-    }, 100); 
+      updateScrollButtons();
+    }, 100);
 
-    container.addEventListener('scroll', updateScrollButtons);
-    window.addEventListener('resize', updateScrollButtons);
+    container.addEventListener('scroll', updateScrollButtons);
+    window.addEventListener('resize', updateScrollButtons);
 
-    const timeoutId = setTimeout(updateScrollButtons, 0);
+    const timeoutId = setTimeout(updateScrollButtons, 0);
 
-    return () => {
-      clearTimeout(delayId); 
-      clearTimeout(timeoutId);
-      container.removeEventListener('scroll', updateScrollButtons);
-      window.removeEventListener('resize', updateScrollButtons);
-    };
-  }, [filmesExibidos]);
+    // limpa os eventos quando o componente for desmontado
+    return () => {
+      clearTimeout(delayId);
+      clearTimeout(timeoutId);
+      container.removeEventListener('scroll', updateScrollButtons);
+      window.removeEventListener('resize', updateScrollButtons);
+    };
+  }, [filmesExibidos]);  // roda novamente quando filmesExibidos mudar
 
-  return (
-    <section className="secao-carrossel-favoritos-wrapper">
-      <div className="secao-carrossel-favoritos__cabecalho">
-        <h2 className="secao-carrossel-favoritos__titulo">{tituloSecao}</h2>
+  return (
+    <section className="secao-carrossel-favoritos-wrapper">
+      <div className="secao-carrossel-favoritos__cabecalho">
+        <h2 className="secao-carrossel-favoritos__titulo">{tituloSecao}</h2>
 
-        <div className="secao-carrossel-favoritos__navegacao">
-          <button
-            className={`carrossel-seta esquerda ${canScrollLeft ? 'ativo' : 'inativo'}`}
-            aria-label="Rolar para a esquerda"
-            onClick={() => scroll('left')}
-            disabled={!canScrollLeft} 
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            className={`carrossel-seta direita ${canScrollRight ? 'ativo' : 'inativo'}`}
-            aria-label="Rolar para a direita"
-            onClick={() => scroll('right')}
-            disabled={!canScrollRight} 
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
-      </div>
+        <div className="secao-carrossel-favoritos__navegacao">
+          <button
+            className={`carrossel-seta esquerda ${canScrollLeft ? 'ativo' : 'inativo'}`}
+            aria-label="Rolar para a esquerda"
+            onClick={() => scroll('left')}
+            disabled={!canScrollLeft}  // desabilita o botão se não for possível rolar
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            className={`carrossel-seta direita ${canScrollRight ? 'ativo' : 'inativo'}`}
+            aria-label="Rolar para a direita"
+            onClick={() => scroll('right')}
+            disabled={!canScrollRight}  // desabilita o botão se não for possível rolar
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
+      </div>
 
-      <div className="secao-carrossel-favoritos__lista" ref={containerRef}>
-        {filmesExibidos.map((filme) => (
-          <CardFilme
-            key={filme.id} 
-            titulo={filme.titulo}
-            genero={filme.generos || 'Gênero Desconhecido'}
-            nota={filme.avaliacao_media || 0.0}
-            posterMini={filme.poster_mini}
-            trailer={filme.trailer}
-            onClick={() => navigate(`/detalhes/${filme.id}`)}
-          />
-        ))}
-      </div>
-    </section>
-  );
+      {/* Lista de filmes */}
+      <div className="secao-carrossel-favoritos__lista" ref={containerRef}>
+        {/* mapeia os filmes e renderiza o CardFilme para cada um */}
+        {filmesExibidos.map((filme) => (
+          <CardFilme
+            key={filme.id}
+            titulo={filme.titulo}
+            genero={filme.generos || 'Gênero Desconhecido'}
+            nota={filme.avaliacao_media || 0.0}
+            posterMini={filme.poster_mini}
+            trailer={filme.trailer}
+            onClick={() => navigate(`/detalhes/${filme.id}`)}
+          />
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default SecaoCarrosselRecomendacoes;

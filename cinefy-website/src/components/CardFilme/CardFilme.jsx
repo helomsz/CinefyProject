@@ -4,15 +4,17 @@ import { FaPlay, FaStar, FaTimes } from 'react-icons/fa';
 
 function CardFilme({ titulo, genero, nota, posterMini, trailer, onClick }) {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false); // estado para controlar a abertura do modal
 
     const imagemCaminho = posterMini || 'assets/images/placeholder.png';
-    const urlImagem = `http://localhost:8000/${imagemCaminho}`;
+    const urlImagem = `http://localhost:8000/${imagemCaminho}`; // URL da imagem do filme
 
+    // URL do trailer no YouTube, se houver trailer
     const youtubeEmbedUrl = trailer
         ? `https://www.youtube.com/embed/${trailer}?autoplay=1&rel=0`
         : null;
 
+    // abre o modal com o trailer
     const handleOpenModal = (e) => {
         e.stopPropagation();
         if (youtubeEmbedUrl) {
@@ -22,6 +24,7 @@ function CardFilme({ titulo, genero, nota, posterMini, trailer, onClick }) {
         }
     };
 
+     // fecha o modal
     const handleCloseModal = (e) => {
         if (e) e.stopPropagation();
         setIsModalOpen(false);
@@ -32,7 +35,7 @@ function CardFilme({ titulo, genero, nota, posterMini, trailer, onClick }) {
             <article className="cardFilme" onClick={onClick}>
                 <div
                     className="imagemFilme"
-                    style={{ backgroundImage: `url(${urlImagem})` }}
+                    style={{ backgroundImage: `url(${urlImagem})` }} // aplica a imagem de fundo do card
                 >
 
                     <div className="playButtonContainer">

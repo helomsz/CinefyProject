@@ -8,10 +8,12 @@ const FavoritesHero = () => {
     return (
         <section className="favorites-hero">
             <div className="hero-content-text">
+                {/* texto de introdução na parte superior do componente */}
                 <p className="hero-subtitle">Bem-vindo à sua galeria cinematográfica pessoal.</p>
                 <p className='titulo'>Sua coleção de filmes favoritos,</p>
 
                 <p className="hero-description">
+                    {/* descrição explicando a função da lista de favoritos */}
                     Adicione, organize e reviva seus momentos favoritos do cinema. Continue de onde parou ou descubra algo novo na sua lista.
                 </p>
                 
@@ -25,6 +27,7 @@ const FavoritesHero = () => {
                 </Link>
             </div>
             <div className="hero-image-container">
+                {/* mockup de celular exibindo o app CineFy com o design */}
                 <img 
                     src={PhoneMockupComplete}
                     alt="Mockup de celular com o aplicativo CineFy e cards de recomendação" 

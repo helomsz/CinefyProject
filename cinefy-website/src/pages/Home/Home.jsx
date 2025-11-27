@@ -13,6 +13,7 @@ import CardErroCentralizado from "../../components/CardErroCentralizado/CardErro
 import Footer from "../../components/Footer/Footer";
 import "./Home.css";
 
+// chaama a api atraves da url
 const URL_API_FILMES = "http://localhost:8000/listar_filmes";
 
 function HomePage() {
@@ -25,7 +26,7 @@ function HomePage() {
   const location = useLocation();
 
   useEffect(() => {
-    const controller = new AbortController();
+    const controller = new AbortController(); // controle de requisições
 
     // função de busca de filmes
     const buscarFilmes = async () => {

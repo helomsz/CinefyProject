@@ -7,7 +7,10 @@ import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useUserSession } from "../../components/useUserSession.js";
 
 function LoginPage() {
+  // função de navegação para outras páginas
   const navigate = useNavigate();
+
+  // função para login do usuário
   const { loginUser } = useUserSession();
 
   const [dadosLogin, setDadosLogin] = useState({
@@ -16,10 +19,11 @@ function LoginPage() {
     lembrar: false,
   });
 
-  const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [mostrarSenha, setMostrarSenha] = useState(false); // mostrar ou sumir com a senha
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  // função para lidar com mudanças nos campos de input
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     setDadosLogin((prevDados) => ({
@@ -28,6 +32,8 @@ function LoginPage() {
     }));
   };
 
+  
+  // função que lida com o envio do formulário de login
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
@@ -39,6 +45,7 @@ function LoginPage() {
     };
 
     try {
+      // faz a requisição de login para o backend
       const response = await fetch("http://localhost:8000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -1,34 +1,29 @@
 import React, { useEffect, useState, useCallback } from "react";
-import {
-  Check,
-  X,
-  Film,
-  LayoutList,
-  Users,
-  Clock,
-  Home,
-  LogOut,
-  Settings,
-  Loader,
-} from "lucide-react";
+import {Check,X,Film,LayoutList,Users,Clock,Home,LogOut,Settings,Loader} from "lucide-react";
 import "./AdminDashboard.css";
 import NavbarCentralizada from "../../components/NavbarCentralizada/NavbarCentralizada";
 import MenuLateral from "../../components/MenuLateral/MenuLateral";
 import Footer from "../../components/Footer/Footer";
 
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "http://localhost:8000"; // URL base da API
 
+// hook de navegação (apenas mockando o comportamento)
 const useNavigate = () => {
   return useCallback((path) => {
     console.warn(`[NAVEGAÇÃO MOCK] Redirecionando para: ${path}`);
   }, []);
 };
 
+// hook de autenticação que lida com login, logout e controle de permissões
 const useAuth = () => {
+   // armazena o papel do usuário (admin ou comum)
   const [userRole, setUserRole] = useState(undefined);
+
+   // armazena o token de autenticação
   const [token, setToken] = useState(undefined);
   const navigate = useNavigate();
 
+  // função para fazer login, setando dados no localStorage
   const login = useCallback(
     (role = "admin", tokenValue = "mock-jwt-token-admin") => {
       localStorage.setItem("role", role);
@@ -40,6 +35,7 @@ const useAuth = () => {
     [navigate, setUserRole, setToken]
   );
 
+  // função para fazer logout, removendo dados do localStorage
   const logout = useCallback(() => {
     localStorage.removeItem("role");
     localStorage.removeItem("token");
@@ -48,6 +44,7 @@ const useAuth = () => {
     navigate("/login");
   }, [navigate, setUserRole, setToken]);
 
+  // hook useEffect para verificar as permissões do usuário quando o componente carrega
   useEffect(() => {
     let role = localStorage.getItem("role");
     let jwtToken = localStorage.getItem("token");
@@ -68,6 +65,8 @@ const useAuth = () => {
   };
 };
 
+
+// componente principal do Dashboard do Admin
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { userRole, isAdmin, token, login, logout } = useAuth();
@@ -76,6 +75,7 @@ const AdminDashboard = () => {
   const [error, setError] = useState(null);
   const [processingId, setProcessingId] = useState(null);
 
+  // função para buscar solicitações pendentes da API
   const fetchSolicitacoes = useCallback(async () => {
     if (!token) {
       setIsLoadingData(false);
@@ -109,6 +109,7 @@ const AdminDashboard = () => {
     }
   }, [token]);
 
+  // função para processar a solicitação (aprovar ou rejeitar)
   const handleProcessRequest = useCallback(
     async (solicitacaoId, acao) => {
       if (!token || processingId) return;
@@ -144,6 +145,7 @@ const AdminDashboard = () => {
     [token, processingId]
   );
 
+  // verifica as permissões de usuário e se deve carregar as solicitações
   useEffect(() => {
     if (userRole === undefined) return;
 
@@ -172,7 +174,7 @@ const AdminDashboard = () => {
     );
   }
 
-  if (!isAdmin) return null;
+  if (!isAdmin) return null; // se não for admin, não mostra nada
 
   if (isLoadingData) {
     return (

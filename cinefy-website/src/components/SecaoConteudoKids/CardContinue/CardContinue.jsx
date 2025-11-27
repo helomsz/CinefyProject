@@ -6,27 +6,38 @@ import Relogio from '../../../assets/icones/MeuRelogio.svg'
 function CardContinue({ filme, onPlayClick }) {
     const { titulo, ano ,poster_mini, progressoMinutos, tempoTotalMinutos, trailer} = filme;
 
+    // estado para controlar a abertura do modal de trailer
     const [isModalOpen, setIsModalOpen] = useState(false);
     
+    // define o caminho da imagem do filme, usando um caminho alternativo caso a imagem não esteja disponível
     const imagemCaminho = poster_mini || 'assets/images/placeholder.png'; 
+
+    // URL da imagem completa para exibir a capa do filme
     const urlImagem = `http://localhost:8000/${imagemCaminho}`; 
     const progressoPorcentagem = (progressoMinutos / tempoTotalMinutos) * 100;
+
+    // formata a exibição do tempo assistido e total
     const tempoDisplay = `${progressoMinutos}/${tempoTotalMinutos} min`; 
 
+    // define o URL do trailer, se disponível, com parâmetros para autoplay e desativar recomendações
     const youtubeEmbedUrl = trailer 
         ? `https://www.youtube.com/embed/${trailer}?autoplay=1&rel=0`
         : null;
 
+    // função para abrir o modal do trailer, somente se houver um trailer disponível
     const handleOpenModal = (e) => {
         e.stopPropagation(); 
         
+        // se o trailer estiver disponível, abre o modal
         if (youtubeEmbedUrl) {
             setIsModalOpen(true);
         } else {
+            // se não houver trailer, exibe um aviso no console
             console.warn(`Trailer indisponível para o filme: ${titulo}`);
         }
     };
 
+    // função para fechar o modal quando o usuário clicar no botão de fechar
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
@@ -34,7 +45,7 @@ function CardContinue({ filme, onPlayClick }) {
     return (
         <div 
             className="cardProgressoWrapper" 
-            onClick={() => onPlayClick(filme)} 
+            onClick={() => onPlayClick(filme)} // ao clicar no card, chama a função onPlayClick, passando o filme
         >
             <img 
                 src={urlImagem} 

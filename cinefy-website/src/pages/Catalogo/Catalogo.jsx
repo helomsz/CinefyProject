@@ -12,8 +12,10 @@ import MazeRunner from '../../assets/catalogo/mazeRunnerCard.png';
 import Truque from '../../assets/catalogo/truqueCard.png';      
 
 function Catalogo() {
+    // cria o estado para armazenar os filmes filtrados
     const [filmesFiltrados, setFilmesFiltrados] = useState([]);
 
+    // dados de filmes em alta com id, título, subtítulo e imagem do poster
     const filmesEmAlta = [
         {
             id: 101,

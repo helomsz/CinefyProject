@@ -13,7 +13,7 @@ const InputFiltro = ({ id, label, placeholder, valor, onChange }) => (
         type="text"
         placeholder={placeholder}
         value={valor}
-        onChange={e => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)} // chama a função onChange quando o valor do input mudar
         className="inputFiltro"
       />
       <img src={Lupa} alt="Ícone de busca" className="iconeBuscaDentroInput imgIcone" />
@@ -21,15 +21,18 @@ const InputFiltro = ({ id, label, placeholder, valor, onChange }) => (
   </div>
 );
 
+// define o componente de botões para filtrar por categoria
 const BotoesGenero = ({ categorias, categoriaAtiva, onSelect }) => {
-  const containerRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
 
-  const updateScrollButtons = () => {
+  // cria uma referência para o container dos botões
+  const containerRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false); // controle do botão de rolagem
+  const [canScrollRight, setCanScrollRight] = useState(false); // controle do botão de rolagem
+
+  const updateScrollButtons = () => { // função que atualiza os botões de rolagem
     if (!containerRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
-    setCanScrollLeft(scrollLeft > 0);
+    const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;  // pega o estado do scroll
+    setCanScrollLeft(scrollLeft > 0);  // verifica se o scroll está à esquerda
     setCanScrollRight(scrollLeft + clientWidth < scrollWidth);
   };
 
@@ -38,12 +41,12 @@ const BotoesGenero = ({ categorias, categoriaAtiva, onSelect }) => {
     containerRef.current.scrollBy({ left: direction === 'left' ? -200 : 200, behavior: 'smooth' });
   };
 
-  useEffect(() => {
+  useEffect(() => { // hook de efeito para atualizar os botões de rolagem
     const container = containerRef.current;
-    updateScrollButtons();
+    updateScrollButtons(); // atualiza o estado dos botões de rolagem
     container?.addEventListener('scroll', updateScrollButtons);
     window.addEventListener('resize', updateScrollButtons);
-    return () => {
+    return () => {  // limpa os event listeners quando o componente for desmontado
       container?.removeEventListener('scroll', updateScrollButtons);
       window.removeEventListener('resize', updateScrollButtons);
     };
@@ -51,7 +54,7 @@ const BotoesGenero = ({ categorias, categoriaAtiva, onSelect }) => {
 
   return (
     <div className="generoCarrosselWrapper">
-      <button className="carrosselSeta esq" onClick={() => scroll('left')} disabled={!canScrollLeft}>
+      <button className="carrosselSeta esq" onClick={() => scroll('left')} disabled={!canScrollLeft}> 
         <ChevronLeft size={24} />
       </button>
 
@@ -74,20 +77,20 @@ const BotoesGenero = ({ categorias, categoriaAtiva, onSelect }) => {
   );
 };
 
-const SecaoFiltroInfantil = ({ onFiltrar }) => {
+const SecaoFiltroInfantil = ({ onFiltrar }) => { // define o componente principal da seção de filtro
   const categorias = ["Todos","Ação","Aventura","Comédia","Ficção","Romance","Fantasia","Musical","Infantil","Super-herói"];
-
-  const [categoriaAtiva, setCategoriaAtiva] = useState("Todos");
+ 
+  const [categoriaAtiva, setCategoriaAtiva] = useState("Todos"); // estado da categoria ativa
   const [filtroAno, setFiltroAno] = useState("");
   const [filtroTitulo, setFiltroTitulo] = useState("");
   const [filtroAtor, setFiltroAtor] = useState("");
   const [filtroDiretor, setFiltroDiretor] = useState("");
 
   const abortControllerRef = useRef(null);
-
-  const handleBusca = useCallback(async () => {
+ 
+  const handleBusca = useCallback(async () => { 
     console.log("🔍 Iniciando busca...");
-    abortControllerRef.current?.abort();
+    abortControllerRef.current?.abort(); // referência para controlar o abortamento da requisição
     const controller = new AbortController();
     abortControllerRef.current = controller;
 
@@ -99,7 +102,7 @@ const SecaoFiltroInfantil = ({ onFiltrar }) => {
       filtroDiretor && params.append("diretor", filtroDiretor);
       categoriaAtiva.toLowerCase() !== "todos" && params.append("genero", categoriaAtiva);
 
-      const url = `http://localhost:8000/listar_filmes_infantis?${params.toString()}`;
+      const url = `http://localhost:8000/listar_filmes_infantis?${params.toString()}`;  // faz a requisição para listar filmes infantis
       console.log("URL da API:", url);
 
       const response = await fetch(url, { signal: controller.signal });

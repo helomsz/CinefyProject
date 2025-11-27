@@ -25,6 +25,7 @@ const CardSaga = ({ titulo, imagemUrl, tag, subtitulo }) => (
 
 
 function SecaoSagas() {
+    // definindo um array de objetos para armazenar informações das sagas
     const sagasIconicas = [
         { 
             id: 1, 
@@ -58,6 +59,7 @@ function SecaoSagas() {
             
             <div className="containerSagas">
                 {sagasIconicas.map(saga => (
+                    // mapeia o array de sagas e cria um CardSaga para cada item
                     <CardSaga 
                         key={saga.id}
                         titulo={saga.titulo}

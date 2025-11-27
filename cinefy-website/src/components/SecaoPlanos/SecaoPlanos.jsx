@@ -3,7 +3,7 @@ import './SecaoPlanos.css';
 
 import ImagemPlanos from '../../assets/planos/planos.png'; 
 
-function SecaoPlanos() {
+function SecaoPlanos() { // define o componente funcional SecaoPlanos
     return (
         <section className="secaoPlanos">
             <a 

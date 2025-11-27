@@ -9,6 +9,8 @@ import fundoInterstellar from '../../assets/backgroundsHome/interstellar.svg';
 import fundoDuna from '../../assets/backgroundsHome/bannerDuna.svg'; 
 import fundoTempo from '../../assets/backgroundsHome/bannerTempo.svg';
 
+
+// dados dos filmes em destaque
 const filmesDestaque = [
   { id: 1, titulo: 'Interstellar', categoria: 'Ficção', rating: 5, imagemCapa: capaInterstellar, imagemFundo: fundoInterstellar },
   { id: 2, titulo: 'Duna', categoria: 'Aventura', rating: 4, imagemCapa: capaDuna, imagemFundo: fundoDuna },
@@ -16,13 +18,16 @@ const filmesDestaque = [
 ];
 
 function HeroSection() {
+  // estado do filme selecionado
   const [indiceSelecionado, setIndiceSelecionado] = useState(0);
+  // estado do fundo anterior
   const [fundoAnterior, setFundoAnterior] = useState(null);
   const [fundoAtual, setFundoAtual] = useState(filmesDestaque[0].imagemFundo);
   const [fadeAtivo, setFadeAtivo] = useState(false);
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
+  // função para alterar o fundo ao clicar no card
   const handleCardClick = (index) => {
     if (index === indiceSelecionado) return;
     setFundoAnterior(fundoAtual);
@@ -31,7 +36,7 @@ function HeroSection() {
     setFadeAtivo(true);
   };
 
-  // Quando a animação termina, remove o fundo anterior
+  // quando a animação termina, remove o fundo anterior
   useEffect(() => {
     if (fadeAtivo) {
       const timer = setTimeout(() => {
@@ -42,18 +47,19 @@ function HeroSection() {
     }
   }, [fadeAtivo]);
 
+  // função para tratar o clique no botão de cadastro
   const handleCadastroClick = () => {
     if (email.trim() === '') {
       alert('Por favor, insira um e-mail antes de se cadastrar.');
       return;
     }
     const encodedEmail = encodeURIComponent(email.trim());
-    navigate(`/cadastro?email=${encodedEmail}`);
+    navigate(`/cadastro?email=${encodedEmail}`); // navega para a página de cadastro
   };
 
   return (
     <main className="hero-section-container">
-      {/* Fundo anterior (só aparece durante o fade) */}
+      {/* fundo anterior (só aparece durante o fade) */}
       {fundoAnterior && (
         <div
           className="hero-background fundo-anterior"
@@ -61,7 +67,7 @@ function HeroSection() {
         ></div>
       )}
 
-      {/* Fundo atual (fade-in controlado) */}
+      {/* fundo atual (fade-in controlado) */}
       <div
         key={indiceSelecionado}
         className={`hero-background fundo-atual ${fadeAtivo ? 'fade-in' : ''}`}

@@ -11,7 +11,10 @@ import './UserProfileDropdown.css';
  * @param {function} onClose 
  */
 function UserProfileDropdown({ onLogout, user, onClose }) {
+    // hook do React Router para navegação
     const navigate = useNavigate(); 
+
+    // itens do menu que aparecerão no dropdown
     const menuItems = [
         { icon: Info, label: 'Central de Ajuda', action: () => { 
             console.log('Navegar para a Central de Ajuda'); 
@@ -19,6 +22,7 @@ function UserProfileDropdown({ onLogout, user, onClose }) {
         }, link: '/contato' },
     ];
 
+    // função para tratar o logout
     const handleLogout = () => {
         onLogout(); 
         onClose();
@@ -27,6 +31,7 @@ function UserProfileDropdown({ onLogout, user, onClose }) {
 
     return (
         <div className="profileDropdownContainer" onClick={(e) => e.stopPropagation()}>
+            {/* Cabeçalho do dropdown com o nome e status do usuário */}
             <div className="dropdownHeader">
                 <p className="dropdownUserName">Olá, {user.name.split(' ')[0]}!</p> 
                 <p className="dropdownUserStatus">{user.status}</p>
@@ -48,6 +53,7 @@ function UserProfileDropdown({ onLogout, user, onClose }) {
 
             <div className="dropdownDivider"></div>
 
+            {/* item para o logout */}
             <div 
                 className="dropdownMenuItem logoutItem" 
                 onClick={handleLogout}

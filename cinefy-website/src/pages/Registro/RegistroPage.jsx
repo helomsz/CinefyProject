@@ -5,10 +5,11 @@ import BotaoPrimario from '../../components/BotaoPrimario/BotaoPrimario.jsx';
 import ImagemCadastro from '../../assets/backgroundLogin/imagemLoginCadastro.png';
 import { EyeIcon, EyeOffIcon, Check, AlertCircle, X } from 'lucide-react';
 
-
+//chama a API atraves da URL
 const URL_API_REGISTRO = 'http://localhost:8000/registro';
 
 function RegistroPage() {
+    // função de navegação para outras páginas
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
@@ -19,7 +20,7 @@ function RegistroPage() {
         senha: '',
         confirmarSenha: '',
     });
-    const [mostrarSenha, setMostrarSenha] = useState(false);
+    const [mostrarSenha, setMostrarSenha] = useState(false); // mostrar ou sumir com a senha
     const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
     const [mensagemStatus, setMensagemStatus] = useState({ tipo: '', texto: '' });
     const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +38,7 @@ function RegistroPage() {
         }
     }, [searchParams]);
 
-
+    // função para lidar com mudanças nos campos de input
     const handleChange = (event) => {
         const { name, value } = event.target;
         setDadosRegistro(prevDados => ({ ...prevDados, [name]: value }));

@@ -7,14 +7,14 @@ import './SecaoFiltro.css';
 const InputFiltro = ({ id, label, placeholder, valor, onChange }) => (
   <div className="filtroInputWrapper">
     <label htmlFor={id} className="labelFiltro">{label}</label>
-
+    
     <div className="filtroInputContainer">
       <input
         id={id}
         type="text"
         placeholder={placeholder}
         value={valor}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)} // chama a função onChange quando o valor do input mudar
         className="filtroInput"
       />
       <img src={Lupa} alt="Ícone de busca" className="filtroInputIcon" />
@@ -22,58 +22,60 @@ const InputFiltro = ({ id, label, placeholder, valor, onChange }) => (
   </div>
 );
 
+// define o componente de botões para filtrar por categoria
 const BotoesGenero = ({ categorias, categoriaAtiva, onSelect }) => {
-  const containerRef = React.useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = React.useState(false);
-  const [canScrollRight, setCanScrollRight] = React.useState(false);
 
-  const updateScrollButtons = () => {
+  const containerRef = React.useRef(null); // cria uma referência para o container dos botões
+  const [canScrollLeft, setCanScrollLeft] = React.useState(false); // controle do botão de rolagem 
+  const [canScrollRight, setCanScrollRight] = React.useState(false); // controle do botão de rolagem 
+
+  const updateScrollButtons = () => { // função que atualiza os botões de rolagem
     if (!containerRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
-    setCanScrollLeft(scrollLeft > 0);
+    const { scrollLeft, scrollWidth, clientWidth } = containerRef.current; // pega o estado do scroll
+    setCanScrollLeft(scrollLeft > 0); // verifica se o scroll está à esquerda
     setCanScrollRight(scrollLeft + clientWidth < scrollWidth);
   };
 
   const scroll = (direction) => {
     if (!containerRef.current) return;
-    const scrollAmount = 200;
+    const scrollAmount = 200; // quantidade do scroll
     containerRef.current.scrollBy({
       left: direction === 'left' ? -scrollAmount : scrollAmount,
       behavior: 'smooth'
     });
   };
 
-  React.useEffect(() => {
+  React.useEffect(() => { // hook de efeito para atualizar os botões de rolagem
     const container = containerRef.current;
     if (!container) return;
-
-    updateScrollButtons();
+ 
+    updateScrollButtons(); // atualiza o estado dos botões de rolagem
     container.addEventListener('scroll', updateScrollButtons);
     window.addEventListener('resize', updateScrollButtons);
 
-    return () => {
+    return () => {  // limpa os event listeners quando o componente for desmontado
       container.removeEventListener('scroll', updateScrollButtons);
       window.removeEventListener('resize', updateScrollButtons);
     };
-  }, []);
+  }, []); // o hook só é chamado uma vez, ao montar o componente
 
   return (
     <div className="generoCarrosselWrapper">
       <button
         className="carrosselSeta esq"
         aria-label="Rolar para a esquerda"
-        onClick={() => scroll('left')}
+        onClick={() => scroll('left')}  // chama a função de scroll à esquerda
         disabled={!canScrollLeft}
       >
         <ChevronLeft size={24} />
       </button>
 
       <div className="generoBotoesContainer" ref={containerRef}>
-        {categorias.map((cat) => (
+        {categorias.map((cat) => ( // mapeia as categorias e cria um botão para cada uma
           <button
             key={cat}
             className={`botaoGenero ${categoriaAtiva === cat ? 'ativo' : ''}`}
-            onClick={() => {
+            onClick={() => { // ao clicar no botão, seleciona a categoria
               if (categoriaAtiva !== cat) onSelect(cat);
             }}
           >
@@ -85,7 +87,7 @@ const BotoesGenero = ({ categorias, categoriaAtiva, onSelect }) => {
       <button
         className="carrosselSeta dir"
         aria-label="Rolar para a direita"
-        onClick={() => scroll('right')}
+        onClick={() => scroll('right')} // chama a função de scroll à direita
         disabled={!canScrollRight}
       >
         <ChevronRight size={24} />
@@ -94,32 +96,32 @@ const BotoesGenero = ({ categorias, categoriaAtiva, onSelect }) => {
   );
 };
 
-function SecaoFiltro({ onFiltrar }) {
-  const categorias = [
+function SecaoFiltro({ onFiltrar }) { // define o componente principal da seção de filtro
+  const categorias = [  // lista de categorias para filtrar
     "Todos", "Ação", "Aventura", "Comédia", "Ficção", "Romance", "Terror",
     "Suspense", "Fantasia", "Musical", "Drama","Distopia", "Crime", "Esporte", 
     "Infantil", "Super-herói"
   ];
 
-  const [categoriaAtiva, setCategoriaAtiva] = React.useState("Todos");
+  const [categoriaAtiva, setCategoriaAtiva] = React.useState("Todos"); // estado da categoria ativa
   const [filtroAno, setFiltroAno] = React.useState("");
   const [filtroTitulo, setFiltroTitulo] = React.useState("");
   const [filtroAtor, setFiltroAtor] = React.useState("");
   const [filtroDiretor, setFiltroDiretor] = React.useState("");
 
-  const abortControllerRef = React.useRef(null);
+  const abortControllerRef = React.useRef(null); // referência para controlar o abortamento da requisição
 
-  const handleBusca = React.useCallback(async (generoFiltro = categoriaAtiva) => {
+  const handleBusca = React.useCallback(async (generoFiltro = categoriaAtiva) => { // função que busca os filmes filtrados
     if (abortControllerRef.current) abortControllerRef.current.abort();
     const controller = new AbortController();
     abortControllerRef.current = controller;
 
     try {
-      const response = await fetch(`http://localhost:8000/listar_filmes`, { signal: controller.signal });
+      const response = await fetch(`http://localhost:8000/listar_filmes`, { signal: controller.signal }); // faz a requisição para listar filmes
       if (!response.ok) throw new Error("Erro ao buscar filmes");
       const data = await response.json();
 
-      const filtrados = data.filter(filme => {
+      const filtrados = data.filter(filme => { // filtra os filmes com base nos critérios definidos
         const anoOk = filtroAno ? String(filme.ano).includes(filtroAno) : true;
         const tituloOk = filtroTitulo ? filme.titulo.toLowerCase().includes(filtroTitulo.toLowerCase()) : true;
 
@@ -129,16 +131,17 @@ function SecaoFiltro({ onFiltrar }) {
         const diretoresStr = Array.isArray(filme.diretores) ? filme.diretores.join(', ') : filme.diretores || "";
         const diretorOk = filtroDiretor ? diretoresStr.toLowerCase().includes(filtroDiretor.toLowerCase()) : true;
 
-        let generosArray = [];
+        let generosArray = []; // cria um array com os gêneros
         if (Array.isArray(filme.generos)) {
           generosArray = filme.generos.flatMap(g => g.split('|').map(x => x.trim().toLowerCase()));
         } else if (typeof filme.generos === 'string') {
-          generosArray = filme.generos.split('|').map(x => x.trim().toLowerCase());
+          generosArray = filme.generos.split('|').map(x => x.trim().toLowerCase()); // trata gênero em string
         }
 
+        // se a categoria for "todos", não filtra por gênero
         const generoOk = generoFiltro.toLowerCase() === "todos" 
           ? true 
-          : generosArray.includes(generoFiltro.toLowerCase());
+          : generosArray.includes(generoFiltro.toLowerCase());  // verifica se o gênero corresponde
 
         return anoOk && tituloOk && atorOk && diretorOk && generoOk;
       });

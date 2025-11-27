@@ -5,6 +5,7 @@ import NotificationDropdown from './NotificationDropdown';
 import './UserProfileWidget.css'; 
 import Avatar from '../../assets/user/userAvatar.png' 
 
+// definindo um conjunto inicial de notificações
 const initialNotifications = [
     { id: 1, message: "Novo filme adicionado ao seu catálogo!", read: false, time: "2h atrás" },
     { id: 2, message: "Lançamento: Novo episódio de 'Star Wars' disponível!", read: false, time: "4h atrás" },
@@ -17,9 +18,9 @@ const initialNotifications = [
  * @param {function} onLogout
  */
 const UserProfileWidget = ({ isLoggedIn, user, onLogout }) => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [notifications, setNotifications] = useState(initialNotifications);
-    const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); // estado que controla a visibilidade do dropdown do perfil
+    const [notifications, setNotifications] = useState(initialNotifications); // estado para armazenar as notificações
+    const [isNotificationsOpen, setIsNotificationsOpen] = useState(false); // estado que controla a visibilidade do dropdown de notificações
     const notificationsCount = notifications.filter(n => !n.read).length;
 
     const markNotificationAsRead = useCallback((id) => {

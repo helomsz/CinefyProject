@@ -4,6 +4,7 @@ import './MovieSearch.css';
 
 const API_URL = "http://localhost:8000"; 
 
+// hook de debounce para evitar chamadas constantes a API
 const useDebounce = (value, delay) => {
     const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -30,6 +31,7 @@ function MovieSearch() {
 
     const debouncedSearchTerm = useDebounce(termoPesquisa, 300);
 
+    // fecha o dropdown ao clicar fora
     useEffect(() => {
         function handleClickOutside(event) {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -42,9 +44,10 @@ function MovieSearch() {
 
     }, []);
 
+    // realiza a busca com debounce
     useEffect(() => {
         if (debouncedSearchTerm.length > 1) {
-            fetchMovies(debouncedSearchTerm);
+            fetchMovies(debouncedSearchTerm); // chama a função de busca
         } else {
             setResultados([]);
             setIsLoading(false);
@@ -62,21 +65,22 @@ function MovieSearch() {
 
     }, [debouncedSearchTerm]);
 
+    // função para buscar filmes na API
     const fetchMovies = async (query) => {
 
         if (abortRef.current) {
             abortRef.current.abort();
         }
 
-        const controller = new AbortController();
+        const controller = new AbortController(); // cria um controlador de requisição
         abortRef.current = controller;
 
-        setIsLoading(true);
+        setIsLoading(true); // ativa o estado de carregamento
 
         try {
             const response = await fetch(
                 `${API_URL}/api/buscar-rapido?q=${encodeURIComponent(query)}`,
-                { signal: controller.signal }
+                { signal: controller.signal } // passa o sinal de controle para cancelar requisições
             );
 
             if (!response.ok) {
@@ -98,6 +102,7 @@ function MovieSearch() {
         }
     };
 
+    // atualiza o termo de pesquisa com cada digitação
     const handleChange = (event) => {
         const value = event.target.value;
         setTermoPesquisa(value);
@@ -106,6 +111,7 @@ function MovieSearch() {
         }
     };
 
+    // alterna a visibilidade do dropdown de resultados
     const handleToggle = () => {
         if (isOpen && termoPesquisa.length === 0) {
             setIsOpen(false);
@@ -129,6 +135,7 @@ function MovieSearch() {
                     />
                 )}
 
+                {/* botão para abrir ou fechar a pesquisa */}
                 <button 
                     className="botaoPesquisa" 
                     onClick={handleToggle}
@@ -138,6 +145,7 @@ function MovieSearch() {
                 </button>
             </div>
 
+            {/* exibe os resultados da pesquisa */}
             {isOpen && termoPesquisa.length > 1 && (
                 <div className="dropdownResultados">
 
@@ -148,10 +156,12 @@ function MovieSearch() {
                         </div>
                     )}
 
+                    {/* exibe mensagem caso não haja filmes encontrados */}
                     {!isLoading && resultados.length === 0 && (
                         <p className="statusMensagem">Nenhum filme encontrado.</p>
                     )}
 
+                    {/* mostra os filmes que foram encontrados*/}
                     {!isLoading && resultados.length > 0 && (
                         <ul className="listaFilmesResultados">
                             {resultados.map(filme => (

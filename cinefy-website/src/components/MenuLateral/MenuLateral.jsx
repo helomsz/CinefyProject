@@ -10,6 +10,7 @@ import IconeCrianca from '../../assets/icones/iconeCrianca.svg';
 import Logo from '../../assets/icones/LOGO.svg';
 import IconeMenuFechar from '../../assets/icones/iconeMenuFechar.svg'; 
 
+// dados dos itens do menu lateral
 const itensMenu = [
   { nome: 'Homepage', icone: IconeCasa, link: '/' },
   { nome: 'Explorar', icone: IconeExplorar, link: '/catalogo' },
@@ -20,12 +21,14 @@ const itensMenu = [
 
 
 function MenuLateral() {
+  // estados para controlar o menu e o item ativo
   const [estaAberto, setEstaAberto] = useState(false);
   const [travado, setTravado] = useState(false);
   const [itemAtivo, setItemAtivo] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
+  // atualiza o item ativo com base na URL
   useEffect(() => {
     const itemAtual = [...itensMenu].find(
       (item) => item.link === location.pathname
@@ -33,23 +36,28 @@ function MenuLateral() {
     if (itemAtual) setItemAtivo(itemAtual.nome);
   }, [location.pathname]);
 
+  // alterna o estado de abertura do menu
   const alternarMenu = () => {
     setTravado(!travado);
     setEstaAberto(!travado);
   };
 
+  // abre o menu ao passar o mouse
   const handleMouseEnter = () => {
     if (!travado) setEstaAberto(true);
   };
 
+  // fecha o menu ao tirar o mouse
   const handleMouseLeave = () => {
     if (!travado) setEstaAberto(false);
   };
 
+  // navega para o link do item clicado
   const handleItemClick = (item) => {
     navigate(item.link);
   };
 
+  // renderiza os itens do menu
   const renderizarItem = (item) => (
     <li
       key={item.nome}

@@ -18,14 +18,16 @@ const CineKids = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const catalogoRef = useRef(null);
+  const catalogoRef = useRef(null); // referência para o catálogo, para fazer scroll para ele
 
+  // useEffect para carregar filmes do backend assim que o componente for montado
   useEffect(() => {
     const fetchFilmes = async () => {
         setIsLoading(true);
         setError(null);
 
         try {
+            // busca filmes do servidor
             const response = await fetch('http://localhost:8000/listar_filmes_infantis');
 
             if (!response.ok) {
@@ -50,7 +52,8 @@ const CineKids = () => {
     fetchFilmes();
   }, []);
 
-  const handleFilterByProducer = (producer) => {
+  // função para filtrar filmes por produtora
+  const handleFilterByProducer = (producer) => { // Se já estiver ativo, desativa o filtro
 
     if (producer === filtroAtivo) {
       setFiltroAtivo(null);
@@ -58,6 +61,7 @@ const CineKids = () => {
     } else {
       setFiltroAtivo(producer);
 
+      // filtra os filmes pela produtora selecionada
       const filmesFiltrados = filmesOriginais.filter(
         (filme) => filme.produtoras && filme.produtoras.includes(producer)
       );
@@ -65,6 +69,7 @@ const CineKids = () => {
       setFilmesExibidos(filmesFiltrados);
     }
 
+    // rola suavemente até a seção de catálogo após aplicar o filtro
     setTimeout(() => {
       if (catalogoRef.current) {
         catalogoRef.current.scrollIntoView({
@@ -95,6 +100,7 @@ const CineKids = () => {
           <SecaoFiltroInfantil onFiltrar={setFilmesExibidos} />
         </div>
 
+        {/* se não estiver carregando e não houver erro, exibe a seção do catálogo de filmes */}
         {!isLoading && !error && (
           <SecaoCatalogoKids 
             filmesFiltrados={filmesExibidos}

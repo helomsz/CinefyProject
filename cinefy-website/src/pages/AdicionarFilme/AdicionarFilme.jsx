@@ -9,9 +9,13 @@ import PageTransitionLoader from "../../components/PageTransitionLoader/PageTran
 import AccessDeniedCard from "../../components/AccessDeniedCard/AccessDeniedCard";
 import './AdicionarFilme.css'
 
+// define o limite de atores que podem ser adicionados
 const ACTOR_LIMIT = 3;
+
+// URL base da API do servidor
 const API_BASE_URL = "http://localhost:8000";
 
+// define as categorias de filmes possíveis
 const allCategories = [
   "Ficção",
   "Ação",
@@ -31,6 +35,7 @@ const allCategories = [
   "Crime",
 ];
 
+// dados iniciais do formulário
 const initialFormData = {
   titulo: "",
   sinopse: "",
@@ -46,6 +51,7 @@ const initialFormData = {
 };
 
 const AdicionarFilme = () => {
+  // define os estados do componente
   const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
   const [loadingData, setLoadingData] = useState(true);
@@ -61,16 +67,19 @@ const AdicionarFilme = () => {
     isLoggedIn,
     isLoading: isLoadingSession,
   } = useUserSession();
-  const navigate = useNavigate();
-  const isAdmin = user?.role === "admin";
+  const navigate = useNavigate(); // hook para navegação
+  const isAdmin = user?.role === "admin"; // verifica se o usuário é admin
 
+  // texto do botão que depende da role do usuário
   const buttonText = isAdmin
     ? "Adicionar Filme Imediatamente"
     : "Enviar Solicitação";
 
+  // busca os dados iniciais como diretores, produtoras e atores
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
+        // faz requisições paralelas para buscar diretores, produtoras e atores
         const [diretoresRes, produtorasRes, atoresRes] = await Promise.all([
           fetch(`${API_BASE_URL}/diretores`),
           fetch(`${API_BASE_URL}/produtoras`),
@@ -81,6 +90,7 @@ const AdicionarFilme = () => {
           throw new Error("Erro ao buscar dados do backend");
         }
 
+        // se a resposta for bem-sucedida, transforma os dados em JSON e armazena nos estados
         setDiretoresDb(await diretoresRes.json());
         setProdutorasDb(await produtorasRes.json());
         setAtoresDb(await atoresRes.json());
@@ -88,18 +98,20 @@ const AdicionarFilme = () => {
         console.error("Erro ao carregar dados do back-end:", error);
         alert("Falha ao carregar dados do servidor.");
       } finally {
-        setLoadingData(false);
+        setLoadingData(false); // termina o carregamento
       }
     };
 
     fetchInitialData();
   }, []);
 
+  // atualiza os dados do formulário conforme o usuário vai digitando
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // alterna a seleção de categorias (adiciona ou remove)
   const handleCategoryToggle = (category) => {
     setFormData((prev) => {
       const isSelected = prev.categorias.includes(category);
@@ -111,6 +123,7 @@ const AdicionarFilme = () => {
         };
       }
 
+      // permite no máximo 2 categorias
       if (prev.categorias.length < 2) {
         return { ...prev, categorias: [...prev.categorias, category] };
       }
@@ -119,6 +132,7 @@ const AdicionarFilme = () => {
     });
   };
 
+  // adiciona um ator à lista de atores selecionados
   const addActorFromSuggestion = (actor) => {
     if (
       actor &&
@@ -134,6 +148,7 @@ const AdicionarFilme = () => {
     }
   };
 
+  // remove um ator da lista de atores selecionados
   const handleRemoveActor = (actorToRemove) => {
     setFormData((prev) => ({
       ...prev,
@@ -141,6 +156,7 @@ const AdicionarFilme = () => {
     }));
   };
 
+  // envia o formulário para o servidor
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -177,6 +193,7 @@ const AdicionarFilme = () => {
     }
   };
 
+  // se estiver carregando os dados ou a sessão, exibe o loader de transição
   if (loadingData || isLoadingSession) {
     return <PageTransitionLoader />;
   }
@@ -192,9 +209,11 @@ const AdicionarFilme = () => {
     );
   }
 
+  // verifica se o limite de categorias ou atores foi atingido
   const categoryLimitReached = formData.categorias.length >= 2;
   const actorLimitReached = formData.atores.length >= ACTOR_LIMIT;
 
+  // filtra sugestões de atores com base no nome digitado
   const sugestoesAtores = atoresDb
     .filter((actor) => !formData.atores.some((a) => a.id === actor.id))
     .filter(

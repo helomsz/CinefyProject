@@ -7,8 +7,12 @@ import { FaChevronRight } from 'react-icons/fa';
 import ScrollRevealContainer from '../ScrollRevealContainer/ScrollRevealContainer.jsx';
 
 function SecaoFilmes({ tituloSecao, listaFilmes = [] }) {
+
+    // usa o hook useNavigate para navegação
     const navigate = useNavigate(); 
+
     if (listaFilmes.length === 0) {
+        // se a lista de filmes estiver vazia, retorna null (não exibe nada)
         return null;
     }
 
@@ -24,6 +28,7 @@ function SecaoFilmes({ tituloSecao, listaFilmes = [] }) {
 
             <div className="containerCards">
                 {listaFilmes.map((filme) => (
+                    // mapeia os dados do filme
                     <CardFilme
                         key={filme.id} 
                         titulo={filme.titulo}
@@ -31,7 +36,7 @@ function SecaoFilmes({ tituloSecao, listaFilmes = [] }) {
                         nota={filme.avaliacao_media || 0.0} 
                         posterMini={filme.poster_mini}
                         trailer={filme.trailer} 
-                        onClick={() => navigate(`/detalhes/${filme.id}`)} 
+                        onClick={() => navigate(`/detalhes/${filme.id}`)} // ao clicar no cartão, navega para a página de detalhes do filme
                     />
                 ))}
             </div>

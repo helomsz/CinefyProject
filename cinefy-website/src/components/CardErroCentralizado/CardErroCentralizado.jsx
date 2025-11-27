@@ -3,8 +3,10 @@ import { AlertTriangle } from 'lucide-react';
 import './CardErroCentralizado.css';
 
 function CardErroCentralizado({ mensagemErro }) {
+    // o componente recebe uma prop 'mensagemErro' para exibir a mensagem dinâmica
     return (
         <div className="erro-container-full">
+            {/* card que exibe a mensagem de erro */}
             <div className="erro-card">
                 <AlertTriangle size={59} className="erro-icon" />
                 <h2 className="erro-titulo">Falha ao Carregar Dados</h2>

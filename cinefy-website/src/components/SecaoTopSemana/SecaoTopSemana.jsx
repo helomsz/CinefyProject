@@ -8,7 +8,10 @@ import './SecaoTopSemana.css';
  */
 function SecaoTopSemana({ tituloSecao, listaFilmes = [], favoritos, toggleFavorito }) { 
  
+    // hook para navegar entre páginas do React Router
     const navigate = useNavigate();
+
+    // verifica se a lista de filmes está vazia, caso esteja, retorna null e não renderiza a seção
     if (listaFilmes.length === 0) {
         return null;
     }
@@ -21,6 +24,7 @@ function SecaoTopSemana({ tituloSecao, listaFilmes = [], favoritos, toggleFavori
             
             <div className="containerCardsTop">
                 {listaFilmes.map((filme) => (
+                    // mapeia a lista de filmes e renderiza um CardTopSemana para cada filme
                     <CardTopSemana
                         key={filme.id} 
                         titulo={filme.titulo}
@@ -28,7 +32,7 @@ function SecaoTopSemana({ tituloSecao, listaFilmes = [], favoritos, toggleFavori
                         posterCapa={filme.poster}
                         toggleFavorito={toggleFavorito}
                         favoritos={favoritos}
-                        onClick={() => navigate(`/detalhes/${filme.id}`)} 
+                        onClick={() => navigate(`/detalhes/${filme.id}`)}  // vai para tela de detalhes do filme
                     />
                 ))}
             </div>

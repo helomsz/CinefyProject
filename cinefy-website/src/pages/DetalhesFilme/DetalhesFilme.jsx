@@ -10,22 +10,27 @@ import Footer from '../../components/Footer/Footer.jsx';
 import PageTransitionLoader from '../../components/PageTransitionLoader/PageTransitionLoader.jsx';
 import './DetalhesFilme.css'; 
 
+// define a URL base para as requisições à API
+
 const API_BASE_URL = 'http://localhost:8000';
 
 const DetalhesFilme = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const { id } = useParams(); // obtém o ID do filme da URL
+    const navigate = useNavigate(); // hook de navegação
 
+    // definindo os estados para o filme, carregamento, erros, exclusão e modal do trailer
     const [filme, setFilme] = useState(null);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
     const { user, token, isLoggedIn, isLoading: isLoadingSession } = useUserSession();
 
+    // verifica se o usuário tem o papel de admin
     const isAdmin = !isLoadingSession && user?.role === 'admin';
 
     const [isTrailerModalOpen, setIsTrailerModalOpen] = useState(false);
 
+    // função para abrir o modal de trailer
     const handleOpenTrailerModal = () => {
         if (filme?.trailer) {
             setIsTrailerModalOpen(true);
@@ -38,6 +43,7 @@ const DetalhesFilme = () => {
         setIsTrailerModalOpen(false);
     };
 
+    // função para buscar detalhes do filme da API
     useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal;
@@ -85,10 +91,11 @@ const DetalhesFilme = () => {
             buscarFilme();
         }
 
-        return () => controller.abort();
+        return () => controller.abort(); // limpa a requisição ao sair da página
     }, [id]);
 
 
+    // função para deletar o filme
     const handleDeleteFilme = async () => {
         if (!window.confirm(`Tem certeza que deseja deletar o filme "${filme.titulo}"? Esta ação não pode ser desfeita.`)) {
             return;
@@ -106,7 +113,7 @@ const DetalhesFilme = () => {
             const response = await fetch(`${API_BASE_URL}/filme/deletar/${id}`, {
                 method: 'DELETE',
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}` // envia o token para autenticação
                 }
             });
 
@@ -146,6 +153,7 @@ const DetalhesFilme = () => {
         return <div className="detalhes__erro">Detalhes do filme indisponíveis.</div>;
     }
 
+    // separando as informações do filme
     const diretores = filme.diretores ? filme.diretores.split(',') : [];
     const produtoras = filme.produtoras ? filme.produtoras.split(',') : [];
     const generos = filme.generos ? filme.generos.split(' | ') : [];

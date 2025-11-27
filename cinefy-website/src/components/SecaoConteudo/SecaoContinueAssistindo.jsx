@@ -3,6 +3,7 @@ import CardProgresso from './CardProgresso/CardProgresso';
 import './SecaoContinueAssistindo.css';
 import { useLocation } from 'react-router-dom';
 
+// define a URL da API para buscar os filmes em progresso
 const API_PROGRESSO_URL = 'http://localhost:8000/api/continue-assistindo'; 
 
 function SecaoContinueAssistindoContainer() { 
@@ -15,9 +16,9 @@ function SecaoContinueAssistindoContainer() {
     useEffect(() => {
         const buscarProgresso = async () => {
             try {
-                const response = await fetch(API_PROGRESSO_URL);
+                const response = await fetch(API_PROGRESSO_URL); // faz a requisição GET para a API
 
-                if (!response.ok) {
+                if (!response.ok) { // verifica se a resposta foi bem-sucedida
                     throw new Error(`Erro ${response.status}: ${response.statusText}`);
                 }
 
@@ -31,7 +32,7 @@ function SecaoContinueAssistindoContainer() {
             }
         };
 
-        buscarProgresso();
+        buscarProgresso();  // chama a função para buscar os filmes em progresso
     }, [location]); 
 
     if (carregando) {
@@ -42,7 +43,7 @@ function SecaoContinueAssistindoContainer() {
         return <p className="secaoErro">Erro ao carregar a seção: {erro}. Verifique se o backend Python está rodando e se a porta 8000 está liberada.</p>;
     }
 
-    if (listaProgresso.length === 0) {
+    if (listaProgresso.length === 0) {  // se não houver filmes em progresso, retorna null e não exibe nada
         return null;
     }
 
@@ -53,6 +54,7 @@ function SecaoContinueAssistindoContainer() {
             </header>
             <div className="listaConteudoCatalogo">
                 {listaProgresso.map(filme => (
+                    // mapeia os filmes em progresso e cria um CardProgresso para cada um
                     <CardProgresso 
                         key={filme.id} 
                         filme={filme} 
