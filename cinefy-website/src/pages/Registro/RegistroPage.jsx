@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import './RegistroPage.css';
 import BotaoPrimario from '../../components/BotaoPrimario/BotaoPrimario.jsx';
 import ImagemCadastro from '../../assets/backgroundLogin/imagemLoginCadastro.png';
-import { EyeIcon, EyeOffIcon, Check, AlertCircle } from 'lucide-react';
+import { EyeIcon, EyeOffIcon, Check, AlertCircle, X } from 'lucide-react';
 
 
 const URL_API_REGISTRO = 'http://localhost:8000/registro';
@@ -23,6 +23,7 @@ function RegistroPage() {
     const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
     const [mensagemStatus, setMensagemStatus] = useState({ tipo: '', texto: '' });
     const [isLoading, setIsLoading] = useState(false);
+    const [mostrarPopupSucesso, setMostrarPopupSucesso] = useState(false);
 
     useEffect(() => {
         const emailFromUrl = searchParams.get('email');
@@ -77,12 +78,13 @@ function RegistroPage() {
             const resultado = await response.json();
 
             if (response.ok && resultado.status === 'sucesso') {
-                setMensagemStatus({ tipo: 'sucesso', texto: 'Cadastro realizado com sucesso! Redirecionando para o Login...' });
+                setMensagemStatus({ tipo: 'sucesso', texto: 'Seu cadastro foi realizado com sucesso!' });
+                setMostrarPopupSucesso(true);
 
                 // redireciona para a página de login após 2 segundos
                 setTimeout(() => {
                     navigate('/login');
-                }, 2000);
+                 }, 2000);
 
             } else {
                 const mensagemErro = resultado.mensagem || 'Ocorreu um erro ao tentar cadastrar. Tente novamente.';
@@ -101,6 +103,11 @@ function RegistroPage() {
     const handleSubmit = (event) => {
         event.preventDefault();
         fazerRegistro();
+    };
+
+    const fecharPopupERedirecionar = () => {
+        setMostrarPopupSucesso(false);
+        navigate('/login');
     };
 
     return (
@@ -127,11 +134,9 @@ function RegistroPage() {
                             Já possui uma conta? <a href="/login">Login</a>
                         </p>
                     </div>
-                    {mensagemStatus.texto && (
+                    {mensagemStatus.texto && mensagemStatus.tipo === 'erro' && (
                         <div className={`mensagem-status ${mensagemStatus.tipo}`}>
-                            {mensagemStatus.tipo === 'sucesso' && <Check size={20} />}
-                            {mensagemStatus.tipo === 'erro' && <AlertCircle size={20} />}
-
+                            <AlertCircle size={20} />
                             <span>{mensagemStatus.texto}</span>
                         </div>
                     )}
@@ -248,6 +253,23 @@ function RegistroPage() {
                     />
                 </form>
             </div>
+            {mostrarPopupSucesso && (
+                <div className="popup-overlay">
+                    <div className="popup-conteudo">
+                        <div className="popup-cabecalho">
+                            <h3 className="titulo-popup">Cadastro Realizado</h3>
+                            <button className="fechar-popup" onClick={fecharPopupERedirecionar}>
+                                <X size={24} />
+                            </button>
+                        </div>
+                        <div className="popup-corpo">
+                            <Check size={78} className="icone-sucesso-grande" />
+                            <p>{mensagemStatus.texto}</p>
+                            <button className="botao-popup" onClick={fecharPopupERedirecionar}>Ir para o Login</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
