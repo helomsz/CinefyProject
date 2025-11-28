@@ -23,7 +23,7 @@ Este repositório inclui o **Front-end (React + Vite)** e o **Back-end (Python +
 /CinefyProject
 │
 ├── backend/
-│   ├── app.py
+│   ├── assets
 │   ├── requirements.txt
 │   ├── db.py
 │   └── server_api.py
