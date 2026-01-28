@@ -173,6 +173,9 @@ senha: admin123
 * Melhorar a performance do site
 
 ---
+<p align="left">
+  <img src="https://github.com/helomsz/CinefyProject/blob/main/assets/cinefy.png" width="900"/>
+</p>
 
 > Feito por **Heloisa Militão de Souza** 💚
 
