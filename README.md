@@ -173,9 +173,8 @@ senha: admin123
 * Melhorar a performance do site
 
 ---
-**_ps: tenha muita paciência e recarregue a página a quantidade de vezes necessária, tente explorar todas as funcionalidades de uma página antes de mudar para outra, s vezes demora um pouco para fazer a requisição_** 🥲
 
-> Feito com muita dedicação por **Heloisa Militão de Souza** 💚
+> Feito por **Heloisa Militão de Souza** 💚
 
 
 
